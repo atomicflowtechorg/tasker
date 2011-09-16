@@ -1,0 +1,31 @@
+[06-Sep-2011 10:39:32] PHP Fatal error:  Call to a member function query() on a non-object in /home/uvmcon5/public_html/tasker/application/models/user.php on line 19
+[06-Sep-2011 10:43:23] PHP Fatal error:  Call to a member function query() on a non-object in /home/uvmcon5/public_html/tasker/application/models/user.php on line 19
+[06-Sep-2011 10:45:12] PHP Fatal error:  Call to undefined function  base_url() in /home/uvmcon5/public_html/tasker/application/controllers/home.php on line 34
+[06-Sep-2011 11:05:48] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 131
+[06-Sep-2011 11:05:49] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 131
+[06-Sep-2011 11:06:17] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 132
+[06-Sep-2011 11:06:18] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 132
+[06-Sep-2011 11:06:20] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 132
+[06-Sep-2011 11:06:20] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 132
+[06-Sep-2011 11:06:20] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 132
+[06-Sep-2011 11:10:44] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 116
+[06-Sep-2011 11:10:45] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 116
+[06-Sep-2011 11:11:36] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 105
+[06-Sep-2011 11:11:38] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 105
+[06-Sep-2011 11:11:39] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 105
+[06-Sep-2011 11:11:39] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 105
+[06-Sep-2011 11:11:41] PHP Parse error:  syntax error, unexpected $end in /home/uvmcon5/public_html/tasker/application/views/authentication/loginForm.php on line 105
+[06-Sep-2011 12:38:40] PHP Fatal error:  Call to a member function showAll() on a non-object in /home/uvmcon5/public_html/tasker/application/views/grabBag.php on line 4
+[06-Sep-2011 12:45:22] PHP Fatal error:  Call to a member function showAll() on a non-object in /home/uvmcon5/public_html/tasker/application/controllers/grabBag.php on line 23
+[06-Sep-2011 12:45:44] PHP Fatal error:  Call to a member function showAll() on a non-object in /home/uvmcon5/public_html/tasker/application/controllers/grabBag.php on line 26
+[06-Sep-2011 12:49:55] PHP Fatal error:  Call to a member function input() on a non-object in /home/uvmcon5/public_html/tasker/application/models/task.php on line 14
+[06-Sep-2011 17:33:38] PHP Fatal error:  Call to a member function num_rows() on a non-object in /home/uvmcon5/public_html/tasker/application/views/grabBag.php on line 34
+[06-Sep-2011 17:38:55] PHP Fatal error:  Cannot redeclare Task::addTaskToTasker() in /home/uvmcon5/public_html/tasker/application/models/task.php on line 56
+[06-Sep-2011 19:34:00] PHP Fatal error:  Cannot redeclare class Task in /home/uvmcon5/public_html/tasker/application/models/task.php on line 78
+[06-Sep-2011 19:35:58] PHP Fatal error:  Cannot redeclare class Task in /home/uvmcon5/public_html/tasker/application/models/task.php on line 76
+[10-Sep-2011 20:49:20] PHP Parse error:  syntax error, unexpected ';', expecting T_FUNCTION in /home/uvmcon5/public_html/tasker/application/controllers/authentication.php on line 190
+[10-Sep-2011 20:49:27] PHP Parse error:  syntax error, unexpected ';', expecting T_FUNCTION in /home/uvmcon5/public_html/tasker/application/controllers/authentication.php on line 190
+[10-Sep-2011 20:49:30] PHP Parse error:  syntax error, unexpected ';', expecting T_FUNCTION in /home/uvmcon5/public_html/tasker/application/controllers/authentication.php on line 190
+[13-Sep-2011 21:08:56] PHP Fatal error:  Cannot use object of type stdClass as array in /home/uvmcon5/public_html/tasker/application/views/task.php on line 6
+[13-Sep-2011 21:09:12] PHP Fatal error:  Cannot use object of type stdClass as array in /home/uvmcon5/public_html/tasker/application/views/task.php on line 7
+[13-Sep-2011 21:53:57] PHP Fatal error:  Call to undefined method Task::getTaskData() in /home/uvmcon5/public_html/tasker/application/controllers/tasks.php on line 28
