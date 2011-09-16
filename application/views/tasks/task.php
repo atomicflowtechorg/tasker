@@ -13,7 +13,7 @@ foreach($task as $row)
 	else
 	{
 		echo "<h3>".$row->fldName."</h3>";
-		echo "<img src='/images/noImage' title='profileImage' class='taskProfileImage'/>";
+		echo "<img src='/images/noImage.jpg' title='profileImage' class='taskProfileImage'/>";
 		echo "<p>Assigned to: No one</p>";
 		echo "<p>DueDate: ".$row->fldDateDue."</p>";
 		echo "<p>Notes: ".$row->fldNotes."</p>";
