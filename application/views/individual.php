@@ -1,5 +1,5 @@
 <article class='listView'>
-	<h2>My Task List  TESTING GITHUB POST</h2>
+	<h2>My Task List</h2>
 	
 	<?	
 		$attributes = array('class' => 'addTask');
