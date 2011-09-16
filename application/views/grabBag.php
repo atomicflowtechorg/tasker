@@ -8,7 +8,7 @@
 		$addTask = array(
 	          'name'        => 'taskName',
 	          'id'          => 'taskName',
-	          'maxlength'   => '30',
+	          'maxlength'   => '140',
 	          'size'        => '30',
 			  'placeholder' => 'Add a task...',
 	        );
