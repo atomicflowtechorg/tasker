@@ -21,7 +21,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="/css/recentChanges.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="/css/styles.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="/css/overlay-apple.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/css/overlay.css" media="all" />
 </head>
 
 <body>

@@ -9,7 +9,7 @@
     </footer>
   </div>
 <!-- overlayed element -->
-<div class="apple_overlay" id="overlay">
+<div class="simple_overlay" id="overlay">
 
 	<!-- the external content is loaded inside this tag -->
 	<div class="contentWrap"></div>
@@ -43,7 +43,6 @@
 	$("a[rel]").overlay({
 
 		mask: 'darkred',
-		effect: 'apple',
 
 		onBeforeLoad: function() {
 
