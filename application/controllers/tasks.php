@@ -29,6 +29,7 @@ class Tasks extends CI_Controller {
 		$this->load->model('Task');
 		$this->load->helper('form');
 		
+		
 		$this->Task->deleteTask($pkTaskId);
 		
 		redirect('/'.$deleteLocation, 'location');
@@ -37,29 +38,56 @@ class Tasks extends CI_Controller {
 	
 	public function view($pkTaskId)
 	{
-		
+		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
 			$this->load->model('Task');
+			$this->load->library('form_validation');
 			$this->load->helper('form');
 				
 			$data['task'] = $this->Task->getTaskData($pkTaskId);
-			$this->load->view('tasks/task',$data);
+			$this->load->view('tasks/view',$data);
         }
         else
         {
 			$this->load->model('Task');
+			$this->load->library('form_validation');
 			$this->load->helper('form');
 				
 			$data['task'] = $this->Task->getTaskData($pkTaskId);
 			$this->load->view('default/header');
 			$this->load->view('authentication/loginForm');
 			$this->load->view('default/nav');
-			$this->load->view('tasks/task',$data);
+			$this->load->view('tasks/view',$data);
 			$this->load->view('default/footer');
 	        } 
 	}
 
+	public function update()
+	{
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			
+		}
+		else
+		{
+			$this->load->model('Task');
+			$this->load->helper('form');
+			$this->load->helper('MY_Form_helper');
+			$this->load->library('form_validation');
+			
+			
+			$this->load->view('default/header');
+			$this->load->view('authentication/loginForm');
+			$this->load->view('default/nav');
+
+			$data['task'] = $this->Task->update();
+			$this->load->view('tasks/update',$data);
+				
+			$this->load->view('default/footer');
+		}	
+	}
+	
 	public function assignTask($pkTaskId,$Tasker)
 	{
 		

@@ -29,3 +29,13 @@
 [13-Sep-2011 21:08:56] PHP Fatal error:  Cannot use object of type stdClass as array in /home/uvmcon5/public_html/tasker/application/views/task.php on line 6
 [13-Sep-2011 21:09:12] PHP Fatal error:  Cannot use object of type stdClass as array in /home/uvmcon5/public_html/tasker/application/views/task.php on line 7
 [13-Sep-2011 21:53:57] PHP Fatal error:  Call to undefined method Task::getTaskData() in /home/uvmcon5/public_html/tasker/application/controllers/tasks.php on line 28
+[19-Sep-2011 16:21:28] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 37
+[19-Sep-2011 16:22:42] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 37
+[19-Sep-2011 16:26:49] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 37
+[19-Sep-2011 16:26:54] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 37
+[19-Sep-2011 16:27:45] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 37
+[19-Sep-2011 16:27:51] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 37
+[19-Sep-2011 16:29:35] PHP Parse error:  syntax error, unexpected '<' in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 29
+[19-Sep-2011 17:15:57] PHP Fatal error:  Call to undefined function  form_date() in /home/uvmcon5/public_html/tasker/application/views/tasks/view.php on line 62
+[19-Sep-2011 17:26:40] PHP Parse error:  syntax error, unexpected '[' in /home/uvmcon5/public_html/tasker/application/models/task.php on line 119
+[19-Sep-2011 18:00:05] PHP Parse error:  syntax error, unexpected '[' in /home/uvmcon5/public_html/tasker/application/models/task.php on line 119

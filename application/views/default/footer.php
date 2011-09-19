@@ -22,7 +22,7 @@
 <script type="text/javascript" src="/js/blend/jquery.blend.js"></script>
 <script type="text/javascript" src="/js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/js/taskscript.js"></script> 
-<script type="text/javascript" src="/js/loginForm.js"></script>
+<!-- <script type="text/javascript" src="/js/loginForm.js"></script> -->
 <!-- JQUERY LOGOUT BUTTON -->
 <script>
 	$(document).ready(function(){

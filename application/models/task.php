@@ -1,10 +1,11 @@
 <?php 
 class Task extends CI_Model {
     var $pkTaskId = '';
+	var $fkdAssignedTo = '';
 	var $fldName = '';
 	var $fldStatus = '';
-	// var $fldDateCreated='';
-	// var $fldDateCompleted='';
+	var $fldNotes = '';
+	var $fldDateDue = '';
 
     function __construct()
     {
@@ -105,6 +106,25 @@ class Task extends CI_Model {
 		}
 		
 		return $query->result();
+	}
+	function update()
+	{
+		$this->pkTaskId = $this->input->post('taskId');
+		$this->fldName = $this->input->post('name');
+		$this->fldAssignedTo = $this->input->post('username');
+		$this->fldStatus = $this->input->post('status');
+		$this->fldNotes = $this->input->post('notes');
+		$this->fldDateDue = $this->input->post('dateDue');
+		
+		$tblTask = [$this->pkTaskId,$this->fldName,$this->fldStatus,$this->fldNotes,$this->fldDateDue];
+		$tblTaskerTask = [$this->fldAssignedTo,$this->pkTaskId];
+		
+		
+		$where = "pkTaskId = $this->pkTaskId";
+		$this->db->update_string('tblTask',$tblTask,$where);
+		$where = "fkTaskId = $this->pkTaskId";
+		$this->db->update_string('tblTask',$tblTaskerTask,$where);
+		return 'Update Complete';
 	}
 }
 
