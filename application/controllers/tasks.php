@@ -36,29 +36,55 @@ class Tasks extends CI_Controller {
 		
 	}
 	
-	public function view($pkTaskId)
+	public function view($updateLocation,$pkTaskId)
 	{
+
+		
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
 			$this->load->model('Task');
+			$this->load->model('User');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 				
-			$data['task'] = $this->Task->getTaskData($pkTaskId);
-			$this->load->view('tasks/view',$data);
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$data['task'] = $this->Task->getTaskData($pkTaskId);
+				$data['location'] = $updateLocation;
+				$data['users'] = $this->User->get_all_usernames();
+				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$this->load->view('tasks/view',$data);
+			}
         }
         else
         {
 			$this->load->model('Task');
+			$this->load->model('User');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
-				
-			$data['task'] = $this->Task->getTaskData($pkTaskId);
-			$this->load->view('default/header');
-			$this->load->view('authentication/loginForm');
-			$this->load->view('default/nav');
-			$this->load->view('tasks/view',$data);
+			
+			$this->form_validation->set_rules('name', 'name', 'required');
+			
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$data['task'] = $this->Task->getTaskData($pkTaskId);
+				$data['location'] = $updateLocation;
+				$data['users'] = $this->User->get_all_usernames();
+				$this->load->view('default/header');
+				$this->load->view('default/nav',$data);
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$this->load->view('tasks/view',$data);
+				}
+				else
+				{
+					$data['update'] = $this->Task->update();
+					redirect('/'.$updateLocation, 'location');
+				}
+			}//end if loggid in
+			
 			$this->load->view('default/footer');
 	        } 
 	}
@@ -71,20 +97,7 @@ class Tasks extends CI_Controller {
 		}
 		else
 		{
-			$this->load->model('Task');
-			$this->load->helper('form');
-			$this->load->helper('MY_Form_helper');
-			$this->load->library('form_validation');
-			
-			
-			$this->load->view('default/header');
-			$this->load->view('authentication/loginForm');
-			$this->load->view('default/nav');
 
-			$data['task'] = $this->Task->update();
-			$this->load->view('tasks/update',$data);
-				
-			$this->load->view('default/footer');
 		}	
 	}
 	

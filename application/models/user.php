@@ -21,6 +21,14 @@ class User extends CI_Model {
                                 ORDER BY  `fldLastLoggedIn` DESC ');
         return $query->result();
     }
+	
+	function get_all_usernames()
+    {
+        $query = $this->db->query('SELECT pkusername 
+                                FROM  `tblTasker` 
+                                ORDER BY  `fldLastLoggedIn` DESC ');
+        return $query->result();
+    }
 
     function insert_user()
     {

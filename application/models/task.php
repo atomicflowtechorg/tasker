@@ -42,6 +42,13 @@ class Task extends CI_Model {
 		return $query->result();
 	}
 	
+	function getAllStatusOptions(){
+		
+		$query = $this->db->query('SELECT * FROM tblTaskStatus');
+		
+		return $query->result();
+	}
+	
 	function getTasksForTasker($tasker=null){
 			
 		$session = $this->session->all_userdata();
@@ -116,14 +123,16 @@ class Task extends CI_Model {
 		$this->fldNotes = $this->input->post('notes');
 		$this->fldDateDue = $this->input->post('dateDue');
 		
-		$tblTask = [$this->pkTaskId,$this->fldName,$this->fldStatus,$this->fldNotes,$this->fldDateDue];
-		$tblTaskerTask = [$this->fldAssignedTo,$this->pkTaskId];
+		$tblTask = array('fldName' => $this->fldName,'fldStatus' => $this->fldStatus,'fldNotes' => $this->fldNotes,'fldDateDue' => $this->fldDateDue);
+		$tblTaskerTask = array('fkUsername' => $this->fldAssignedTo,'fkTaskId' => $this->pkTaskId);
 		
 		
 		$where = "pkTaskId = $this->pkTaskId";
-		$this->db->update_string('tblTask',$tblTask,$where);
+		$update[] = $this->db->update_string('tblTask',$tblTask,$where);
+		$this->db->query($update[0]);
 		$where = "fkTaskId = $this->pkTaskId";
-		$this->db->update_string('tblTask',$tblTaskerTask,$where);
+		$update[] = $this->db->update_string('tblTaskerTask',$tblTaskerTask,$where);
+		$this->db->query($update[1]);
 		return 'Update Complete';
 	}
 }

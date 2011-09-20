@@ -47,7 +47,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = 'atomicflowtech.com:3306';
 $db['default']['username'] = 'uvmcon5';
 $db['default']['password'] = 'PUNANI321bang';
 $db['default']['database'] = 'uvmcon5_tasker';

@@ -1,3 +1,3 @@
 <?
-echo $task;
+print_r($update);
 ?>

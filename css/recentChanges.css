@@ -1,12 +1,13 @@
-.tasksView  input,label,textarea
+.tasksView > input, .tasksView > label, .tasksView > textarea, .tasksView > select
 {
-clear:left;
-float:left;
+	clear:left;
+	float:left;
 }
+
 
 .taskProfileImage
 {
-float:left;
-clear:left;
-max-height:100px;
+	float:left;
+	clear:left;
+	max-height:100px;
 }
