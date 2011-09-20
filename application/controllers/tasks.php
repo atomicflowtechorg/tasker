@@ -127,7 +127,7 @@ class Tasks extends CI_Controller {
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 			
-			$this->form_validation->set_rules('username', 'username', 'required');
+			$this->form_validation->set_rules('username', 'username', 'alpha');
 			
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){

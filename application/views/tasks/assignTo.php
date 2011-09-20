@@ -21,7 +21,7 @@ foreach($task as $row)
 		echo "<h2>".$row->fldName."</h2>";
 
 		echo form_label('Assigned to:', 'username');
-		
+		$options['']='';
 		foreach($users as $user)
 		{
 			$options[$user->pkusername] = $user->pkusername;
@@ -52,7 +52,7 @@ foreach($task as $row)
 		echo "<h2>".$row->fldName."</h2>";
 		
 		echo form_label('Assigned to:', 'username');
-		
+		$options['']='';
 		foreach($users as $user)
 		{
 			$options[$user->pkusername] = $user->pkusername;

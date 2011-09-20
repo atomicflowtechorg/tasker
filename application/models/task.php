@@ -123,16 +123,41 @@ class Task extends CI_Model {
 		$this->fldNotes = $this->input->post('notes');
 		$this->fldDateDue = $this->input->post('dateDue');
 		
-		$tblTask = array('fldName' => $this->fldName,'fldStatus' => $this->fldStatus,'fldNotes' => $this->fldNotes,'fldDateDue' => $this->fldDateDue);
-		$tblTaskerTask = array('fkUsername' => $this->fldAssignedTo,'fkTaskId' => $this->pkTaskId);
+		//code that checks if updating for an unassigned task
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+		foreach($query->result() as $row){
+			$count = $row->total;
+		}
 		
+		switch($count){
+		
+			default:
+				echo $this->fldAssignedTo;
+				echo "FAILURE!!!!";
+				break;
+			case 0:
+				$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+				break;
+			case 1:
+				if($this->fldAssignedTo != '')
+				{
+					$this->db->query("UPDATE tblTaskerTask SET fkUsername='$this->fldAssignedTo' WHERE fkTaskId = '$this->pkTaskId'");
+				}
+				else
+				{
+					$this->db->query("DELETE FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+				}
+				break;
+		}
+		
+		//updates task
+		$tblTask = array('fldName' => $this->fldName,'fldStatus' => $this->fldStatus,'fldNotes' => $this->fldNotes,'fldDateDue' => $this->fldDateDue);
 		
 		$where = "pkTaskId = $this->pkTaskId";
 		$update[] = $this->db->update_string('tblTask',$tblTask,$where);
 		$this->db->query($update[0]);
-		$where = "fkTaskId = $this->pkTaskId";
-		$update[] = $this->db->update_string('tblTaskerTask',$tblTaskerTask,$where);
-		$this->db->query($update[1]);
+		
+		//doesnt actually use the returned value...
 		return 'Update Complete';
 	}
 	
@@ -141,21 +166,30 @@ class Task extends CI_Model {
 		$this->pkTaskId = $this->input->post('taskId');
 		$this->fldAssignedTo = $this->input->post('username');
 		
-		$result = $this->db->query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
-		
-		if($result == 1)
-		{
-			$this->db->query("UPDATE tblTaskerTask SET fkUsername='$this->fldAssignedTo' WHERE fkTaskId = '$this->pkTaskId'");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+		foreach($query->result() as $row){
+			$count = $row->total;
 		}
-		else
-		{
-			$data = array(
-			   'fkUsername' => $this->fldAssignedTo ,
-			   'fkTaskId' => $this->pkTaskId
-			);
-			$this->db->insert('tblTaskerTask', $data); 
-		}
+		switch($count){
 		
+			default:
+				echo $this->fldAssignedTo;
+				echo "FAILURE!!!!";
+				break;
+			case 0:
+				$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+				break;
+			case 1:
+				if($this->fldAssignedTo != '')
+				{
+					$this->db->query("UPDATE tblTaskerTask SET fkUsername='$this->fldAssignedTo' WHERE fkTaskId = '$this->pkTaskId'");
+				}
+				else
+				{
+					$this->db->query("DELETE FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+				}
+				break;
+		}
 		return 'Update Complete';
 	}
 	

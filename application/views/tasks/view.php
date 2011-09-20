@@ -32,6 +32,8 @@ foreach($task as $row)
 		
 		echo form_label('Assigned to:', 'username');
 		
+		$options['']='';
+		
 		foreach($users as $user)
 		{
 			$options[$user->pkusername] = $user->pkusername;
@@ -103,7 +105,7 @@ foreach($task as $row)
 		echo form_input($taskName);
 		
 		echo form_label('Assigned to:', 'username');
-		$options[] = '';
+		$options['']='';
 		foreach($users as $user)
 		{
 			$options[$user->pkusername] = $user->pkusername;
