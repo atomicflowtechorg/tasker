@@ -27,7 +27,7 @@
 		
 		<div class="taskOptions">
 			<a href='/tasks/view/<? echo uri_string()."/".$row->pkTaskId; ?>' rel="#overlay" title="Information" >i</a>
-			<a href='/tasks/assignTo/<? echo $row->pkTaskId; ?>' title="Assign Task">+</a>
+			<a href='/tasks/assignTo/<? echo uri_string()."/".$row->pkTaskId; ?>' title="Assign Task">+</a>
 			<a href='/tasks/delete/<? echo uri_string()."/".$row->pkTaskId; ?>' title="Delete" class="deleteTask">X</a>
 		</div>
 		

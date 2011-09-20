@@ -1,7 +1,7 @@
 <?php 
 class Task extends CI_Model {
     var $pkTaskId = '';
-	var $fkdAssignedTo = '';
+	var $fldAssignedTo = '';
 	var $fldName = '';
 	var $fldStatus = '';
 	var $fldNotes = '';
@@ -17,7 +17,9 @@ class Task extends CI_Model {
 		$this->fldName = $this->input->post('taskName');
 		$this->fldStatus = 'Available';
 		
-		$this->db->insert('tblTask', $this);
+		$tblTask = array('fldName' => $this->fldName, 'fldStatus' => $this->fldStatus);
+		
+		$this->db->insert('tblTask', $tblTask);
 	}
 	
 	function showAll(){
@@ -35,7 +37,7 @@ class Task extends CI_Model {
 		WHERE NOT EXISTS
 		(SELECT fkTaskId 
 		FROM tblTaskerTask 
-		WHERE tblTaskerTask.fkTaskId = tblTask.pkTaskId)
+		WHERE tblTaskerTask.fkTaskId = tblTask.pkTaskId) AND fldStatus != "Deleted"
 		ORDER BY pkTaskId DESC 
 		');
 		
@@ -60,7 +62,7 @@ class Task extends CI_Model {
 		"SELECT * FROM tblTask WHERE EXISTS(
 		SELECT fkTaskId 
 		FROM tblTaskerTask 
-		WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId)"
+		WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted'"
 		);
 		return $query->result();
 	}
@@ -86,9 +88,7 @@ class Task extends CI_Model {
 	
 	function deleteTask($taskId)
 	{
-		$query = $this->db->query("DELETE FROM tblTask WHERE pkTaskId='$taskId'");
-		$query = $this->db->query("DELETE FROM tblTaskerTask WHERE fkTaskId='$taskId'");
-		$query = $this->db->query("DELETE FROM tblListTask WHERE tblListTask.fkTaskId='$taskId'");
+		$query = $this->db->query("UPDATE tblTask SET fldStatus='Deleted' WHERE pkTaskId='$taskId'");
 	}
 	
 	function getTaskData($taskId)
@@ -135,6 +135,31 @@ class Task extends CI_Model {
 		$this->db->query($update[1]);
 		return 'Update Complete';
 	}
+	
+	function updateUser()
+	{
+		$this->pkTaskId = $this->input->post('taskId');
+		$this->fldAssignedTo = $this->input->post('username');
+		
+		$result = $this->db->query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+		
+		if($result == 1)
+		{
+			$this->db->query("UPDATE tblTaskerTask SET fkUsername='$this->fldAssignedTo' WHERE fkTaskId = '$this->pkTaskId'");
+		}
+		else
+		{
+			$data = array(
+			   'fkUsername' => $this->fldAssignedTo ,
+			   'fkTaskId' => $this->pkTaskId
+			);
+			$this->db->insert('tblTaskerTask', $data); 
+		}
+		
+		return 'Update Complete';
+	}
+	
+
 }
 
 ?>

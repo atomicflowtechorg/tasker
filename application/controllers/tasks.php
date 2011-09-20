@@ -71,6 +71,7 @@ class Tasks extends CI_Controller {
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
 				$data['location'] = $updateLocation;
 				$data['users'] = $this->User->get_all_usernames();
+				$data['statusOptions'] = $this->Task->getAllStatusOptions();
 				$this->load->view('default/header');
 				$this->load->view('default/nav',$data);
 
@@ -88,18 +89,6 @@ class Tasks extends CI_Controller {
 			$this->load->view('default/footer');
 	        } 
 	}
-
-	public function update()
-	{
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
-		{
-			
-		}
-		else
-		{
-
-		}	
-	}
 	
 	public function assignTask($pkTaskId,$Tasker)
 	{
@@ -111,13 +100,55 @@ class Tasks extends CI_Controller {
 		$this->load->view('tasks/task',$data);
 	}
 	
-	public function assignTo($pkTaskId)
+	public function assignTo($updateLocation,$pkTaskId)
 	{
 		
-		$this->load->model('Task');
-		$this->load->helper('form');
+		$this->load->helper('MY_Form_helper');
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			$this->load->model('Task');
+			$this->load->model('User');
+			$this->load->library('form_validation');
+			$this->load->helper('form');
+				
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$data['task'] = $this->Task->getTaskData($pkTaskId);
+				$data['location'] = $updateLocation;
+				$data['users'] = $this->User->get_all_usernames();
+				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$this->load->view('tasks/assignTo',$data);
+			}
+        }
+        else
+        {
+			$this->load->model('Task');
+			$this->load->model('User');
+			$this->load->library('form_validation');
+			$this->load->helper('form');
 			
-		$data['task'] = $this->Task->getTaskData($pkTaskId);
-		$this->load->view('tasks/assignTo',$data);
+			$this->form_validation->set_rules('username', 'username', 'required');
+			
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$data['task'] = $this->Task->getTaskData($pkTaskId);
+				$data['location'] = $updateLocation;
+				$data['users'] = $this->User->get_all_usernames();
+				$this->load->view('default/header');
+				$this->load->view('default/nav',$data);
+
+				if ($this->form_validation->run() == FALSE)
+				{
+					$this->load->view('tasks/assignTo',$data);
+				}
+				else
+				{
+					$data['update'] = $this->Task->updateUser();
+					redirect('/'.$updateLocation, 'location');
+				}
+			}//end if loggid in
+			
+			$this->load->view('default/footer');
+	        } 
 	}
 }
