@@ -3,7 +3,7 @@
 	
 	<?	
 		$attributes = array('class' => 'addTask');
-		echo form_open('',$attributes);
+		echo form_open('grabBag',$attributes);
 		
 		$addTask = array(
 	          'name'        => 'taskName',

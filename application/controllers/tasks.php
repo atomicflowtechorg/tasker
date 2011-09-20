@@ -36,9 +36,13 @@ class Tasks extends CI_Controller {
 		
 	}
 	
-	public function view($updateLocation,$pkTaskId)
+	public function view($updateLocation,$pkTaskId,$teamMember = null)
 	{
-
+		if(!is_numeric($pkTaskId))
+		{
+			$updateLocation = $updateLocation.'/'.$pkTaskId;
+			$pkTaskId = $teamMember;
+		}
 		
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
@@ -100,8 +104,13 @@ class Tasks extends CI_Controller {
 		$this->load->view('tasks/task',$data);
 	}
 	
-	public function assignTo($updateLocation,$pkTaskId)
+	public function assignTo($updateLocation,$pkTaskId,$teamMember = null)
 	{
+		if(!is_numeric($pkTaskId))
+		{
+			$updateLocation = $updateLocation.'/'.$pkTaskId;
+			$pkTaskId = $teamMember;
+		}
 		
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
