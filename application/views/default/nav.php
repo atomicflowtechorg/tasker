@@ -6,7 +6,7 @@ if(isset($session['logged_in']) && $session['logged_in']==TRUE){
     <ul>
         <a href="/individual/"><li class="blueRing" title="Your Tasks">Individual</li></a>
 
-        <a href="/team/"><li class="greenRing" title="Your Team's Tasks">Team</li></a>
+        <a href="/teams/"><li class="greenRing" title="Your Team's Tasks">Team</li></a>
 
         <a href="/universal/"><li class="yellowRing" title="Every Task In The System">Universal</li></a>
 

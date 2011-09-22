@@ -41,3 +41,8 @@
 [19-Sep-2011 18:00:05] PHP Parse error:  syntax error, unexpected '[' in /home/uvmcon5/public_html/tasker/application/models/task.php on line 119
 [20-Sep-2011 16:19:01] PHP Fatal error:  Cannot use [] for reading in /home/uvmcon5/public_html/tasker/application/models/task.php on line 146
 [20-Sep-2011 16:19:13] PHP Fatal error:  Cannot use object of type stdClass as array in /home/uvmcon5/public_html/tasker/application/models/task.php on line 146
+[21-Sep-2011 14:08:26] PHP Fatal error:  Call to undefined function  apache_get_modules() in /home/uvmcon5/public_html/tasker/application/views/default/header.php on line 6
+[21-Sep-2011 14:08:45] PHP Fatal error:  Call to undefined function  apache_get_modules() in /home/uvmcon5/public_html/tasker/application/views/default/header.php on line 6
+[21-Sep-2011 14:08:49] PHP Fatal error:  Call to undefined function  apache_get_modules() in /home/uvmcon5/public_html/tasker/application/views/default/header.php on line 6
+[21-Sep-2011 17:06:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/uvmcon5/public_html/tasker/application/controllers/teams.php on line 75
+[21-Sep-2011 17:07:07] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/uvmcon5/public_html/tasker/application/views/teams/create.php on line 14

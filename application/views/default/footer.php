@@ -18,10 +18,18 @@
 
 
 <!-- JQUERY LIBRARIES LOAD -->
+<!-- USE MINIFIED JS 
 <script type="text/javascript" src="/js/jquery-1.6.2.js"></script>
 <script type="text/javascript" src="/js/blend/jquery.blend.js"></script>
-<script type="text/javascript" src="/js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/js/taskscript.js"></script> 
+-->
+
+<!-- Minified JS -->
+<script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/js/blend/jquery.blend.min.js"></script>
+<script type="text/javascript" src="/js/taskscript.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.tools.min.js"></script>
+
 <!-- <script type="text/javascript" src="/js/loginForm.js"></script> -->
 <!-- JQUERY LOGOUT BUTTON -->
 <script>

@@ -33,7 +33,14 @@ class Individual extends CI_Controller {
 		
 		$session = $this->session->all_userdata();
 		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+		
+			if($username==null || $username == $session['username'])
+			{
+				redirect('/individual', 'location');
+			}
+			
 			$data['results'] = $this->Task->getTasksForTasker($username);
+			$data['user'] = $username;
 			$this->load->view('default/nav',$data);
 			$this->load->view('individual',$data);
 		}

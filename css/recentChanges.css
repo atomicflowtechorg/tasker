@@ -22,3 +22,8 @@
 {
 	max-width: 580px;
 }
+
+.showUsername
+{
+	font-style: italic;
+}
