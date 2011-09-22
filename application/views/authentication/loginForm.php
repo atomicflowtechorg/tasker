@@ -1,5 +1,5 @@
 <!-- Login Form -->
-<div id="loginForm">
+<div id="login">
 	<div id="errorConsole">
 	</div>
 	
@@ -11,7 +11,7 @@
 		echo validation_errors();
 		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm');
 		echo form_open('authentication',$attributes);
-		echo "<h1>Client Login</h1>";
+		echo form_fieldset("<h1>Client Login</h1>");
 		echo form_label('Username:','fldUsername');
 		$username = array(
 					  'name'        => 'fldUsername',
@@ -39,6 +39,7 @@
 		echo form_password($password);
 
 		echo "<label>";
+		echo "&nbsp;Remember me</label>";
 		$rememberMe = array(
 			'name'        => 'rememberme',
 			'id'          => 'rememberme',
@@ -46,7 +47,7 @@
 			'checked'     => TRUE,
 			);
 		echo form_checkbox($rememberMe);
-		echo "&nbsp;Remember me</label>";
+		
 
 		$submit = array(
 					  'name'        => 'submit',
@@ -56,8 +57,11 @@
 					);
 		echo	"<div class='clear'></div>";
 		echo form_submit($submit);
-		echo form_close();
+		
+		echo form_fieldset_close();
 		echo anchor('authentication/forgot','Lost password? Ask Celery Man.','class="lost-pwd"');
+		echo form_close();
+		
 		}
 		?>
 	<a href="/authentication/checkLogout" id="logout" title="Log Out">Log Out</a>

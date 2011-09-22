@@ -1,4 +1,4 @@
-<div class="taskItem">
+<div class="taskView">
 <?
 foreach($task as $row)
 {
@@ -14,7 +14,7 @@ foreach($task as $row)
 		
 		$attributes = array('class' => 'tasksView');
 		echo form_open('tasks/view/'.$location.'/'.$row->pkTaskId, $attributes);
-		
+		echo form_fieldset();
 		$taskId = array(
 				  'taskId'  => $row->pkTaskId
 				);
@@ -38,9 +38,8 @@ foreach($task as $row)
 		{
 			$options[$user->pkusername] = $user->pkusername;
 		}
-		
 		echo form_dropdown('username',$options,$row->pkUsername);
-		
+		echo "<a href='/individual/show/$row->pkUsername' title='$row->pkUsername'><img src='".$row->fldProfileImage."' title='".$row->pkUsername."' class='taskProfileImage'/></a>";
 		echo form_label('Status:', 'status');
 		foreach($statusOptions as $option)
 		{
@@ -48,8 +47,7 @@ foreach($task as $row)
 		}
 		
 		echo form_dropdown('status', $statusOption, $row->fldStatus);
-		
-		echo "<a href='/individual/show/$row->pkUsername' title='$row->pkUsername'><img src='".$row->fldProfileImage."' title='".$row->pkUsername."' class='taskProfileImage'/></a>";
+
 		
 		echo form_label('Date Due:', 'dateDue');
 		$dueDate = array(
@@ -74,6 +72,7 @@ foreach($task as $row)
 		echo form_textarea($notes);
 		
 		echo form_submit('update', 'Update');
+		echo form_fieldset_close();
 	}
 	else
 	{
@@ -84,7 +83,7 @@ foreach($task as $row)
 		// echo "<p>Notes: ".$row->fldNotes."</p>";
 		
 		
-				echo validation_errors(); 
+		echo validation_errors(); 
 		
 		$attributes = array('class' => 'tasksView');
 		echo form_open('tasks/view/'.$location.'/'.$row->pkTaskId, $attributes);
@@ -114,7 +113,7 @@ foreach($task as $row)
 		
 		echo form_dropdown('username',$options,'');
 
-		
+		echo "<img src='/images/noImage.jpg' title='profileImage' class='taskProfileImage'/>";
 		echo form_label('Status:', 'status');
 
 		foreach($statusOptions as $option)
@@ -124,7 +123,7 @@ foreach($task as $row)
 		
 		echo form_dropdown('status', $statusOption, $row->fldStatus);
 		
-		echo "<img src='/images/noImage.jpg' title='profileImage' class='taskProfileImage'/>";
+		
 		
 		echo form_label('Date Due:', 'dateDue');
 		$dueDate = array(
@@ -153,5 +152,4 @@ foreach($task as $row)
 
 }
 ?>
-</br>
 </div>

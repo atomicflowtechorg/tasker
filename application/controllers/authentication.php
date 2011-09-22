@@ -17,6 +17,7 @@ class Authentication extends CI_Controller {
 		
 		$this->form_validation->set_rules('fldUsername', 'Username', 'required');
 		$this->form_validation->set_rules('fldPassword', 'Password','required');
+		
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('default/header',$data);
@@ -51,6 +52,16 @@ class Authentication extends CI_Controller {
 				$this->session->set_userdata($newdata);
 				}
 				redirect('/', 'location');
+			}
+			else
+			{
+				$this->load->view('default/header',$data);
+				$this->load->view('authentication/loginForm');
+				$session = $this->session->all_userdata();
+				if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+					$this->load->view('default/nav');
+				}
+				$this->load->view('default/footer',$data);
 			}
 		}
     }

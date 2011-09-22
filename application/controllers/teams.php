@@ -81,6 +81,8 @@ class Teams extends CI_Controller {
 	
 	public function show($team = null)
 	{	
+		$teamNameUrl = str_replace("%20", "-", $team);
+		$this->uri->segment(3, $teamNameUrl);
     	//Page content configuration
         $this->load->library('image_lib');
         $this->load->library('form_validation');

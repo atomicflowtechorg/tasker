@@ -46,3 +46,7 @@
 [21-Sep-2011 14:08:49] PHP Fatal error:  Call to undefined function  apache_get_modules() in /home/uvmcon5/public_html/tasker/application/views/default/header.php on line 6
 [21-Sep-2011 17:06:53] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/uvmcon5/public_html/tasker/application/controllers/teams.php on line 75
 [21-Sep-2011 17:07:07] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home/uvmcon5/public_html/tasker/application/views/teams/create.php on line 14
+[22-Sep-2011 14:14:09] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166
+[22-Sep-2011 14:16:05] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166
+[22-Sep-2011 14:17:19] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166
+[22-Sep-2011 14:58:12] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166

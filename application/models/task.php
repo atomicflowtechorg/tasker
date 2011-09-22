@@ -136,7 +136,14 @@ class Task extends CI_Model {
 				echo "FAILURE!!!!";
 				break;
 			case 0:
-				$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+				if($this->fldAssignedTo == '')
+				{
+					
+				}
+				else
+				{
+					$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+				}
 				break;
 			case 1:
 				if($this->fldAssignedTo != '')
@@ -177,7 +184,14 @@ class Task extends CI_Model {
 				echo "FAILURE!!!!";
 				break;
 			case 0:
-				$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+				if($this->fldAssignedTo == '')
+				{
+					
+				}
+				else
+				{
+					$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+				}
 				break;
 			case 1:
 				if($this->fldAssignedTo != '')
