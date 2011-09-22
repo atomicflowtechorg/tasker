@@ -9,7 +9,7 @@ echo "</div>";
 foreach($teams as $row)
 {
 echo "<div class='teamInfo' style='float:left;'>";
-echo "<a href='/team/show/$row->pkTeamName' title='$row->pkTeamName'>$row->pkTeamName</a>";
+echo "<a href='/teams/show/$row->pkTeamName' title='$row->pkTeamName'>$row->pkTeamName</a>";
 
 echo "</div>";		
 }
