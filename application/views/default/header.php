@@ -29,7 +29,7 @@ ob_start( 'ob_gzhandler' );
 
 <body>
 	<header>
-			<h1>TeamTasker V1</h1>
+			<a href="http://tasker.atomicflowtech.com"><h1>TeamTasker V1</h1></a>
 			<h2>Task Better, Task Faster, Task like a boss.</h2>
 	</header>
     <div id="container"> 
