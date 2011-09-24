@@ -50,3 +50,14 @@
 [22-Sep-2011 14:16:05] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166
 [22-Sep-2011 14:17:19] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166
 [22-Sep-2011 14:58:12] PHP Fatal error:  ob_start() [<a href='ref.outcontrol'>ref.outcontrol</a>]: Cannot use output buffering in output buffering display handlers in /home/uvmcon5/public_html/tasker/system/core/Exceptions.php on line 166
+[22-Sep-2011 20:24:19] PHP Fatal error:  Uncaught exception 'Exception' with message 'Team can't be null' in /home/uvmcon5/public_html/tasker/application/models/team.php:38
+Stack trace:
+#0 /home/uvmcon5/public_html/tasker/application/controllers/teams.php(99): Team->getUsersForTeam(NULL)
+#1 /home/uvmcon5/public_html/tasker/system/core/CodeIgniter.php(339): Teams->show()
+#2 /home/uvmcon5/public_html/tasker/index.php(202): require_once('/home/uvmcon5/p...')
+#3 {main}
+  thrown in /home/uvmcon5/public_html/tasker/application/models/team.php on line 38
+[23-Sep-2011 11:25:12] PHP Fatal error:  Cannot use [] for reading in /home/uvmcon5/public_html/tasker/application/views/teams/viewAllTeams.php on line 28
+[23-Sep-2011 12:03:45] PHP Parse error:  syntax error, unexpected '}' in /home/uvmcon5/public_html/tasker/application/models/team.php on line 36
+[23-Sep-2011 12:39:50] PHP Parse error:  syntax error, unexpected ';' in /home/uvmcon5/public_html/tasker/application/controllers/teams.php on line 177
+[23-Sep-2011 17:11:56] PHP Parse error:  syntax error, unexpected T_LIST, expecting T_STRING in /home/uvmcon5/public_html/tasker/application/models/list.php on line 2

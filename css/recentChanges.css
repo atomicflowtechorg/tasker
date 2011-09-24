@@ -1,4 +1,4 @@
-
+/* LUCAS' CHANGES  */
 
 
 .taskProfileImage
@@ -27,6 +27,49 @@
 {
 	font-style: italic;
 }
+
+
+/*  Team List */
+
+ol.teamList {
+	/*margin: 20px 0;*/
+	/*background: url(../images/ul_bg.gif) repeat-y;*/ /*--Bg of the order numbers--*/
+	padding: 0;/*--Distance between the order numbers--*/
+	/*border: 1px solid #111;*/
+	text-decoration: none;
+	list-style:none;
+}
+ol.teamList li {
+	margin: 10px 0px 10px 0px;
+	padding: 5px 5px;
+	color: #cbff78; 
+	font-family: 'QuicksandBook';
+	font-weight: bold;
+	font-size: 12px;
+	background: url("../images/backgrounds/task_li_bg.png") repeat;
+       /*--The bevel look is styled with various colors in the border properties below--*/
+	/*border-top: 1px solid #000;
+	border-bottom: 1px solid #353535;
+	border-right: 1px solid #333;
+	border-left: 1px solid #151515;*/
+	text-decoration: none;
+	border-radius: 5px; 
+-moz-border-radius: 5px; 
+-webkit-border-radius: 5px; 
+
+
+}
+ol.teamList a{
+	text-transform:uppercase;
+	text-decoration: none;
+	color: #FFF;
+	/*font-family: Arial;*/
+	text-transform: lowercase; 
+	
+}
+ol.teamList li:first-child { font-family:'QuicksandBold';}
+ol.teamList li:last-child { border-bottom: none; }
+
 
 
 /* TASKER FORM  */
