@@ -50,6 +50,14 @@ class Team extends CI_Model {
 		return $query->result();
 	}
 	
+	function getTeamsForUser($user){
+		
+		$queryString = "SELECT fkTeamName FROM tblTeamTasker WHERE fkUsername ='$user'";
+		$query = $this->db->query($queryString);
+		
+		return $query->result();
+	}
+	
 	function addUserToTeam($tasker = null,$team = null)
 	{
 		if($tasker==null){
