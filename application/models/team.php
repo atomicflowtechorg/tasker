@@ -52,7 +52,9 @@ class Team extends CI_Model {
 	
 	function getTeamsForUser($user){
 		
-		$queryString = "SELECT fkTeamName FROM tblTeamTasker WHERE fkUsername ='$user'";
+		$queryString = "SELECT fkTeamName,fldUrl,fldRole FROM tblTeamTasker
+			INNER JOIN tblTeam ON fkTeamName = pkTeamName
+			WHERE fkUsername ='$user'";
 		$query = $this->db->query($queryString);
 		
 		return $query->result();

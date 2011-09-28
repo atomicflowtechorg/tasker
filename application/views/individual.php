@@ -1,46 +1,42 @@
 <article class='listView'>
-	<h2>My Task List</h2>
+	<h2>My Page</h2>
 	
 	<?	
-		echo validation_errors(); 
-		$attributes = array('class' => 'addTask');
-		echo form_open('grabBag',$attributes);
-		
-		$addTask = array(
-	          'name'        => 'taskName',
-	          'id'          => 'taskName',
-	          'placeholder' => 'Add a task...',
-	          'maxlength'   => '30',
-	          'size'        => '30',
-	        );
-		echo form_input($addTask);
-		echo form_submit('addTaskButton','Add Task');
-		echo form_close();
+		// echo validation_errors(); 
+		// $attributes = array('class' => 'addTask');
+		// echo form_open('grabBag',$attributes);
+// 		
+		// $addTask = array(
+	          // 'name'        => 'taskName',
+	          // 'id'          => 'taskName',
+	          // 'placeholder' => 'Add a task...',
+	          // 'maxlength'   => '30',
+	          // 'size'        => '30',
+	        // );
+		// echo form_input($addTask);
+		// echo form_submit('addTaskButton','Add Task');
+		// echo form_close();
 	?>
-	
-	
-	<ol class="taskList">
 	<?
-	if(count($results)==0)
+	foreach($user as $row)
 	{
-		echo '<li class="taskItem">No tasks exist for user <span class="showUsername">'.$user.'</span> OR user <span class="showUsername">'.$user.'</span> doesn'."'".'t exist</li>';
-	}
-	else{
-		foreach ($results as $row) {
-			?>
-			<li class="taskItem">
-				<? echo $row->fldName; ?>
-				
-			<div class="taskOptions">
-				<a href='/tasks/view/<? echo uri_string()."/".$row->pkTaskId; ?>' rel="#overlay" title="Information" >i</a>
-				<a href='/tasks/assignTo/<? echo uri_string()."/".$row->pkTaskId; ?>' title="Assign Task">+</a>
-				<a href='/tasks/delete/<? echo uri_string()."/".$row->pkTaskId; ?>' title="Delete" class="deleteTask">X</a>
-			</div>
-			</li>
-			<?
-		}
+		echo "<div class='userInfo' style='float:left;'>";
+		echo "<a href='/individual/$row->pkUsername' title='$row->pkUsername'><img src='".$row->fldProfileImage."' alt='".$row->fldFirstname." ".$row->fldLastname." class='userProfileImage' style='max-height:80px;'/></a>";
+		echo "<p>Status: ".$row->fldStatus."</p>";
+		echo $row->fldFirstname." ".$row->fldLastname;
+		echo "<br/>Last Logged in: ".$row->fldLastLoggedIn;
+		echo "</div>";
+		?>
+		<div class="myButtons">
+		<a href="/individual/teams/<? echo $row->pkUsername; ?>" title="View My Teams">Teams</a>
+		<a href="#" title="View My Lists">Lists</a>
+		<a href="#" title="View My Tasks">Tasks</a>
+		</div>
+		<?
 	}
 	?>
-	</ol>
+	
+	
+
 </article>
 
