@@ -61,3 +61,12 @@ Stack trace:
 [23-Sep-2011 12:03:45] PHP Parse error:  syntax error, unexpected '}' in /home/uvmcon5/public_html/tasker/application/models/team.php on line 36
 [23-Sep-2011 12:39:50] PHP Parse error:  syntax error, unexpected ';' in /home/uvmcon5/public_html/tasker/application/controllers/teams.php on line 177
 [23-Sep-2011 17:11:56] PHP Parse error:  syntax error, unexpected T_LIST, expecting T_STRING in /home/uvmcon5/public_html/tasker/application/models/list.php on line 2
+[27-Sep-2011 12:02:26] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/uvmcon5/public_html/tasker/application/models/task.php on line 25
+[27-Sep-2011 12:02:37] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/uvmcon5/public_html/tasker/application/models/task.php on line 25
+[27-Sep-2011 12:02:39] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/uvmcon5/public_html/tasker/application/models/task.php on line 25
+[27-Sep-2011 12:02:40] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/uvmcon5/public_html/tasker/application/models/task.php on line 25
+[27-Sep-2011 12:03:35] PHP Fatal error:  Call to a member function row() on a non-object in /home/uvmcon5/public_html/tasker/application/models/task.php on line 27
+[27-Sep-2011 16:47:33] PHP Fatal error:  [] operator not supported for strings in /home/uvmcon5/public_html/tasker/application/models/task.php on line 227
+[27-Sep-2011 16:52:35] PHP Parse error:  syntax error, unexpected '}' in /home/uvmcon5/public_html/tasker/application/models/task.php on line 160
+[27-Sep-2011 17:25:00] PHP Fatal error:  Cannot use [] for reading in /home/uvmcon5/public_html/tasker/application/views/tasks/assignTo.php on line 30
+[27-Sep-2011 17:25:06] PHP Parse error:  syntax error, unexpected T_STRING, expecting ']' in /home/uvmcon5/public_html/tasker/application/views/tasks/assignTo.php on line 32

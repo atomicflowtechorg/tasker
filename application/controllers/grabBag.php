@@ -29,7 +29,7 @@ class GrabBag extends CI_Controller {
 				$this->Task->addTask();
 			}
 		
-			$data['results'] = $this->Task->showAllUnassigned();
+			$data['results'] = $this->Task->showTasksForListId(10);
 			$this->load->view('default/nav',$data);
 			$this->load->view('grabBag',$data);
 		}

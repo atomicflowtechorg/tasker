@@ -23,41 +23,24 @@ class ListModel extends CI_Model {
 		if($this->type == 'Team')
 		{
 			$this->owner = $this->input->post('owner');
-			$dbTable = 'tblListTeam';
 		}
 		else
 		{
 			$session = $this->session->all_userdata();
 			$this->owner = $session['username'];
-			$dbTable = 'tblListTasker';
 		}
 		
-		$this->db->trans_start();
-		$this->db->query("INSERT INTO tblList (fldName,fldType,fldAccessLevel) VALUES ('$this->name' , '$this->type' , '$this->access')");
-		$this->db->query("INSERT INTO $dbTable VALUES (LAST_INSERT_ID(),'$this->owner' )");
-		$this->db->trans_complete();
+		$this->db->query("INSERT INTO tblList (fldName,fldType,fldOwner,fldAccessLevel) VALUES ('$this->name' ,$this->owner, '$this->type' , '$this->access')");
 				
 	}
 	
 	function getOwner($listId)
 	{
 		
-		$query = $this->db->query("SELECT fldType FROM tblList WHERE pkListId=$listId");
+		$query = $this->db->query("SELECT fldOwner FROM tblList WHERE fkListId=$listId");
 		$result = $query->row();
-		$type = $result->fldType;
-		if($type=='Personal')
-		{
-			$query = $this->db->query("SELECT fkUsername FROM tblListTasker WHERE fkListId=$listId");
-			$result = $query->row();
-			$owner = $result->fkUsername;
-		}
-		else
-		{
-			$query = $this->db->query("SELECT fkTeamName FROM tblListTeam WHERE fkListId=$listId");
-			$result = $query->row();
-			$owner = $result->fkTeamName;
-		}
-		
+		$owner = $result->fldOwner;
+
 		return $owner;
 	}
 	

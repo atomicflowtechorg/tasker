@@ -23,8 +23,10 @@
 	<?
 	foreach ($results as $row) {
 		?>
-		<li class="taskItem">
-		<? echo $row->fldName; ?>
+		<li class="taskItem <? if($row->fldStatus=='Deleted'){echo 'deleted';}; ?>">
+		<?
+		echo $row->fldName; 
+		?>
 		
 		<div class="taskOptions">
 			<a href='/tasks/view/<? echo uri_string()."/".$row->pkTaskId; ?>' rel="#overlay" title="Information" >i</a>

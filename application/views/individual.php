@@ -2,6 +2,7 @@
 	<h2>My Task List</h2>
 	
 	<?	
+		echo validation_errors(); 
 		$attributes = array('class' => 'addTask');
 		echo form_open('grabBag',$attributes);
 		

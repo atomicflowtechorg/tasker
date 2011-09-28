@@ -18,7 +18,7 @@ class User extends CI_Model {
     {
         $query = $this->db->query('SELECT * 
                                 FROM  `tblTasker` 
-                                ORDER BY  `fldLastLoggedIn` DESC ');
+                                ORDER BY  `fldLevel` DESC');
         return $query->result();
     }
 	

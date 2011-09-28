@@ -20,11 +20,34 @@ class Task extends CI_Model {
 		$tblTask = array('fldName' => $this->fldName, 'fldStatus' => $this->fldStatus);
 		
 		$this->db->insert('tblTask', $tblTask);
+		$taskId = $this->db->insert_id();
+		$session = $this->session->all_userdata();
+		$username = $session['username'];
+		$query = $this->db->query("SELECT pkListId FROM tblList WHERE fldType='GrabBag' AND fldOwner='grabbag'");
+		
+		$result = $query->row();
+		$defaultList = $result->pkListId;
+		
+		$tblListTask = array('fkListId' => $defaultList, 'fkTaskId' => $taskId);
+		
+		$this->db->insert('tblListTask', $tblListTask);
 	}
 	
 	function showAll(){
 		
 		$query = $this->db->query('SELECT * FROM tblTask');
+		
+		return $query->result();
+	}
+	
+	function showTasksForListId($listId)
+	{
+		$query = $this->db->query("SELECT tblTask.pkTaskId, tblTask.fldName,tblTask.fldStatus, tblTask.fldNotes, tblTask.fldDateDue
+		FROM `tblListTask` 
+		INNER JOIN tblTask
+		ON tblListTask.fkTaskId = tblTask.pkTaskId
+		WHERE tblListTask.fkListId=$listId
+		ORDER BY fldStatus ASC");
 		
 		return $query->result();
 	}
@@ -123,6 +146,20 @@ class Task extends CI_Model {
 		$this->fldNotes = $this->input->post('notes');
 		$this->fldDateDue = $this->input->post('dateDue');
 		
+		//get users default list
+		//TODO: needs support to assign to a team rather than a user
+		$query = $this->db->query("SELECT pkListId FROM tblList WHERE fldType='Default' AND fldOwner='$this->fldAssignedTo'");
+		$result = $query->row();
+		if(isset($result->pkListId))
+		{
+			$defaultList = $result->pkListId;
+		}
+		else
+		{
+			$defaultList = 10;
+		}
+		
+		
 		//code that checks if updating for an unassigned task
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
 		foreach($query->result() as $row){
@@ -136,33 +173,67 @@ class Task extends CI_Model {
 				echo "FAILURE!!!!";
 				break;
 			case 0:
-				if($this->fldAssignedTo == '')
+				if($this->fldAssignedTo == '')//if the record doesnt exist but assignTo is null then put in grabbag
 				{
+					$query = $this->db->query("SELECT fkListId FROM `tblListTask` WHERE fkTaskId =$this->pkTaskId");
+					$result = $query->row();
+					$taskList = $result->fkListId;
+					//assign it to grabbag
+					if($taskList==10)//if taskId in grabbag already, do nothing
+					{
+						
+					}
+					else // assign to grabbag
+					{
+						//update list (not insert) to grabbag
+						$tblListTask = array('fkListId' => 10);
+						$where = "fkTaskId = $this->pkTaskId";
+						$update = $this->db->update_string('tblListTask', $tblListTask, $where);
+						$this->db->query($update);
+					}
 					
 				}
-				else
+				else//create the record for assignTo
 				{
 					$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+					
+					//update list (not insert) to user
+					$tblListTask = array('fkListId' => $defaultList);
+					$where = "fkTaskId = $this->pkTaskId";
+					$update = $this->db->update_string('tblListTask', $tblListTask, $where);
+					$this->db->query($update);
 				}
 				break;
 			case 1:
-				if($this->fldAssignedTo != '')
+				if($this->fldAssignedTo != '')//represents unassigning a task
 				{
 					$this->db->query("UPDATE tblTaskerTask SET fkUsername='$this->fldAssignedTo' WHERE fkTaskId = '$this->pkTaskId'");
+					
+					//update list (not insert) to user
+					$tblListTask = array('fkListId' => $defaultList);
+					$where = "fkTaskId = $this->pkTaskId";
+					$update = $this->db->update_string('tblListTask', $tblListTask, $where);
+					$this->db->query($update);
 				}
 				else
 				{
 					$this->db->query("DELETE FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+					
+					//update list (not insert) to grabbag
+					$tblListTask = array('fkListId' => 10);
+					$where = "fkTaskId = $this->pkTaskId";
+					$update = $this->db->update_string('tblListTask', $tblListTask, $where);
+					$this->db->query($update);
 				}
 				break;
 		}
 		
 		//updates task
-		$tblTask = array('fldName' => $this->fldName,'fldStatus' => $this->fldStatus,'fldNotes' => $this->fldNotes,'fldDateDue' => $this->fldDateDue);
+		//$tblTask = array('fldName' => $this->fldName,'fldStatus' => $this->fldStatus,'fldNotes' => $this->fldNotes,'fldDateDue' => $this->fldDateDue);
 		
-		$where = "pkTaskId = $this->pkTaskId";
-		$update[] = $this->db->update_string('tblTask',$tblTask,$where);
-		$this->db->query($update[0]);
+		//$where = "pkTaskId = $this->pkTaskId";
+		//$update[] = $this->db->update_string('tblTask',$tblTask,$where);
+		//$this->db->query($update[0]);
 		
 		//doesnt actually use the returned value...
 		return 'Update Complete';
