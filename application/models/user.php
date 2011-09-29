@@ -18,7 +18,7 @@ class User extends CI_Model {
     {
         $query = $this->db->query('SELECT * 
                                 FROM  `tblTasker` 
-                                ORDER BY  `fldLevel` DESC');
+                                ORDER BY  `fldLastLoggedIn` DESC ');
         return $query->result();
     }
 	
@@ -85,12 +85,6 @@ class User extends CI_Model {
 		$this->db->update('tblTasker', $data);
 
 		return	$this;
-	}
-
-	function get_user_info($username)
-	{
-		$query = $this->db->query("SELECT pkUsername,fldFirstname,fldLastname,fldEmail,fldProfileImage,fldLastLoggedIn,fldStatus FROM tblTasker WHERE pkUsername='$username'");
-		return $query->result();
 	}
 }
 

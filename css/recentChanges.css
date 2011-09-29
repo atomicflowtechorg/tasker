@@ -28,13 +28,8 @@
 	font-style: italic;
 }
 
-.deleted
-{
-	opacity:0.4;
-	filter:alpha(opacity=40); /* For IE8 and earlier */
-}
 
-/*  Team List *********************************************************************/
+/*  Team List */
 
 ol.teamList {
 	/*margin: 20px 0;*/
@@ -77,7 +72,7 @@ ol.teamList li:last-child { border-bottom: none; }
 
 
 
-/* TASKER FORM *********************************************** */
+/* TASKER FORM  */
 #loginForm
 {
 	width:516px;

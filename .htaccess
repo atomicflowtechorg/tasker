@@ -14,3 +14,7 @@
 		Header append Vary User-Agent
 	</IfModule>
 </IfModule>
+
+<FilesMatch "\.(js|css|jpg|jpeg|png|gif|swf)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>

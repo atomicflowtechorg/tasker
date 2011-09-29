@@ -32,9 +32,7 @@ class Authentication extends CI_Controller {
 		{
 			if($_POST){
 				$exists = $this->User->check_user();
-				$objArray = get_object_vars($exists);
-				$resultItem = $objArray['num_rows'];
-				if ($resultItem==1)
+				if ($exists->num_rows() == 1)
 				{
 					$user = $this->User->user_login();
 					$data['username'] = $user->firstname;

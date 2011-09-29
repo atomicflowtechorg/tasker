@@ -5,6 +5,7 @@ class GrabBag extends CI_Controller {
 
     public function index()
     {
+		$this->output->cache(5);
 		$this->load->model('Task');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -29,7 +30,7 @@ class GrabBag extends CI_Controller {
 				$this->Task->addTask();
 			}
 		
-			$data['results'] = $this->Task->showTasksForListId(10);
+			$data['results'] = $this->Task->showAllUnassigned();
 			$this->load->view('default/nav',$data);
 			$this->load->view('grabBag',$data);
 		}

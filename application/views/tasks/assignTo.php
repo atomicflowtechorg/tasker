@@ -21,13 +21,13 @@ foreach($task as $row)
 		echo "<h2>".$row->fldName."</h2>";
 
 		echo form_label('Assigned to:', 'username');
-		$options['grabbag']='';
+		$options['']='';
 		foreach($users as $user)
 		{
 			$options[$user->pkusername] = $user->pkusername;
 		}
 		
-		echo form_dropdown('username',$options,$options['grabbag']);
+		echo form_dropdown('username',$options,'');
 		
 		echo form_submit('assign', 'Assign');
 	}

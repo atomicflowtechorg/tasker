@@ -39,8 +39,7 @@
 */
 
 $route['default_controller'] = "authentication";
-//$route['individual/(:any)'] = "individual/show/$1";
-//$route['individual/(:any)/teams'] = "individual/teams/$1";
+$route['individual/(:any)'] = "individual/show/$1";
 
 $route['404_override'] = '';
 

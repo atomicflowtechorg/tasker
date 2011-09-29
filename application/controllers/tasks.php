@@ -38,8 +38,6 @@ class Tasks extends CI_Controller {
 	
 	public function view($updateLocation,$pkTaskId,$teamMember = null)
 	{
-		//if update location is multi path... (forget when this would happen)
-		//TODO: find out when this code executes
 		if(!is_numeric($pkTaskId))
 		{
 			$updateLocation = $updateLocation.'/'.$pkTaskId;

@@ -33,6 +33,7 @@ foreach($task as $row)
 		echo form_label('Assigned to:', 'username');
 		
 		$options['']='';
+		
 		foreach($users as $user)
 		{
 			$options[$user->pkusername] = $user->pkusername;
