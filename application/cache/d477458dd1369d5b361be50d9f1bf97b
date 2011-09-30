@@ -1,4 +1,4 @@
-1317260624TS---><!DOCTYPE html>
+1317339691TS---><!DOCTYPE html>
 <html lang="en">
 <head>
 	<link href='http://fonts.googleapis.com/css?family=Six+Caps|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
@@ -54,15 +54,6 @@
 	
 	<ol class="taskList">
 			<li class="taskItem">
-		slider jquery		
-		<div class="taskOptions">
-			<a href='/tasks/view/grabBag/110' rel="#overlay" title="Information" >i</a>
-			<a href='/tasks/assignTo/grabBag/110' title="Assign Task">+</a>
-			<a href='/tasks/delete/grabBag/110' title="Delete" class="deleteTask">X</a>
-		</div>
-		
-		</li>
-				<li class="taskItem">
 		add item to grabbag list		
 		<div class="taskOptions">
 			<a href='/tasks/view/grabBag/108' rel="#overlay" title="Information" >i</a>
@@ -97,10 +88,10 @@
      <p>&copy; Copyright  by AtomicFlow Creative</p>
      Array
 (
-    [session_id] => 29d36a092d2f86b4130a5f09b52b741e
+    [session_id] => 3f32f8bb41dd72e225032d679e7c1959
     [ip_address] => 174.63.75.24
     [user_agent] => Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.186 Safari/535.1
-    [last_activity] => 1317260317
+    [last_activity] => 1317339387
     [username] => lucasmp
     [firstname] => Lucas
     [email] => lucasmp@atomicflowtech.com

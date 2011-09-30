@@ -1,24 +1,10 @@
 <article class='listView'>
 	<h2>GrabBag List</h2>
 	
-	<?	
-		echo validation_errors(); 
-		$attributes = array('class' => 'addTask');
-		echo form_open('grabBag',$attributes);
-		
-		$addTask = array(
-	          'name'        => 'taskName',
-	          'id'          => 'taskName',
-	          'maxlength'   => '140',
-	          'size'        => '30',
-			  'placeholder' => 'Add a task...',
-	        );
-		echo form_input($addTask);
-		echo form_submit('addTaskButton','Add Task');
-		echo form_close();
-	?>
-	
-	
+	<div class="tasksNav">
+		<a href="/tasks/create/<? echo uri_string(); ?>" rel="#overlay" title="Create a task"> + </a>
+	</div>
+
 	<ol class="taskList">
 	<?
 	foreach ($results as $row) {

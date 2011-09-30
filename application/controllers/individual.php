@@ -13,8 +13,9 @@ class Individual extends CI_Controller {
 		
 		$session = $this->session->all_userdata();
 		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+			$data['user'] = $session['username'];
 			$data['results'] = $this->Task->getTasksForTasker();
-			$this->load->view('default/nav',$data);
+			$this->load->view('default/nav');
 			$this->load->view('individual',$data);
 		}
 		
@@ -41,7 +42,7 @@ class Individual extends CI_Controller {
 			
 			$data['results'] = $this->Task->getTasksForTasker($username);
 			$data['user'] = $username;
-			$this->load->view('default/nav',$data);
+			$this->load->view('default/nav');
 			$this->load->view('individual',$data);
 		}
         $this->load->view('default/footer');

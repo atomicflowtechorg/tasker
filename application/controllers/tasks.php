@@ -20,7 +20,7 @@ class Tasks extends CI_Controller {
 
     public function index()
     {
-		echo "Tasks";
+		redirect('/', 'location');
     }
 
 	public function delete($deleteLocation,$pkTaskId)
@@ -159,5 +159,65 @@ class Tasks extends CI_Controller {
 			
 			$this->load->view('default/footer');
 	        } 
+	}
+
+	function create($location,$username = null)
+	{
+		$data['location'] = $location."/".$username;
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			$this->load->model('Task');
+			$this->load->model('User');
+			$this->load->library('form_validation');
+			$this->load->helper('form');
+				
+				$this->form_validation->set_rules('name', 'name', 'required');
+				
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				
+				if ($this->form_validation->run() == FALSE)
+				{
+
+				}
+				else
+				{
+					$this->Task->addTask();
+					redirect('/'.$data['location'],'location');
+				}
+				$this->load->view('tasks/create',$data);
+			}
+        }
+        else
+        {
+			$this->load->model('Task');
+			$this->load->model('User');
+			$this->load->helper('form');
+			$this->load->library('form_validation');
+			
+			
+			$this->form_validation->set_rules('taskName', 'task name', 'required');
+			
+			$this->load->view('default/header');
+			$this->load->view('authentication/loginForm');
+			
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				
+				if ($this->form_validation->run() == FALSE)
+				{
+
+				}
+				else
+				{
+					$this->Task->addTask();
+					redirect('/'.$data['location'],'location');
+				}
+				$this->load->view('default/nav');
+				$this->load->view('tasks/create',$data);
+			}
+		
+		$this->load->view('default/footer');
+       }
 	}
 }

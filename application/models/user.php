@@ -86,6 +86,15 @@ class User extends CI_Model {
 
 		return	$this;
 	}
+
+	function getLists($username)
+	{
+		
+		$query = $this->db->query("SELECT * FROM `tblList` 
+		WHERE fldOwner = '$username' OR fldOwner=(SELECT fkTeamName 
+		FROM  `tblTeamTasker` where fkUsername='$username')");
+		return $query->result();
+	}
 }
 
 ?>
