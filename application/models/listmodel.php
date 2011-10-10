@@ -23,20 +23,14 @@ class ListModel extends CI_Model {
 		if($this->type == 'Team')
 		{
 			$this->owner = $this->input->post('owner');
-			$dbTable = 'tblListTeam';
 		}
 		else
 		{
 			$session = $this->session->all_userdata();
 			$this->owner = $session['username'];
-			$dbTable = 'tblListTasker';
 		}
 		
-		$this->db->trans_start();
-		$this->db->query("INSERT INTO tblList (fldName,fldType,fldAccessLevel) VALUES ('$this->name' , '$this->type' , '$this->access')");
-		$this->db->query("INSERT INTO $dbTable VALUES (LAST_INSERT_ID(),'$this->owner' )");
-		$this->db->trans_complete();
-				
+		$this->db->query("INSERT INTO tblList (fldName,fldType,fldAccessLevel,fldOwner) VALUES ('$this->name' , '$this->type' , '$this->access','$this->owner')");
 	}
 	
 	function getOwner($listId)

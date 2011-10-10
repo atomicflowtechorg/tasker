@@ -62,6 +62,21 @@ class Task extends CI_Model {
 		);
 		return $query->result();
 	}
+
+	function addTaskToList($taskId=null,$listId = null){
+		
+		if($taskId==null){
+			$taskId = $this->input->post('taskId');
+		}
+
+		if($listId==null){
+			$listId = $this->input->post('listId');
+		}
+		
+		//TODO: validate taskId and listId exists
+		
+		$query = $this->db->query("INSERT INTO tblListTask (fkListId,fkTaskId) VALUES ('$listId','$taskId')");
+	}
 	
 	function getTasksForTasker($tasker=null){
 			

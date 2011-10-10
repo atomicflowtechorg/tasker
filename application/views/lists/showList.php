@@ -1,5 +1,14 @@
 <?
 $session = $this->session->all_userdata();
+
+if($nav ==TRUE){
+	?>
+	<div class="tasksNav">
+		<a href="/tasks/create/<? echo uri_string(); ?>" rel="#overlay" title="Create a task"> + </a>
+		<a href="/lists/showUserLists/<? echo $user; ?>/" rel="#overlay" title="Load List"> --- </a>
+	</div>
+	<?
+}
 ?>
 
 	<ol class="taskList">
