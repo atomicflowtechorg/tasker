@@ -17,9 +17,11 @@ class Task extends CI_Model {
 		$this->fldName = $this->input->post('taskName');
 		$this->fldStatus = 'Available';
 		
+		
 		$tblTask = array('fldName' => $this->fldName, 'fldStatus' => $this->fldStatus);
 		
 		$this->db->insert('tblTask', $tblTask);
+		return $this;
 	}
 	
 	function showAll(){
@@ -49,6 +51,31 @@ class Task extends CI_Model {
 		$query = $this->db->query('SELECT * FROM tblTaskStatus');
 		
 		return $query->result();
+	}
+	
+	function getTasksForList($listId){
+		$query = $this->db->query(
+		"SELECT * FROM tblTask WHERE EXISTS(
+		SELECT fkTaskId 
+		FROM tblListTask 
+		WHERE fkListId=$listId) AND fldStatus != 'Deleted'"
+		);
+		return $query->result();
+	}
+
+	function addTaskToList($taskId=null,$listId = null){
+		
+		if($taskId==null){
+			$taskId = $this->input->post('taskId');
+		}
+
+		if($listId==null){
+			$listId = $this->input->post('listId');
+		}
+		
+		//TODO: validate taskId and listId exists
+		
+		$query = $this->db->query("INSERT INTO tblListTask (fkListId,fkTaskId) VALUES ('$listId','$taskId')");
 	}
 	
 	function getTasksForTasker($tasker=null){

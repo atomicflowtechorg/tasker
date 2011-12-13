@@ -68,6 +68,57 @@ class Lists extends CI_Controller {
 		
 		$this->load->view('default/footer');
 	}
+	
+	function show($username,$listId)
+	{
+		$this->load->model('Task');
+		$this->load->helper('form');
+		
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			
+		}
+		else
+		{
+			$this->load->view('default/header');
+			$this->load->view('authentication/loginForm');	
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$data['user'] = $username;
+				$data['listName'] = $listId;
+				$data['tasks'] = $this->Task->getTasksForList($listId);
+				$data['nav'] = TRUE;
+				$this->load->view('default/nav');
+				$this->load->view('lists/showList',$data);
+			}
+	        $this->load->view('default/footer');
+		}
+	}
+	
+	function showUserLists($username)
+	{
+		$this->load->model('ListModel');
+		$this->load->model('User');
+		$data['lists'] = $this->User->getLists($username);
+		$data['user'] = $username;
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$this->load->view('lists/view',$data);
+			}
+        }
+        else
+        {
+        	$this->load->view('default/header');
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$this->load->view('default/nav');
+				$this->load->view('lists/view',$data);
+			}
+		$this->load->view('default/footer');
+        }
+	}
 }
 
 ?>
