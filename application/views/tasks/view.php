@@ -39,7 +39,7 @@ foreach($task as $row)
 			$options[$user->pkusername] = $user->pkusername;
 		}
 		echo form_dropdown('username',$options,$row->pkUsername);
-		echo "<a href='/individual/show/$row->pkUsername' title='$row->pkUsername'><img src='".$row->fldProfileImage."' title='".$row->pkUsername."' class='taskProfileImage'/></a>";
+		echo "<a href='".site_url("individual/$row->pkUsername")."' title='$row->pkUsername'><img src='../".$row->fldProfileImage."' title='".$row->pkUsername."' class='taskProfileImage'/></a>";
 		echo form_label('Status:', 'status');
 		foreach($statusOptions as $option)
 		{
@@ -113,7 +113,7 @@ foreach($task as $row)
 		
 		echo form_dropdown('username',$options,'');
 
-		echo "<img src='/images/noImage.jpg' title='profileImage' class='taskProfileImage'/>";
+		echo "<img src='../images/noImage.jpg' title='profileImage' class='taskProfileImage'/>";
 		echo form_label('Status:', 'status');
 
 		foreach($statusOptions as $option)

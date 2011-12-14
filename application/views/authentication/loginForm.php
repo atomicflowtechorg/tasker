@@ -64,5 +64,5 @@
 		
 		}
 		?>
-	<a href="/authentication/checkLogout" id="logout" title="Log Out">Log Out</a>
+	<a href="<?php echo site_url('authentication/checkLogout');?>" id="logout" title="Log Out">Log Out</a>
 </div><!-- LoginForm End -->

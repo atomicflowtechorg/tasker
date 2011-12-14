@@ -1,5 +1,5 @@
 <div class="taskItem">
-<?
+<?php 
 foreach($task as $row)
 {
 	if( isset($row->pkUsername))

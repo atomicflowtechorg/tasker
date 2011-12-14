@@ -37,13 +37,15 @@ class Individual extends CI_Controller {
 		
 			if($username==null || $username == $session['username'])
 			{
-				redirect('/individual', 'location');
+				redirect(site_url('individual'), 'location');
 			}
-			
-			$data['results'] = $this->Task->getTasksForTasker($username);
-			$data['user'] = $username;
-			$this->load->view('default/nav');
-			$this->load->view('individual',$data);
+			else
+			{
+				$data['results'] = $this->Task->getTasksForTasker($username);
+				$data['user'] = $username;
+				$this->load->view('default/nav');
+				$this->load->view('individual',$data);
+			}
 		}
         $this->load->view('default/footer');
 		

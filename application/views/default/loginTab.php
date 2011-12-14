@@ -5,7 +5,7 @@
 				<!--<h1>Welcome to AtomicFlow</h1>	-->
 				<!--<p class="grey"></p> class for grey text-->
 				<!--<h2>class for header 2</h2>-->
-				<img src="/images/logos/logoSymbol_login.png" alt="" />
+				<img src="../images/logos/logoSymbol_login.png" alt="" />
 			</div>
 			<div class="left">
 				<!-- Login Form -->

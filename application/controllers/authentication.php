@@ -80,15 +80,15 @@ class Authentication extends CI_Controller {
 				$data['username'] = $user->firstname;
 				$data['success'] = true;
 				$data['message'] = "you've successfully logged in";
-				$data['navigation'] = '<a href="/authentication/checkLogout" id="logout" title="Log Out">Log Out</a><nav id="appnav"> 
+				$data['navigation'] = '<a href="'.site_url('authentication/checkLogout').'" id="logout" title="Log Out">Log Out</a><nav id="appnav"> 
     <ul>
-        <a href="/individual/"><li class="blueRing">Individual</li></a>
+        <a href="'.site_url('individual').'"><li class="blueRing">Individual</li></a>
 
-        <a href="/team/"><li class="greenRing">Team</li></a>
+        <a href="'.site_url('team').'"><li class="greenRing">Team</li></a>
 
-        <a href="/unversal/"><li class="yellowRing">Universal</li></a>
+        <a href="'.site_url('unversal').'"><li class="yellowRing">Universal</li></a>
 
-        <a href="/grabBag/"><li class="orangeRing">Grab Bag</li></a>
+        <a href="'.site_url('grabBag').'"><li class="orangeRing">Grab Bag</li></a>
 
     </ul>
 </nav>';

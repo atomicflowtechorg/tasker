@@ -2,7 +2,7 @@
 	</div> <!-- end container --> 
     <footer>
      <p>&copy; Copyright  by AtomicFlow Creative</p>
-     <?
+     <?php
      	 $session = $this->session->all_userdata();
      	 print_r($session);
      ?>
@@ -25,24 +25,25 @@
 -->
 
 <!-- Minified JS -->
-<script type="text/javascript" src="/js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/js/blend/jquery.blend.min.js"></script>
-<script type="text/javascript" src="/js/taskscript.min.js"></script> 
-<script type="text/javascript" src="/js/jquery.tools.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/blend/jquery.blend.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/taskscript.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tools.min.js"></script>
 
 <!-- <script type="text/javascript" src="/js/loginForm.js"></script> -->
+<?php
+$session = $this->session->all_userdata();
+if(!isset($session['logged_in']) || $session['logged_in']==FALSE){
+?>
 <!-- JQUERY LOGOUT BUTTON -->
 <script>
 	$(document).ready(function(){
-		<?
-		$session = $this->session->all_userdata();
-		if(!isset($session['logged_in']) || $session['logged_in']==FALSE){
-			echo "$('#logout').hide();";
-		}
-		?>
+		$('#logout').hide();
 	});
 </script>
-
+<?php
+}
+?>
 <script>
 	$(function() {
 
