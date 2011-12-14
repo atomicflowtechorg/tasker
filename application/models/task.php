@@ -55,10 +55,10 @@ class Task extends CI_Model {
 	
 	function getTasksForList($listId){
 		$query = $this->db->query(
-		"SELECT * FROM tblTask WHERE EXISTS(
-		SELECT fkTaskId 
-		FROM tblListTask 
-		WHERE fkListId=$listId) AND fldStatus != 'Deleted'"
+		"SELECT pkTaskId,fldName,fldStatus,fldNotes,fldDateDue,fkListId FROM tblTask 
+			LEFT JOIN tblListTask
+			ON tblTask.pkTaskId = tblListTask.fkTaskId
+			WHERE fkListId=$listId"
 		);
 		return $query->result();
 	}
