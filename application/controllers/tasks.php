@@ -182,6 +182,7 @@ class Tasks extends CI_Controller {
 				else
 				{
 					$this->Task->addTask();
+					// TODO: Fix route relocation
 					redirect('/'.$data['location'],'location');
 				}
 				$this->load->view('tasks/create',$data);

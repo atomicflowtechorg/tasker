@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "authentication";
 $route['individual/(:any)'] = "individual/show/$1";
+$route['owner/(:any)/list/(:num)'] = "lists/show/$1/$2";
 
 $route['404_override'] = '';
 
