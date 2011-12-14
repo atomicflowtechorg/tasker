@@ -1,4 +1,4 @@
-<?
+<?php
 $session = $this->session->all_userdata();
 if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 ?>
@@ -14,7 +14,7 @@ if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 
     </ul>
 </nav>
-<?
+<?php
 }
 else{
 	

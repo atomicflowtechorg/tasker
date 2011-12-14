@@ -1,4 +1,4 @@
-<?
+<?php
 	
 echo validation_errors(); 
 $attributes = array('class' => 'inviteTasker');
@@ -26,10 +26,10 @@ echo $row->fldFirstname." ".$row->fldLastname;
 echo "<br/>Last Logged in: ".$row->fldLastLoggedIn;
 ?>
 <div class='userOptions'>
-	<a href='/teams/delete/<? echo $teamUrl.'/'.$row->pkUsername;  ?>' title='Remove User'>Remove</a>
+	<a href='/teams/delete/<?php echo $teamUrl.'/'.$row->pkUsername;  ?>' title='Remove User'>Remove</a>
 	<a href='#' title='Update Role'>Update Role</a>
 </div>
-<?
+<?php
 echo "</div>";		
 }
 ?>

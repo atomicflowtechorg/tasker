@@ -1,5 +1,5 @@
 <div class="teamItem">
-<?
+<?php
 
 echo validation_errors(); 
 

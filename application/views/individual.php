@@ -19,7 +19,7 @@ $session = $this->session->all_userdata();
 		foreach ($results as $row) {
 			?>
 			<li class="taskItem">
-				<? echo $row->fldName; ?>
+				<?php echo $row->fldName; ?>
 				
 			<div class="taskOptions">
 				<a href='<?php echo site_url("tasks/view/".uri_string()."/".$row->pkTaskId); ?>' rel="#overlay" title="Information" >i</a>

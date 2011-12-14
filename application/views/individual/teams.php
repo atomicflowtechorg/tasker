@@ -1,7 +1,7 @@
 <article class='listView'>
 	<h2>My Teams</h2>
 	
-	<?
+	<?php
 	$session = $this->session->all_userdata();
 	
 	foreach($teams as $row)

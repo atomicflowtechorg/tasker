@@ -1,4 +1,4 @@
-<?
+<?php
 foreach($users as $row)
 {
 echo "<div class='userInfo' style='float:left;'>";

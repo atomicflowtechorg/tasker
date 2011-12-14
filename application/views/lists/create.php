@@ -1,4 +1,4 @@
-<?
+<?php
 echo validation_errors(); 
 		
 $attributes = array('class' => 'listsView');

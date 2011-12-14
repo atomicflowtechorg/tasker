@@ -1,4 +1,4 @@
-<?	
+<?php
 echo validation_errors(); 
 $attributes = array('class' => 'addTask');
 echo form_open('tasks/create/'.$location,$attributes);

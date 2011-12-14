@@ -3,11 +3,11 @@
 	
 
 	<ol class="taskList">
-	<?
+	<?php
 	foreach ($results as $row) {
 		?>
 		<li class="taskItem">
-			<? echo $row->fldName; ?>
+			<?php echo $row->fldName; ?>
 			
 		<div class="taskOptions">
 			<a href='<?php echo site_url("tasks/view/".uri_string()."/".$row->pkTaskId); ?>' rel="#overlay" title="Information" >i</a>
@@ -15,7 +15,7 @@
 			<a href='<?php echo site_url("tasks/delete/".uri_string()."/".$row->pkTaskId); ?>' title="Delete" class="deleteTask">X</a>
 		</div>
 		</li>
-		<?
+		<?php
 	}
 	?>
 	</ol>

@@ -1,5 +1,5 @@
 <div class="taskView">
-<?
+<?php
 foreach($task as $row)
 {
 	if( isset($row->pkUsername))
