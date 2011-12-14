@@ -18,8 +18,6 @@ class Universal extends CI_Controller {
 			$this->load->view('universal',$data);
 		}
 		
-
-
         $this->load->view('default/footer');
     }
 }
