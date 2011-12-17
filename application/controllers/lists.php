@@ -7,7 +7,7 @@ class Lists extends CI_Controller {
 		echo "Lists";
     }
 	
-	public function create($createLocation)
+	public function create()
 	{
 		$this->load->model('ListModel');
 		$this->load->model('User');
@@ -26,20 +26,18 @@ class Lists extends CI_Controller {
 			if ($this->form_validation->run() == FALSE)
 			{
 				$data['teams'] = $this->Team->getTeamsForUser($session['username']);
-				$data['location'] = $createLocation;
 				$this->load->view('lists/create',$data);
 			}
 			else
 			{
 				$this->ListModel->createList();
-				redirect('/'.$createLocation, 'location');
 			}
 		}//end if loggid in
 		
 		$this->load->view('default/footer');
 	}
 	
-	public function delete($location,$listId)
+	public function delete($listId)
 	{
 		$this->load->model('ListModel');
 		$this->load->model('User');
@@ -58,11 +56,10 @@ class Lists extends CI_Controller {
 			if ($session['username']==$owner || in_array($owner,$userTeams))
 			{
 				$this->ListModel->delete($listId);
-				redirect('/'.$location, 'location');
 			}
 			else
 			{
-				redirect('/'.$location, 'location');
+				echo "Can't delete unowned task";
 			}
 		}//end if loggid in
 		

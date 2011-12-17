@@ -7,7 +7,7 @@ foreach($task as $row)
 		echo validation_errors(); 
 		
 		$attributes = array('class' => 'tasksView');
-		echo form_open('tasks/view/'.$location.'/'.$row->pkTaskId, $attributes);
+		echo form_open('tasks/view/'.$row->pkTaskId, $attributes);
 		echo form_fieldset();
 		$taskId = array(
 				  'taskId'  => $row->pkTaskId
@@ -73,7 +73,7 @@ foreach($task as $row)
 		echo validation_errors(); 
 		
 		$attributes = array('class' => 'tasksView');
-		echo form_open('tasks/view/'.$location.'/'.$row->pkTaskId, $attributes);
+		echo form_open('tasks/view/'.$row->pkTaskId, $attributes);
 		
 		$taskId = array(
 				  'taskId'  => $row->pkTaskId

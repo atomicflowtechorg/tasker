@@ -23,27 +23,18 @@ class Tasks extends CI_Controller {
 		redirect('/', 'location');
     }
 
-	public function delete($deleteLocation,$pkTaskId)
+	public function delete($pkTaskId)
 	{
 		
 		$this->load->model('Task');
 		$this->load->helper('form');
 		
-		
 		$this->Task->deleteTask($pkTaskId);
-		
-		redirect('/'.$deleteLocation, 'location');
-		
+		redirect('/','location');
 	}
 	
-	public function view($updateLocation,$pkTaskId,$teamMember = null)
+	public function view($pkTaskId,$teamMember = null)
 	{
-		if(!is_numeric($pkTaskId))
-		{
-			$updateLocation = $updateLocation.'/'.$pkTaskId;
-			$pkTaskId = $teamMember;
-		}
-		
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
@@ -57,7 +48,6 @@ class Tasks extends CI_Controller {
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['location'] = $updateLocation;
 				$data['users'] = $this->User->get_all_usernames();
 				$data['statusOptions'] = $this->Task->getAllStatusOptions();
 				$this->load->view('tasks/view',$data);
@@ -75,7 +65,6 @@ class Tasks extends CI_Controller {
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['location'] = $updateLocation;
 				$data['users'] = $this->User->get_all_usernames();
 				$data['statusOptions'] = $this->Task->getAllStatusOptions();
 				$this->load->view('default/header');
@@ -88,7 +77,7 @@ class Tasks extends CI_Controller {
 				else
 				{
 					$data['update'] = $this->Task->update();
-					redirect('/'.$updateLocation, 'location');
+					redirect('/','location');
 				}
 			}//end if loggid in
 			
@@ -106,13 +95,8 @@ class Tasks extends CI_Controller {
 		$this->load->view('tasks/task',$data);
 	}
 	
-	public function assignTo($updateLocation,$pkTaskId,$teamMember = null)
+	public function assignTo($pkTaskId,$teamMember = null)
 	{
-		if(!is_numeric($pkTaskId))
-		{
-			$updateLocation = $updateLocation.'/'.$pkTaskId;
-			$pkTaskId = $teamMember;
-		}
 		
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
@@ -125,7 +109,6 @@ class Tasks extends CI_Controller {
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['location'] = $updateLocation;
 				$data['users'] = $this->User->get_all_usernames();
 				$data['statusOptions'] = $this->Task->getAllStatusOptions();
 				$this->load->view('tasks/assignTo',$data);
@@ -143,7 +126,6 @@ class Tasks extends CI_Controller {
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['location'] = $updateLocation;
 				$data['users'] = $this->User->get_all_usernames();
 				$this->load->view('default/header');
 				$this->load->view('default/nav',$data);
@@ -155,7 +137,6 @@ class Tasks extends CI_Controller {
 				else
 				{
 					$data['update'] = $this->Task->updateUser();
-					redirect('/'.$updateLocation, 'location');
 				}
 			}//end if loggid in
 			
@@ -163,9 +144,8 @@ class Tasks extends CI_Controller {
 	        } 
 	}
 
-	function create($location,$username = null)
+	function create($username = null)
 	{
-		$data['location'] = $location."/".$username;
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
 			$this->load->model('Task');
@@ -179,15 +159,13 @@ class Tasks extends CI_Controller {
 				
 				if ($this->form_validation->run() == FALSE)
 				{
-
+					$this->load->view('tasks/create');
 				}
 				else
 				{
 					$this->Task->addTask();
-					// TODO: Fix route relocation
-					redirect('/'.$data['location'],'location');
+					redirect('/','location');
 				}
-				$this->load->view('tasks/create',$data);
 			}
         }
         else
@@ -213,10 +191,10 @@ class Tasks extends CI_Controller {
 				else
 				{
 					$this->Task->addTask();
-					redirect('/'.$data['location'],'location');
+					redirect('/','location');
 				}
 				$this->load->view('default/nav');
-				$this->load->view('tasks/create',$data);
+				$this->load->view('tasks/create');
 			}
 		
 		$this->load->view('default/footer');

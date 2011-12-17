@@ -7,7 +7,7 @@ foreach($task as $row)
 		echo validation_errors(); 
 		
 		$attributes = array('class' => 'tasksView');
-		echo form_open('tasks/assignTo/'.$location.'/'.$row->pkTaskId, $attributes);
+		echo form_open('tasks/assignTo/'.$row->pkTaskId, $attributes);
 		
 		$taskId = array('taskId' => $row->pkTaskId);
 		echo form_hidden($taskId);
@@ -30,7 +30,7 @@ foreach($task as $row)
 		echo validation_errors(); 
 		
 		$attributes = array('class' => 'tasksView');
-		echo form_open('tasks/assignTo/'.$location.'/'.$row->pkTaskId, $attributes);
+		echo form_open('tasks/assignTo/'.$row->pkTaskId, $attributes);
 		
 		$taskId = array( 'taskId'  => $row->pkTaskId);
 		
