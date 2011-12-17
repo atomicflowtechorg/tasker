@@ -89,7 +89,7 @@ class Task extends CI_Model {
 		"SELECT * FROM tblTask WHERE EXISTS(
 		SELECT fkTaskId 
 		FROM tblTaskerTask 
-		WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted'"
+		WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND fldStatus != 'Completed'"
 		);
 		return $query->result();
 	}
@@ -171,6 +171,7 @@ class Task extends CI_Model {
 				else
 				{
 					$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+					$this->fldStatus = 'Assigned';
 				}
 				break;
 			case 1:
@@ -181,6 +182,7 @@ class Task extends CI_Model {
 				else
 				{
 					$this->db->query("DELETE FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+					$this->fldStatus = 'Available';
 				}
 				break;
 		}
@@ -219,6 +221,7 @@ class Task extends CI_Model {
 				else
 				{
 					$this->db->query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
+					$this->db->query("UPDATE tblTask SET fldStatus = 'Assigned' WHERE pkTaskId=$this->pkTaskId");
 				}
 				break;
 			case 1:
@@ -229,6 +232,7 @@ class Task extends CI_Model {
 				else
 				{
 					$this->db->query("DELETE FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+					$this->db->query("UPDATE tblTask SET fldStatus = 'Available' WHERE pkTaskId=$this->pkTaskId");
 				}
 				break;
 		}

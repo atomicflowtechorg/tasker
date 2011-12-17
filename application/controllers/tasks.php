@@ -51,7 +51,9 @@ class Tasks extends CI_Controller {
 			$this->load->model('User');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
-				
+			
+			//TODO: Requires javascript validation to prevent new page load on invalid update
+			
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
