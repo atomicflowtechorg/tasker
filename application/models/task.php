@@ -141,6 +141,7 @@ class Task extends CI_Model {
 		
 		return $query->result();
 	}
+	
 	function update()
 	{
 		$this->pkTaskId = $this->input->post('taskId');
