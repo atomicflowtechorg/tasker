@@ -109,20 +109,27 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 	}
 
 	function getTaskData($taskId) {
-		$exists = $this -> db -> query("SELECT fkUsername FROM tblTaskerTask WHERE fkTaskId=$taskId");
-		if ($exists -> num_rows == 1) {
-			$query = $this -> db -> query("SELECT DISTINCT a.pkTaskId, a.fldName, a.fldStatus, a.fldNotes, a.fldDateDue, c.pkUsername, c.fldProfileImage
-FROM tblTask a INNER JOIN tblTaskerTask b
-ON a.pkTaskId = b.fkTaskId
-INNER JOIN tblTasker c
-ON b.fkUsername = c.pkUsername
-WHERE a.pkTaskId=$taskId");
-		} else {
-			$query = $this -> db -> query("SELECT DISTINCT a.pkTaskId, a.fldName, a.fldStatus, a.fldNotes, a.fldDateDue
-FROM tblTask a
-WHERE a.pkTaskId=$taskId");
+		$taskerTask = $this -> db -> query("SELECT fkUsername FROM tblTaskerTask WHERE fkTaskId=$taskId");
+		$listTask = $this -> db -> query("SELECT fkListId FROM tblListTask WHERE fkTaskId=$taskId");
+		$listQueryParams = $listQuery = $taskQueryParams = $taskQuery = "";
+		
+		if($listTask -> num_rows === 1){
+			$listQueryParams = ",d.fldName, d.pkListId";
+			$listQuery = "INNER JOIN tblListTask e ON a.pkTaskId = e.fkTaskId INNER JOIN tblList d ON e.fkListId = d.pkListId";
 		}
+		if($taskerTask -> num_rows == 1){
+			$taskQueryParams = ",c.pkUsername, c.fldProfileImage";
+			$taskQuery = "INNER JOIN tblTaskerTask b ON a.pkTaskId = b.fkTaskId INNER JOIN tblTasker c ON b.fkUsername = c.pkUsername";
+		}
+		
+		$queryString = "SELECT DISTINCT a.pkTaskId, a.fldName, a.fldStatus, a.fldNotes, a.fldDateDue $listQueryParams $taskQueryParams
+			FROM tblTask a
+			$taskQuery
+			$listQuery
+			WHERE a.pkTaskId=$taskId";
 
+		$query = $this -> db -> query($queryString);
+		
 		return $query -> result();
 	}
 
