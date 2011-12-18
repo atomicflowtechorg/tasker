@@ -144,10 +144,10 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 		//code that checks if updating for an unassigned task
 		$query = $this -> db -> query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
 		foreach ($query->result() as $row) {
-			$count = $row -> total;
+			$hasTasker = $row -> total;
 		}
 
-		switch($count) {
+		switch($hasTasker) {
 
 			default :
 				echo $this -> fldAssignedTo;
@@ -186,32 +186,74 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 		$this -> pkTaskId = $this -> input -> post('taskId');
 		$this -> fldAssignedTo = $this -> input -> post('username');
 		$this -> pkListId = $this -> input -> post('list');
-		
+		if(empty($this -> pkListId)){
+			$this -> pkListId = null;
+		}
 		$query = $this -> db -> query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
-		
+		$queryLists = $this -> db -> query("SELECT COUNT(*) AS total FROM tblListTask WHERE fkTaskId = '$this->pkTaskId'");
+
+		$hasTasker = $hasList ='';
 		foreach ($query->result() as $row) {
-			$count = $row -> total;
+			$hasTasker = $row -> total;
 		}
 		
-		switch($count) {
+		foreach ($queryLists->result() as $row) {
+			$hasList = $row -> total;
+		}
+		switch($hasTasker) {
 			default :
 				echo $this -> fldAssignedTo;
 				echo "FAILURE!!!!";
 				break;
-			case 0 :
-				if ($this -> fldAssignedTo == '') {
-
-				} else {
+			case 0 ://Has no current tasker
+				if ($this -> fldAssignedTo == '') {//from not assigned to assigned
+					if($hasList==0 && $this -> pkListId != null){
+						$this -> db -> query("INSERT INTO tblListTask (fkListId, fkTaskId ) VALUES ('$this->pkListId', '$this->pkTaskId')");
+					}
+					else if($hasList==1 && $this -> pkListId == null){
+						$this -> db -> query("DELETE FROM tblListTask WHERE fkTaskId = '$this->pkTaskId'");
+					}
+					else{
+						$this -> db -> query("UPDATE tblListTask SET fkListId = $this->pkListId WHERE fkTaskId = $this->pkTaskId");
+					}
+				} else {//from not assigned to assigned
 					$this -> db -> query("INSERT INTO tblTaskerTask (fkUsername, fkTaskId ) VALUES ('$this->fldAssignedTo', '$this->pkTaskId')");
 					$this -> db -> query("UPDATE tblTask SET fldStatus = 'Assigned' WHERE pkTaskId=$this->pkTaskId");
+					if($hasList==0 && $this -> pkListId != null){
+						$this -> db -> query("INSERT INTO tblListTask (fkListId, fkTaskId ) VALUES ('$this->pkListId', '$this->pkTaskId')");
+					}
+					else if($hasList==1 && $this -> pkListId == null){
+						$this -> db -> query("DELETE FROM tblListTask WHERE fkTaskId = '$this->pkTaskId'");
+					}
+					else{
+						$this -> db -> query("UPDATE tblListTask SET fkListId = $this->pkListId WHERE fkTaskId = $this->pkTaskId");
+					}
 				}
 				break;
-			case 1 :
-				if ($this -> fldAssignedTo != '') {
+			case 1 ://has current tasker
+				if ($this -> fldAssignedTo != '') {//changing tasker
 					$this -> db -> query("UPDATE tblTaskerTask SET fkUsername='$this->fldAssignedTo' WHERE fkTaskId = '$this->pkTaskId'");
-				} else {
+					if($hasList==0 && $this -> pkListId != null){
+						$this -> db -> query("INSERT INTO tblListTask (fkListId, fkTaskId ) VALUES ('$this->pkListId', '$this->pkTaskId')");
+					}
+					else if($hasList==1 && $this -> pkListId == null){
+						$this -> db -> query("DELETE FROM tblListTask WHERE fkTaskId = '$this->pkTaskId'");
+					}
+					else{
+						$this -> db -> query("UPDATE tblListTask SET fkListId = $this->pkListId WHERE fkTaskId = $this->pkTaskId");
+					}
+				} else {//removing assigned tasker
 					$this -> db -> query("DELETE FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
 					$this -> db -> query("UPDATE tblTask SET fldStatus = 'Available' WHERE pkTaskId=$this->pkTaskId");
+					if($hasList==0 && $this -> pkListId != null){
+						$this -> db -> query("INSERT INTO tblListTask (fkListId, fkTaskId ) VALUES ('$this->pkListId', '$this->pkTaskId')");
+					}
+					else if($hasList==1 && $this -> pkListId == null){
+						$this -> db -> query("DELETE FROM tblListTask WHERE fkTaskId = '$this->pkTaskId'");
+					}
+					else{
+						$this -> db -> query("UPDATE tblListTask SET fkListId = $this->pkListId WHERE fkTaskId = $this->pkTaskId");
+					}
 				}
 				break;
 		}

@@ -11,7 +11,7 @@ foreach($task as $row)
 	}
 	if( isset($row->pkListId))
 	{
-		$currentList = "List: ".$row->pkListId;
+		$currentList = $row->pkListId;
 	}
 	
 	echo validation_errors(); 
