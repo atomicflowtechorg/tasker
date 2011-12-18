@@ -147,29 +147,46 @@ class Authentication extends CI_Controller {
 			else
 			{
 				$this->load->library('email');
-				
+				$this->load->helper('security');
 				$this->load->model('User');
 
 				$userExists = $this->User->UserExistsFromEmail(set_value('fldEmail'));
+				
+				if(!empty($userExists)){
+					$userExists = $userExists[0];
+				}
+				
 				if($userExists){
 					//TODO: Update to a Tasker contact email account
 					$this->email->from("lucasmp@atomicflowtech.com", "lucasmp");
 					$this->email->to(set_value('fldEmail')); 
 					
+					
+					$resetKey = do_hash(time() , 'md5'); // MD5 resetKey
+					
+					$this->User->preResetPassword($userExists->pkUsername,$resetKey);
+					
 					$this->email->subject("Tasker - AtomicFlowTech: Forgot Password Confirmation");
-					$this->email->message("Test Email");	
+					
+					$emailMessage = "Hello $userExists->fldFirstname, It seems you have requested a password change. Your last login date was $userExists->fldLastLoggedIn. If this request is from you please click this link: ".anchor("autentication/resetPassword/$userExists->pkUsername/$resetKey", "Reset Password","");
+					
+					$this->email->message($emailMessage);	
 					
 					$this->email->send();
 					$data['message'] = "Email Sent!";
 				}
 				else{
-					$data['message'] = "Sorry, No user found with that email.";
+					$data['message'] = "Sorry, No user found with that email. ". anchor("authentication/forgot","Please Try Again","");
 				}
 				
 				$this->load->view('authentication/emailSent',$data);
 			}
 			
 			$this->load->view('default/footer');
+	}
+
+	public function resetPassword(){
+		
 	}
 }
 ?>

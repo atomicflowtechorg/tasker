@@ -98,12 +98,19 @@ class User extends CI_Model {
 
 	function UserExistsFromEmail($email)
 	{
-		$queryString = "SELECT pkUsername,fldFirstName, fldLastName,fldProfileImage,fldLastLoggedIn,fldEmail,fldStatus 
+		$queryString = "SELECT pkUsername,fldFirstname, fldLastname,fldProfileImage,fldLastLoggedIn,fldEmail,fldStatus 
 		FROM  `tblTasker`
 		WHERE fldEmail = '$email'
 		ORDER BY `fldLastLoggedIn` DESC";
 		$query = $this->db->query($queryString);
 		return $query->result();
+	}
+	
+	function preResetPassword($username,$resetKey){
+		$data = array('fldResetKey' => $resetKey);
+		$where = "pkUsername = '$username'";
+		$queryString = $this->db->update_string('tblTasker',$data,$where);
+		$this->db->query($queryString);
 	}
 }
 
