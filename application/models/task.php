@@ -174,7 +174,7 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 		
 
 		if($this->fldStatus == 'Completed'){
-			$this -> fldDateCompleted = $this->Date->now();
+			$this -> fldDateCompleted =  date( 'Y-m-d H:i:s', time() );
 		}
 		//updates task
 		$tblTask = array('fldName' => $this -> fldName, 'fldStatus' => $this -> fldStatus, 'fldNotes' => $this -> fldNotes, 'fldDateDue' => $this -> fldDateDue, 'fldDateCompleted' => $this->fldDateCompleted);
