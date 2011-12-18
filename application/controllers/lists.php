@@ -4,7 +4,26 @@ class Lists extends CI_Controller {
 
     public function index()
     {
-		echo "Lists";
+		$this->load->model('ListModel');
+		$this->load->model('User');
+		$data['lists'] = $this->ListModel->getAllLists();
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$this->load->view('lists/viewAll',$data);
+			}
+        }
+        else
+        {
+        	$this->load->view('default/header');
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$this->load->view('default/nav');
+				$this->load->view('lists/viewAll',$data);
+			}
+		$this->load->view('default/footer');
+        }
     }
 	
 	public function create()
@@ -66,7 +85,7 @@ class Lists extends CI_Controller {
 		$this->load->view('default/footer');
 	}
 	
-	function show($username,$listId)
+	function show($listId,$username = null)
 	{
 		$this->load->model('Task');
 		$this->load->helper('form');

@@ -5,7 +5,7 @@ if($nav ==TRUE){
 	?>
 	<div class="tasksNav">
 		<a href="<?php echo site_url("tasks/create/".uri_string()); ?>" rel="#overlay" title="Create a task"> + </a>
-		<a href="<?php echo site_url("lists/showUserLists/$user");?>" rel="#overlay" title="Load List"> --- </a>
+		<a href="<?php echo site_url("lists");?>" rel="#overlay" title="Load List"> --- </a>
 	</div>
 	<?php
 }
