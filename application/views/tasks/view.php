@@ -13,7 +13,7 @@ foreach($task as $row)
 	
 	if( isset($row->pkListId))
 	{
-		$currentList = "List: ".$row->pkListId;
+		$currentList = "List: ".$row->fldListName;
 	}
 	
 	echo validation_errors(); 

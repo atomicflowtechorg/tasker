@@ -114,7 +114,7 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 		$listQueryParams = $listQuery = $taskQueryParams = $taskQuery = "";
 		
 		if($listTask -> num_rows === 1){
-			$listQueryParams = ",d.fldName, d.pkListId";
+			$listQueryParams = ",d.fldListName, d.pkListId";
 			$listQuery = "INNER JOIN tblListTask e ON a.pkTaskId = e.fkTaskId INNER JOIN tblList d ON e.fkListId = d.pkListId";
 		}
 		if($taskerTask -> num_rows == 1){
@@ -127,20 +127,21 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 			$taskQuery
 			$listQuery
 			WHERE a.pkTaskId=$taskId";
-
 		$query = $this -> db -> query($queryString);
 		
 		return $query -> result();
 	}
 
 	function update() {
+		$this->load->helper('date');
+		
 		$this -> pkTaskId = $this -> input -> post('taskId');
 		$this -> fldName = $this -> input -> post('name');
 		$this -> fldAssignedTo = $this -> input -> post('username');
 		$this -> fldStatus = $this -> input -> post('status');
 		$this -> fldNotes = $this -> input -> post('notes');
 		$this -> fldDateDue = $this -> input -> post('dateDue');
-
+		$this -> fldDateCompleted;
 		//code that checks if updating for an unassigned task
 		$query = $this -> db -> query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
 		foreach ($query->result() as $row) {
@@ -170,9 +171,13 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 				}
 				break;
 		}
+		
 
+		if($this->fldStatus == 'Completed'){
+			$this -> fldDateCompleted = $this->Date->now();
+		}
 		//updates task
-		$tblTask = array('fldName' => $this -> fldName, 'fldStatus' => $this -> fldStatus, 'fldNotes' => $this -> fldNotes, 'fldDateDue' => $this -> fldDateDue);
+		$tblTask = array('fldName' => $this -> fldName, 'fldStatus' => $this -> fldStatus, 'fldNotes' => $this -> fldNotes, 'fldDateDue' => $this -> fldDateDue, 'fldDateCompleted' => $this->fldDateCompleted);
 
 		$where = "pkTaskId = $this->pkTaskId";
 		$update[] = $this -> db -> update_string('tblTask', $tblTask, $where);
