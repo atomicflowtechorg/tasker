@@ -7,26 +7,23 @@ class Authentication extends CI_Controller {
     {
 		//User display test
 		$this->load->model('User');
-		$data['users'] = $this->User->get_all_users();
 		
         //Page content configuration
         $this->load->helper('date');
 		$this->load->library('form_validation');
-		$data['page'] = 'Login';
-        $data['description'] = 'Login page for '.base_url();
+		
+		$this->load->view('default/header');
 		
 		$this->form_validation->set_rules('fldUsername', 'Username', 'required');
-		$this->form_validation->set_rules('fldPassword', 'Password','required');
+		$this->form_validation->set_rules('fldPassword', 'Password', 'trim|required|md5');
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('default/header',$data);
 			$this->load->view('authentication/loginForm');
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$this->load->view('default/nav');
 			}
-			$this->load->view('default/footer',$data);
 		}
 		else
 		{
@@ -48,8 +45,9 @@ class Authentication extends CI_Controller {
 	               );
 	
 				$this->session->set_userdata($newdata);
-				}
+				
 				redirect('/', 'location');
+				}
 			}
 			else
 			{
@@ -59,9 +57,10 @@ class Authentication extends CI_Controller {
 				if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 					$this->load->view('default/nav');
 				}
-				$this->load->view('default/footer',$data);
 			}
 		}
+		
+		$this->load->view('default/footer');
     }
 	
 	public function checkLogin()
@@ -157,6 +156,11 @@ class Authentication extends CI_Controller {
 				}
 				
 				if($userExists){
+					
+					$config['mailtype'] = 'html';
+
+					$this->email->initialize($config);
+					
 					//TODO: Update to a Tasker contact email account
 					$this->email->from("lucasmp@atomicflowtech.com", "lucasmp");
 					$this->email->to(set_value('fldEmail')); 
@@ -168,7 +172,7 @@ class Authentication extends CI_Controller {
 					
 					$this->email->subject("Tasker - AtomicFlowTech: Forgot Password Confirmation");
 					
-					$emailMessage = "Hello $userExists->fldFirstname, It seems you have requested a password change. Your last login date was $userExists->fldLastLoggedIn. If this request is from you please click this link: ".anchor("autentication/resetPassword/$userExists->pkUsername/$resetKey", "Reset Password","");
+					$emailMessage = "Hello $userExists->fldFirstname, It seems you have requested a password change. Your last login date was $userExists->fldLastLoggedIn. If this request is correct please click this link: ".anchor("authentication/resetPassword/$userExists->pkUsername/$resetKey", "Reset Password","");
 					
 					$this->email->message($emailMessage);	
 					
@@ -185,8 +189,41 @@ class Authentication extends CI_Controller {
 			$this->load->view('default/footer');
 	}
 
-	public function resetPassword(){
+	public function resetPassword($username = null,$resetKey = null){
+		$this->load->model('User');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('fldUsername', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
+		$this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
 		
+		$this->load->view('default/header');
+		
+		$validResetRequest = 0;
+		
+		if($username != null && $resetKey != null){
+			$validResetRequest = $this->User->confirmResetKey($username,$resetKey);
+		}
+		
+		if($validResetRequest){
+			if ($this->form_validation->run() == FALSE)
+			{
+				$data['username'] = $username;
+				$data['resetKey'] = $resetKey;
+				$this->load->view('authentication/resetPassword',$data);
+			}
+			else
+			{
+				$this->User->resetPassword();
+				$data['message'] = "Your password has been reset. How about ".anchor(base_url(),"logging in?","");
+				$this->load->view('authentication/passwordChanged',$data);
+			}
+		}
+		else{
+			$data['message'] = "Sorry - User and request key don't match up. Try again";
+			$this->load->view('authentication/forgot',$data);
+		}
+		
+		$this->load->view('default/footer');
 	}
 }
 ?>

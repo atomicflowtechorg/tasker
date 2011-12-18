@@ -50,6 +50,8 @@ class User extends CI_Model {
 	{
 		$this->username = $this->input->post('fldUsername');
 		$this->password = $this->input->post('fldPassword');
+		
+		echo $this->password;
 		//returns true if exists and password is correct, otherwise returns false
 		$query = $this->db->query("SELECT pkUsername,fldPassword,fldFirstname,fldLastname FROM tblTasker WHERE pkUsername='".$this->username."' AND fldPassword='".$this->password."'");
 		return $query;
@@ -62,6 +64,7 @@ class User extends CI_Model {
 		
 		$this->username = $this->input->post('fldUsername');
 		$this->password = $this->input->post('fldPassword');
+		
         $this->lastLoggedIn = $datetime;
 		
 		$query = $this->db->query("SELECT pkUsername,fldPassword,fldFirstname,fldLastname,fldEmail FROM tblTasker WHERE pkUsername='".$this->username."' AND fldPassword='".$this->password."'");
@@ -89,7 +92,6 @@ class User extends CI_Model {
 
 	function getLists($username)
 	{
-		
 		$query = $this->db->query("SELECT * FROM `tblList` 
 		WHERE fldOwner = '$username' OR fldOwner=(SELECT fkTeamName 
 		FROM  `tblTeamTasker` where fkUsername='$username')");
@@ -111,6 +113,22 @@ class User extends CI_Model {
 		$where = "pkUsername = '$username'";
 		$queryString = $this->db->update_string('tblTasker',$data,$where);
 		$this->db->query($queryString);
+	}
+	
+	function confirmResetKey($username,$resetKey){
+		$queryString = "SELECT 1 FROM tblTasker WHERE pkUsername='$username' AND fldResetKey='$resetKey' LIMIT 1";
+		$query = $this->db->query($queryString);
+		return $query->result();
+	}
+	
+	function resetPassword(){
+		$this->password = $this->input->post('fldPassword1');
+		$this->username = $this->input->post('fldUsername');
+		
+		$data = array('fldPassword' => $this->password, 'fldResetKey' => "");
+		$where = "pkUsername = '$this->username'";
+		$queryString = $this->db->update_string('tblTasker',$data,$where);
+		$query = $this->db->query($queryString);
 	}
 }
 

@@ -2,8 +2,11 @@
 	<div id="errorConsole">
 	</div>
 <?php
+	if(isset($message)){
+		echo $message;
+	}
 	echo validation_errors();
-	$attributes = array('class' => 'clearfix', 'id' => 'emailForm', 'name' =>'emailForm');
+	$attributes = array('class' => 'clearfix', 'id' => 'emailForm', 'name' =>'emailForm', 'class'=>'unAuthenticatedForm');
 	echo form_open('authentication/forgot',$attributes);
 	echo form_fieldset("<h1>Forgot your password?</h1>");
 	echo form_label('Email:','fldEmail');

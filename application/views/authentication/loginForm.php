@@ -9,7 +9,7 @@
 	{
 	
 		echo validation_errors();
-		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm');
+		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm', 'class'=>'unAuthenticatedForm');
 		echo form_open('authentication',$attributes);
 		echo form_fieldset("<h1>Client Login</h1>");
 		echo form_label('Username:','fldUsername');
@@ -19,7 +19,7 @@
 					  'id'          => 'fldUsername',
 					  'class'		=> 'field',
 					  'value'       => set_value('fldUsername'),
-					  'maxlength'   => '23',
+					  'maxlength'   => '60',
 					  'size'        => '23',
 					  'required'	=> '',
 					);			
@@ -32,7 +32,7 @@
 					  'id'          => 'fldPassword',
 					  'class'		=> 'field',
 					  'value'       => set_value('fldPassword'),
-					  'maxlength'   => '25',
+					  'maxlength'   => '60',
 					  'size'        => '25',
 					  'required'	=> '',
 					);
