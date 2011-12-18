@@ -59,4 +59,9 @@ class ListModel extends CI_Model {
 	{
 		$query = $this->db->query("UPDATE tblList SET fldActive=0 WHERE pkListId=$listId");
 	}
+	
+	function getAllLists(){
+		$query = $this->db->query("SELECT pkListId,fldName,fldType,fldOwner,fldAccessLevel,fldActive FROM tblList");
+		return $query -> result();
+	}
 }

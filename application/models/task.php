@@ -185,13 +185,15 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 	function updateUser() {
 		$this -> pkTaskId = $this -> input -> post('taskId');
 		$this -> fldAssignedTo = $this -> input -> post('username');
-
+		$this -> pkListId = $this -> input -> post('list');
+		
 		$query = $this -> db -> query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
+		
 		foreach ($query->result() as $row) {
 			$count = $row -> total;
 		}
+		
 		switch($count) {
-
 			default :
 				echo $this -> fldAssignedTo;
 				echo "FAILURE!!!!";

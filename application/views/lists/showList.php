@@ -25,7 +25,7 @@ if($nav ==TRUE){
 				
 			<div class="taskOptions">
 				<a href='<?php echo site_url("tasks/view/".$row->pkTaskId); ?>' rel="#overlay" title="Information" >i</a>
-				<a href='<?php echo site_url("tasks/assignTo/".$row->pkTaskId); ?>' title="Assign Task">+</a>
+				<a href='<?php echo site_url("tasks/assignTo/".$row->pkTaskId); ?>' rel="#overlay" title="Assign Task">+</a>
 				<a href='<?php echo site_url("tasks/delete/".$row->pkTaskId); ?>' title="Delete" class="deleteTask">X</a>
 			</div>
 			</li>

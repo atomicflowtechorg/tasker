@@ -97,7 +97,7 @@ class Tasks extends CI_Controller {
 	
 	public function assignTo($pkTaskId,$teamMember = null)
 	{
-		
+		$this->load->model('Listmodel');
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
@@ -111,6 +111,7 @@ class Tasks extends CI_Controller {
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
 				$data['users'] = $this->User->get_all_usernames();
 				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$data['availableList'] = $this->Listmodel->getAllLists();
 				$this->load->view('tasks/assignTo',$data);
 			}
         }
@@ -127,6 +128,8 @@ class Tasks extends CI_Controller {
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['task'] = $this->Task->getTaskData($pkTaskId);
 				$data['users'] = $this->User->get_all_usernames();
+				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$data['availableList'] = $this->Listmodel->getAllLists();
 				$this->load->view('default/header');
 				$this->load->view('default/nav',$data);
 

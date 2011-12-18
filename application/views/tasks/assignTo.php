@@ -1,6 +1,7 @@
 <div class="taskItem">
 <?php
-$currentUser = ""; 
+$currentUser = "";
+$currentList = "";
 foreach($task as $row)
 {
 
@@ -8,6 +9,11 @@ foreach($task as $row)
 	{
 		$currentUser = $row->pkUsername;
 	}
+	if( isset($row->pkListId))
+	{
+		$currentList = "List: ".$row->pkListId;
+	}
+	
 	echo validation_errors(); 
 	
 	$attributes = array('class' => 'tasksView');
@@ -26,6 +32,16 @@ foreach($task as $row)
 	}
 	
 	echo form_dropdown('username',$options,$currentUser);
+	
+	echo form_label('List:', 'list');
+	
+	$lists['']='';
+	foreach($availableList as $option)
+	{
+		$lists[$option->pkListId] = $option->fldName;
+	}
+	
+	echo form_dropdown('list', $lists, $currentList);
 	
 	echo form_submit('assign', 'Assign');
 }
