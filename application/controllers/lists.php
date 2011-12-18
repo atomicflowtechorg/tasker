@@ -88,6 +88,7 @@ class Lists extends CI_Controller {
 	function show($listId,$username = null)
 	{
 		$this->load->model('Task');
+		$this->load->model('ListModel');
 		$this->load->helper('form');
 		
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
@@ -101,7 +102,11 @@ class Lists extends CI_Controller {
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['user'] = $username;
-				$data['listName'] = $listId;
+				$data['listId'] = $listId;
+				$listData = $this->ListModel->getListData($listId);
+				$list = $listData[0];
+				$data['listData'] = $listData;
+				$data['listName'] = $list->fldListName;
 				$data['tasks'] = $this->Task->getTasksForList($listId);
 				$data['nav'] = TRUE;
 				$this->load->view('default/nav');

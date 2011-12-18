@@ -1,3 +1,5 @@
+<article class='listView'>
+	<h2><?php echo "ListId: ".$listId." - ".$listName; ?></h2>
 <?php 
 $session = $this->session->all_userdata();
 
@@ -33,5 +35,5 @@ if($nav ==TRUE){
 		}
 	}
 	?>
-
+</article>
 

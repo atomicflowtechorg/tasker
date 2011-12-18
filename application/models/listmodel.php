@@ -64,4 +64,9 @@ class ListModel extends CI_Model {
 		$query = $this->db->query("SELECT pkListId,fldListName,fldType,fldOwner,fldAccessLevel,fldActive FROM tblList");
 		return $query -> result();
 	}
+	
+	function getListData($listId){
+		$query = $this->db->query("SELECT pkListId,fldListName,fldType,fldOwner,fldAccessLevel,fldActive FROM tblList WHERE pkListId=$listId");
+		return $query->result();
+	}
 }

@@ -1,8 +1,12 @@
 <?php
 $session = $this->session->all_userdata();
+$title = "My Task List";
+if(isset($user)){
+	$title = "$user Task List";
+}
 ?>
 <article class='listView'>
-	<h2>My Task List</h2>
+	<h2><?php echo $title; ?></h2>
 	
 	<div class="tasksNav">
 		<a href="<?php echo site_url("tasks/create/".uri_string()); ?>" rel="#overlay" title="Create a task"> + </a>
