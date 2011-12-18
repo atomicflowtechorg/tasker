@@ -7,7 +7,9 @@
 	$session = $this->session->all_userdata();
 	if(!isset($session['logged_in']) || $session['logged_in']==FALSE)
 	{
-	
+		if(isset($message)){
+			echo $message;
+		}
 		echo validation_errors();
 		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm', 'class'=>'unAuthenticatedForm');
 		echo form_open('authentication',$attributes);

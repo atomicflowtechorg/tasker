@@ -45,8 +45,11 @@ class Authentication extends CI_Controller {
 	               );
 	
 				$this->session->set_userdata($newdata);
-				
 				redirect('/', 'location');
+				}
+				else{
+					$data['message'] = "Username or password not correct.";
+					$this->load->view('authentication/loginForm',$data);
 				}
 			}
 			else
