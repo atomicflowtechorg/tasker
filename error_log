@@ -61,3 +61,6 @@ Stack trace:
 [23-Sep-2011 12:03:45] PHP Parse error:  syntax error, unexpected '}' in /home/uvmcon5/public_html/tasker/application/models/team.php on line 36
 [23-Sep-2011 12:39:50] PHP Parse error:  syntax error, unexpected ';' in /home/uvmcon5/public_html/tasker/application/controllers/teams.php on line 177
 [23-Sep-2011 17:11:56] PHP Parse error:  syntax error, unexpected T_LIST, expecting T_STRING in /home/uvmcon5/public_html/tasker/application/models/list.php on line 2
+[18-Dec-2011 17:46:16] PHP Fatal error:  Call to undefined function  achor() in /home/uvmcon5/public_html/tasker/application/controllers/authentication.php on line 217
+[18-Dec-2011 17:53:10] PHP Fatal error:  Call to a member function result() on a non-object in /home/uvmcon5/public_html/tasker/application/models/user.php on line 129
+[18-Dec-2011 17:54:26] PHP Fatal error:  Call to a member function result() on a non-object in /home/uvmcon5/public_html/tasker/application/models/user.php on line 129

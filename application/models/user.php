@@ -51,7 +51,6 @@ class User extends CI_Model {
 		$this->username = $this->input->post('fldUsername');
 		$this->password = $this->input->post('fldPassword');
 		
-		echo $this->password;
 		//returns true if exists and password is correct, otherwise returns false
 		$query = $this->db->query("SELECT pkUsername,fldPassword,fldFirstname,fldLastname FROM tblTasker WHERE pkUsername='".$this->username."' AND fldPassword='".$this->password."'");
 		return $query;
