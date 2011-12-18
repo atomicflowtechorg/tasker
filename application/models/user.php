@@ -95,6 +95,16 @@ class User extends CI_Model {
 		FROM  `tblTeamTasker` where fkUsername='$username')");
 		return $query->result();
 	}
+
+	function UserExistsFromEmail($email)
+	{
+		$queryString = "SELECT pkUsername,fldFirstName, fldLastName,fldProfileImage,fldLastLoggedIn,fldEmail,fldStatus 
+		FROM  `tblTasker`
+		WHERE fldEmail = '$email'
+		ORDER BY `fldLastLoggedIn` DESC";
+		$query = $this->db->query($queryString);
+		return $query->result();
+	}
 }
 
 ?>

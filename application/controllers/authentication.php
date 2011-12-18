@@ -131,5 +131,45 @@ class Authentication extends CI_Controller {
 			redirect('/', 'location');
 		}
 	}
+	
+	public function forgot(){
+			$this->load->helper('date');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('fldEmail', 'Email', 'trim|required|valid_email');
+			
+			$this->load->view('default/header');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('authentication/forgot');
+			}
+			else
+			{
+				$this->load->library('email');
+				
+				$this->load->model('User');
+
+				$userExists = $this->User->UserExistsFromEmail(set_value('fldEmail'));
+				if($userExists){
+					//TODO: Update to a Tasker contact email account
+					$this->email->from("lucasmp@atomicflowtech.com", "lucasmp");
+					$this->email->to(set_value('fldEmail')); 
+					
+					$this->email->subject("Tasker - AtomicFlowTech: Forgot Password Confirmation");
+					$this->email->message("Test Email");	
+					
+					$this->email->send();
+					$data['message'] = "Email Sent!";
+				}
+				else{
+					$data['message'] = "Sorry, No user found with that email.";
+				}
+				
+				$this->load->view('authentication/emailSent',$data);
+			}
+			
+			$this->load->view('default/footer');
+	}
 }
 ?>
