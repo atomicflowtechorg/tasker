@@ -55,7 +55,7 @@ class Authentication extends CI_Controller {
 				$this->session->set_userdata($newdata);
 				redirect('/', 'location');
 				}
-				else if($user->fldLevel == 0){
+				else if($count == 1 && $user->fldLevel == 0){
 					
 					$this->load->helper('security');
 					$authKey = do_hash(time() , 'md5'); // MD5 resetKey
