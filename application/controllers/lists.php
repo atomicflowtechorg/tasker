@@ -4,10 +4,29 @@ class Lists extends CI_Controller {
 
     public function index()
     {
-		echo "Lists";
+		$this->load->model('ListModel');
+		$this->load->model('User');
+		$data['lists'] = $this->ListModel->getAllLists();
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
+		{
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$this->load->view('lists/viewAll',$data);
+			}
+        }
+        else
+        {
+        	$this->load->view('default/header');
+			$session = $this->session->all_userdata();
+			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+				$this->load->view('default/nav');
+				$this->load->view('lists/viewAll',$data);
+			}
+		$this->load->view('default/footer');
+        }
     }
 	
-	public function create($createLocation)
+	public function create()
 	{
 		$this->load->model('ListModel');
 		$this->load->model('User');
@@ -26,20 +45,18 @@ class Lists extends CI_Controller {
 			if ($this->form_validation->run() == FALSE)
 			{
 				$data['teams'] = $this->Team->getTeamsForUser($session['username']);
-				$data['location'] = $createLocation;
 				$this->load->view('lists/create',$data);
 			}
 			else
 			{
 				$this->ListModel->createList();
-				redirect('/'.$createLocation, 'location');
 			}
 		}//end if loggid in
 		
 		$this->load->view('default/footer');
 	}
 	
-	public function delete($location,$listId)
+	public function delete($listId)
 	{
 		$this->load->model('ListModel');
 		$this->load->model('User');
@@ -58,20 +75,20 @@ class Lists extends CI_Controller {
 			if ($session['username']==$owner || in_array($owner,$userTeams))
 			{
 				$this->ListModel->delete($listId);
-				redirect('/'.$location, 'location');
 			}
 			else
 			{
-				redirect('/'.$location, 'location');
+				echo "Can't delete unowned task";
 			}
 		}//end if loggid in
 		
 		$this->load->view('default/footer');
 	}
 	
-	function show($username,$listId)
+	function show($listId,$username = null)
 	{
 		$this->load->model('Task');
+		$this->load->model('ListModel');
 		$this->load->helper('form');
 		
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
@@ -85,7 +102,11 @@ class Lists extends CI_Controller {
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 				$data['user'] = $username;
-				$data['listName'] = $listId;
+				$data['listId'] = $listId;
+				$listData = $this->ListModel->getListData($listId);
+				$list = $listData[0];
+				$data['listData'] = $listData;
+				$data['listName'] = $list->fldListName;
 				$data['tasks'] = $this->Task->getTasksForList($listId);
 				$data['nav'] = TRUE;
 				$this->load->view('default/nav');

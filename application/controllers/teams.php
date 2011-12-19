@@ -190,6 +190,7 @@ class Teams extends CI_Controller {
 				$this->Team->deleteMember($team,$user);
 			}
 		}
+		echo "test"; 
 		redirect('/teams/modify/'.$teamUrl, 'location');
 	}
 }

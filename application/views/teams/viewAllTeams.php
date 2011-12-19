@@ -1,5 +1,5 @@
 <article class='listView'>
-	<h2>My Task List</h2>
+	<h2>Teams</h2>
 	
 	<ol class="teamList">
 		<li class="teamItem">

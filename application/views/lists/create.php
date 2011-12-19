@@ -2,7 +2,7 @@
 echo validation_errors(); 
 		
 $attributes = array('class' => 'listsView');
-echo form_open('lists/create/'.$location.'/', $attributes);
+echo form_open('lists/create', $attributes);
 echo form_fieldset();
 
 echo form_label('List Name:', 'name');

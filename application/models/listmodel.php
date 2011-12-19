@@ -30,7 +30,7 @@ class ListModel extends CI_Model {
 			$this->owner = $session['username'];
 		}
 		
-		$this->db->query("INSERT INTO tblList (fldName,fldType,fldAccessLevel,fldOwner) VALUES ('$this->name' , '$this->type' , '$this->access','$this->owner')");
+		$this->db->query("INSERT INTO tblList (fldListName,fldType,fldAccessLevel,fldOwner) VALUES ('$this->name' , '$this->type' , '$this->access','$this->owner')");
 	}
 	
 	function getOwner($listId)
@@ -58,5 +58,15 @@ class ListModel extends CI_Model {
 	function delete($listId)
 	{
 		$query = $this->db->query("UPDATE tblList SET fldActive=0 WHERE pkListId=$listId");
+	}
+	
+	function getAllLists(){
+		$query = $this->db->query("SELECT pkListId,fldListName,fldType,fldOwner,fldAccessLevel,fldActive FROM tblList");
+		return $query -> result();
+	}
+	
+	function getListData($listId){
+		$query = $this->db->query("SELECT pkListId,fldListName,fldType,fldOwner,fldAccessLevel,fldActive FROM tblList WHERE pkListId=$listId");
+		return $query->result();
 	}
 }

@@ -7,7 +7,8 @@ class User extends CI_Model {
 	var $lastname = '';
 	var $email = '';
     var $lastLoggedIn = '';
-
+	var $authKey = '';
+	
     function __construct()
     {
         // Call the Model constructor
@@ -32,26 +33,42 @@ class User extends CI_Model {
 
     function insert_user()
     {
+    	$this->load->helper('security');
+		
 		$date = getdate();
 		$datetime = $date['year']."-".$date['mon']."-".$date['mday']." ".$date['hours'].':'.$date['minutes'].':'.$date['seconds'];
 		
-		//todo: take into account new user verification here:
-		// check duplicates, validate password and confirm password
-		
-        $this->username = $this->input->post('fldUsername');
-        $this->password = $this->input->post('fldPassword');
+		$this->firstname = $this->input->post('fldFirstname');
+		$this->lastname = $this->input->post('fldLastname');
 		$this->email = $this->input->post('fldEmail');
+        $this->username = $this->input->post('fldUsername');
+        $this->password = $this->input->post('fldPassword1');
+		$this->authKey = do_hash(time() , 'md5'); // MD5 resetKey
         $this->lastLoggedIn = $datetime;
-
-        $this->db->insert('tblTasker', $this);
+		
+		$data = array('pkUsername' => $this->username, 'fldPassword' => $this->password, 'fldFirstname' => $this->firstname, 'fldLastname' => $this->lastname, 'fldLastLoggedIn' => $this->lastLoggedIn, 'fldEmail' => $this->email, 'fldAuthKey' => $this->authKey);
+		
+		$queryString = $this->db->insert_string('tblTasker',$data);
+		$this->db->query($queryString);
+		return $this;
     }
 	
 	function check_user()
 	{
 		$this->username = $this->input->post('fldUsername');
 		$this->password = $this->input->post('fldPassword');
+		
 		//returns true if exists and password is correct, otherwise returns false
-		$query = $this->db->query("SELECT pkUsername,fldPassword,fldFirstname,fldLastname FROM tblTasker WHERE pkUsername='".$this->username."' AND fldPassword='".$this->password."'");
+		$query = $this->db->query("SELECT pkUsername,fldPassword,fldLevel,fldFirstname,fldLastname,fldEmail FROM tblTasker WHERE pkUsername='".$this->username."' AND fldPassword='".$this->password."'");
+		return $query;
+	}
+	
+	function check_user_registration(){
+		$this->username = $this->input->post('fldUsername');
+		$this->email = $this->input->post('fldEmail');
+		
+		//returns true if exists and password is correct, otherwise returns false
+		$query = $this->db->query("SELECT pkUsername,fldEmail FROM tblTasker WHERE pkUsername='$this->username' OR fldEmail='$this->email'");
 		return $query;
 	}
 	
@@ -62,6 +79,7 @@ class User extends CI_Model {
 		
 		$this->username = $this->input->post('fldUsername');
 		$this->password = $this->input->post('fldPassword');
+		
         $this->lastLoggedIn = $datetime;
 		
 		$query = $this->db->query("SELECT pkUsername,fldPassword,fldFirstname,fldLastname,fldEmail FROM tblTasker WHERE pkUsername='".$this->username."' AND fldPassword='".$this->password."'");
@@ -89,11 +107,52 @@ class User extends CI_Model {
 
 	function getLists($username)
 	{
-		
 		$query = $this->db->query("SELECT * FROM `tblList` 
 		WHERE fldOwner = '$username' OR fldOwner=(SELECT fkTeamName 
 		FROM  `tblTeamTasker` where fkUsername='$username')");
 		return $query->result();
+	}
+
+	function UserExistsFromEmail($email)
+	{
+		$queryString = "SELECT pkUsername,fldFirstname, fldLastname,fldProfileImage,fldLastLoggedIn,fldEmail,fldStatus 
+		FROM  `tblTasker`
+		WHERE fldEmail = '$email'
+		ORDER BY `fldLastLoggedIn` DESC";
+		$query = $this->db->query($queryString);
+		return $query->result();
+	}
+	
+	function preResetPassword($username,$resetKey){
+		$data = array('fldAuthKey' => $resetKey);
+		$where = "pkUsername = '$username'";
+		$queryString = $this->db->update_string('tblTasker',$data,$where);
+		$this->db->query($queryString);
+	}
+	
+	function confirmAuthKey($username,$authKey){
+		$queryString = "SELECT 1 FROM tblTasker WHERE pkUsername='$username' AND fldAuthKey='$authKey' LIMIT 1";
+		$query = $this->db->query($queryString);
+		return $query->result();
+	}
+	
+	function resetPassword(){
+		$this->password = $this->input->post('fldPassword1');
+		$this->username = $this->input->post('fldUsername');
+		
+		$data = array('fldPassword' => $this->password, 'fldAuthKey' => "");
+		$where = "pkUsername = '$this->username'";
+		$queryString = $this->db->update_string('tblTasker',$data,$where);
+		$query = $this->db->query($queryString);
+	}
+	
+	function setAccountActive($username){
+		$this->username = $username;
+		
+		$data = array('fldLevel' => 1);
+		$where = "pkUsername = '$this->username'";
+		$queryString = $this->db->update_string('tblTasker',$data,$where);
+		$query = $this->db->query($queryString);
 	}
 }
 

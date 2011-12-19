@@ -18,15 +18,16 @@ if(count($nonUsers)>0){
 
 foreach($users as $row)
 {
+
 echo "<div class='userInfo' style='float:left;'>";
-echo "<a href='/individual/$row->pkUsername' title='$row->pkUsername'>
-<img src='".$row->fldProfileImage."' alt='".$row->fldFirstname." ".$row->fldLastname." class='userProfileImage' style='max-height:80px;'/>
+echo "<a href='".site_url("individual/$row->pkUsername")."' title='$row->pkUsername'>
+<img src='".base_url().$row->fldProfileImage."' alt='".$row->fldFirstname." ".$row->fldLastname." class='userProfileImage' style='max-height:80px;'/>
 </a>";
 echo $row->fldFirstname." ".$row->fldLastname;
 echo "<br/>Last Logged in: ".$row->fldLastLoggedIn;
 ?>
 <div class='userOptions'>
-	<a href='/teams/delete/<?php echo $teamUrl.'/'.$row->pkUsername;  ?>' title='Remove User'>Remove</a>
+	<a href='<?php echo site_url("teams/delete/$teamUrl/$row->pkUsername"); ?>' title='Remove User'>Remove</a>
 	<a href='#' title='Update Role'>Update Role</a>
 </div>
 <?php

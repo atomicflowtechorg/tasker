@@ -7,9 +7,11 @@
 	$session = $this->session->all_userdata();
 	if(!isset($session['logged_in']) || $session['logged_in']==FALSE)
 	{
-	
+		if(isset($message)){
+			echo $message;
+		}
 		echo validation_errors();
-		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm');
+		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm', 'class'=>'unAuthenticatedForm');
 		echo form_open('authentication',$attributes);
 		echo form_fieldset("<h1>Client Login</h1>");
 		echo form_label('Username:','fldUsername');
@@ -19,7 +21,7 @@
 					  'id'          => 'fldUsername',
 					  'class'		=> 'field',
 					  'value'       => set_value('fldUsername'),
-					  'maxlength'   => '23',
+					  'maxlength'   => '60',
 					  'size'        => '23',
 					  'required'	=> '',
 					);			
@@ -32,7 +34,7 @@
 					  'id'          => 'fldPassword',
 					  'class'		=> 'field',
 					  'value'       => set_value('fldPassword'),
-					  'maxlength'   => '25',
+					  'maxlength'   => '60',
 					  'size'        => '25',
 					  'required'	=> '',
 					);
@@ -59,6 +61,8 @@
 		echo form_submit($submit);
 		
 		echo form_fieldset_close();
+		echo anchor('authentication/signUp','Not a member? why the hell not?!','');
+		echo "</br>";
 		echo anchor('authentication/forgot','Lost password? Ask Celery Man.','class="lost-pwd"');
 		echo form_close();
 		

@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	$('form[name=loginForm]').submit(function(){
 		$('#errorConsole').slideUp();
-		$.post('/authentication/checkLogin',{fldUsername: $('[name=fldUsername]').val(),fldPassword: $('[name=fldPassword]').val()},
+		$.post('authentication/checkLogin',{fldUsername: $('[name=fldUsername]').val(),fldPassword: $('[name=fldPassword]').val()},
 		function(data)
 		{
 			if(data.success)
