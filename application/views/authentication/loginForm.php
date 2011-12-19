@@ -61,6 +61,8 @@
 		echo form_submit($submit);
 		
 		echo form_fieldset_close();
+		echo anchor('authentication/signUp','Not a member? why the hell not?!','');
+		echo "</br>";
 		echo anchor('authentication/forgot','Lost password? Ask Celery Man.','class="lost-pwd"');
 		echo form_close();
 		

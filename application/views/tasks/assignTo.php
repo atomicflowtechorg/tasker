@@ -38,7 +38,7 @@ foreach($task as $row)
 	$lists['']='';
 	foreach($availableList as $option)
 	{
-		$lists[$option->pkListId] = $option->fldName;
+		$lists[$option->pkListId] = $option->fldListName;
 	}
 	
 	echo form_dropdown('list', $lists, $currentList);

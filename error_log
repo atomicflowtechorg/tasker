@@ -64,3 +64,4 @@ Stack trace:
 [18-Dec-2011 17:46:16] PHP Fatal error:  Call to undefined function  achor() in /home/uvmcon5/public_html/tasker/application/controllers/authentication.php on line 217
 [18-Dec-2011 17:53:10] PHP Fatal error:  Call to a member function result() on a non-object in /home/uvmcon5/public_html/tasker/application/models/user.php on line 129
 [18-Dec-2011 17:54:26] PHP Fatal error:  Call to a member function result() on a non-object in /home/uvmcon5/public_html/tasker/application/models/user.php on line 129
+[18-Dec-2011 20:18:03] PHP Fatal error:  Call to a member function confirmAuthKey() on a non-object in /home/uvmcon5/public_html/tasker/application/controllers/authentication.php on line 281

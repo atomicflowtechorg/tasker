@@ -29,7 +29,15 @@ class Authentication extends CI_Controller {
 		{
 			if($_POST){
 				$exists = $this->User->check_user();
-				if ($exists->num_rows() == 1)
+				$result = $exists->result();
+				$count = count($result);
+				$user = null;
+				$user->fldLevel = null;
+				if(!empty($result)){
+					$user = $result[0];
+				}
+				
+				if ($count == 1 && $user->fldLevel == 1)
 				{
 					$user = $this->User->user_login();
 					$data['username'] = $user->firstname;
@@ -46,6 +54,32 @@ class Authentication extends CI_Controller {
 	
 				$this->session->set_userdata($newdata);
 				redirect('/', 'location');
+				}
+				else if($user->fldLevel == 0){
+					
+					$this->load->helper('security');
+					$authKey = do_hash(time() , 'md5'); // MD5 resetKey
+					
+					$this->User->preResetPassword($user->pkUsername,$authKey);
+						
+					$this->load->library('email');
+				
+					$config['mailtype'] = 'html';
+	
+					$this->email->initialize($config);
+					
+					$this->email->from('Admin@Tasker.AtomicFlowTech.com', 'Tasker - AtomicFlowTech');
+					$this->email->to($user->fldEmail); 
+					
+					$this->email->subject("Tasker - AtomicFlowTech: Confirm New User");
+					
+					$message = "Your account has been created! All you have to do is click on the link below to activate your account!</br>".anchor("authentication/activateUser/$user->pkUsername/$authKey", "Click here to activate your account","");
+					
+					$this->email->message($message);
+					
+					$this->email->send();
+					$data['message'] = "Your Account hasn't been activated yet. Check your email for a link to activate your account.";
+					$this->load->view('authentication/loginForm',$data);
 				}
 				else{
 					$data['message'] = "Username or password not correct.";
@@ -204,7 +238,7 @@ class Authentication extends CI_Controller {
 		$validResetRequest = 0;
 		
 		if($username != null && $resetKey != null){
-			$validResetRequest = $this->User->confirmResetKey($username,$resetKey);
+			$validResetRequest = $this->User->confirmAuthKey($username,$resetKey);
 		}
 		
 		if($validResetRequest){
@@ -225,6 +259,75 @@ class Authentication extends CI_Controller {
 			$data['message'] = "Sorry - User and request key don't match up. Try again";
 			$this->load->view('authentication/forgot',$data);
 		}
+		
+		$this->load->view('default/footer');
+	}
+	
+	public function signUp(){
+		$this->load->model('User');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('fldFirstname', 'First Name', 'trim|required|alpha|xss_clean');
+		$this->form_validation->set_rules('fldLastname', 'Last Name', 'trim|required|alpha|xss_clean');
+		$this->form_validation->set_rules('fldEmail', 'Email', 'trim|required|valid_email|xss_clean');
+		$this->form_validation->set_rules('fldUsername', 'Username', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
+		$this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
+		
+		$this->load->view('default/header');
+		if ($this->form_validation->run() == FALSE){
+			$this->load->view('authentication/signUp');
+		}
+		else{
+			$exists = $this->User->check_user_registration();
+			if ($exists->num_rows() == 0){
+				$user = $this->User->insert_user();
+				
+				$this->load->library('email');
+				
+				$config['mailtype'] = 'html';
+
+				$this->email->initialize($config);
+				
+				$this->email->from('Admin@Tasker.AtomicFlowTech.com', 'Tasker - AtomicFlowTech');
+				$this->email->to(set_value('fldEmail')); 
+				
+				$this->email->subject("Tasker - AtomicFlowTech: Confirm New User");
+				
+				$message = "Your account has been created! All you have to do is click on the link below to activate your account!</br>".anchor("authentication/activateUser/$user->username/$user->authKey", "Click here to activate your account","");
+				
+				$this->email->message($message);
+				
+				$this->email->send();
+				$data['message'] = "You Have successfully created your account! Check your email for the activation link -> then log in!";
+			}
+			else{
+				$data['message'] = "Username or Email already in use.";
+			}
+			$this->load->view('authentication/accountCreated',$data);
+		}
+		$this->load->view('default/footer');
+	}
+
+	public function activateUser($username=null,$authkey=null){
+		
+		$this->load->model('User');
+			
+		$validActivateRequest = 0;
+		
+		if($username != null && $authkey != null){
+			$validActivateRequest = $this->User->confirmAuthKey($username,$authkey);
+		}
+		
+		$this->load->view('default/header');
+		
+		if($validActivateRequest){
+			$this->User->setAccountActive($username);
+			$data['message'] = "Congratulations, your account has been activated. ".anchor("authentication","Please Login.",'');
+		}
+		else{
+			$data['message'] = "Sorry, The link you used doesnt seem to be right, ".anchor('authentication','please try again','');
+		}
+		$this->load->view('authentication/accountCreated',$data);
 		
 		$this->load->view('default/footer');
 	}
