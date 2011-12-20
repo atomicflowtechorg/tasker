@@ -5,7 +5,7 @@ class Individual extends CI_Controller {
 
     public function index()
     {
-		$this->load->model('Task');
+		$this->load->model('TaskModel');
 		$this->load->helper('form');
 	
 		$this->load->view('default/header');
@@ -14,7 +14,7 @@ class Individual extends CI_Controller {
 		$session = $this->session->all_userdata();
 		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 			$data['user'] = $session['username'];
-			$data['results'] = $this->Task->getTasksForTasker();
+			$data['results'] = $this->TaskModel->getTasksForTasker();
 			$this->load->view('default/nav');
 			$this->load->view('individual',$data);
 		}
@@ -26,7 +26,7 @@ class Individual extends CI_Controller {
 
 	public function show($username=null)
 	{
-		$this->load->model('Task');
+		$this->load->model('TaskModel');
 		$this->load->helper('form');
 	
 		$this->load->view('default/header');
@@ -41,7 +41,7 @@ class Individual extends CI_Controller {
 			}
 			else
 			{
-				$data['results'] = $this->Task->getTasksForTasker($username);
+				$data['results'] = $this->TaskModel->getTasksForTasker($username);
 				$data['user'] = $username;
 				$this->load->view('default/nav');
 				$this->load->view('individual',$data);

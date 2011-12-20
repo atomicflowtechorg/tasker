@@ -1,5 +1,5 @@
 <article class='listView'>
-	<h2>GrabBag List</h2>
+	<h2><?php echo $title; ?></h2>
 	
 	<div class="tasksNav">
 		<a href="<?php echo site_url("tasks/create/".uri_string()); ?>" rel="#overlay" title="Create a task"> + </a>

@@ -10,10 +10,10 @@ class Tasks extends CI_Controller {
 	public function delete($pkTaskId)
 	{
 		
-		$this->load->model('Task');
+		$this->load->model('TaskModel');
 		$this->load->helper('form');
 		
-		$this->Task->deleteTask($pkTaskId);
+		$this->TaskModel->deleteTask($pkTaskId);
 		redirect('/','location');
 	}
 	
@@ -22,8 +22,8 @@ class Tasks extends CI_Controller {
 		$this->load->helper('MY_Form_helper');
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
-			$this->load->model('Task');
-			$this->load->model('User');
+			$this->load->model('TaskModel');
+			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 			
@@ -31,16 +31,16 @@ class Tasks extends CI_Controller {
 			
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['users'] = $this->User->get_all_usernames();
-				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
+				$data['users'] = $this->UserModel->get_all_usernames();
+				$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
 				$this->load->view('tasks/view',$data);
 			}
         }
         else
         {
-			$this->load->model('Task');
-			$this->load->model('User');
+			$this->load->model('TaskModel');
+			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 			
@@ -48,9 +48,9 @@ class Tasks extends CI_Controller {
 			
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['users'] = $this->User->get_all_usernames();
-				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
+				$data['users'] = $this->UserModel->get_all_usernames();
+				$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
 				$this->load->view('default/header');
 				$this->load->view('default/nav',$data);
 
@@ -60,7 +60,7 @@ class Tasks extends CI_Controller {
 				}
 				else
 				{
-					$data['update'] = $this->Task->update();
+					$data['update'] = $this->TaskModel->update();
 					redirect('/','location');
 				}
 			}//end if loggid in
@@ -72,10 +72,10 @@ class Tasks extends CI_Controller {
 	public function assignTask($pkTaskId,$Tasker)
 	{
 		
-		$this->load->model('Task');
+		$this->load->model('TaskModel');
 		$this->load->helper('form');
 			
-		$data['task'] = $this->Task->getTaskData($pkTaskId);
+		$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
 		$this->load->view('tasks/task',$data);
 	}
 	
@@ -86,24 +86,24 @@ class Tasks extends CI_Controller {
 		
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
-			$this->load->model('Task');
-			$this->load->model('User');
+			$this->load->model('TaskModel');
+			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 				
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['users'] = $this->User->get_all_usernames();
-				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
+				$data['users'] = $this->UserModel->get_all_usernames();
+				$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
 				$data['availableList'] = $this->Listmodel->getAllLists();
 				$this->load->view('tasks/assignTo',$data);
 			}
         }
         else
         {
-			$this->load->model('Task');
-			$this->load->model('User');
+			$this->load->model('TaskModel');
+			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 			
@@ -111,9 +111,9 @@ class Tasks extends CI_Controller {
 			
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['task'] = $this->Task->getTaskData($pkTaskId);
-				$data['users'] = $this->User->get_all_usernames();
-				$data['statusOptions'] = $this->Task->getAllStatusOptions();
+				$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
+				$data['users'] = $this->UserModel->get_all_usernames();
+				$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
 				$data['availableList'] = $this->Listmodel->getAllLists();
 				$this->load->view('default/header');
 				$this->load->view('default/nav',$data);
@@ -124,7 +124,7 @@ class Tasks extends CI_Controller {
 				}
 				else
 				{
-					$data['update'] = $this->Task->updateUser();
+					$data['update'] = $this->TaskModel->updateUser();
 				}
 			}//end if loggid in
 			
@@ -136,8 +136,8 @@ class Tasks extends CI_Controller {
 	{
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
-			$this->load->model('Task');
-			$this->load->model('User');
+			$this->load->model('TaskModel');
+			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 			
@@ -151,15 +151,15 @@ class Tasks extends CI_Controller {
 				}
 				else
 				{
-					$this->Task->addTask();
+					$this->TaskModel->addTask();
 					redirect('/','location');
 				}
 			}
         }
         else
         {
-			$this->load->model('Task');
-			$this->load->model('User');
+			$this->load->model('TaskModel');
+			$this->load->model('UserModel');
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			
@@ -178,7 +178,7 @@ class Tasks extends CI_Controller {
 				}
 				else
 				{
-					$this->Task->addTask();
+					$this->TaskModel->addTask();
 					redirect('/','location');
 				}
 				$this->load->view('default/nav');

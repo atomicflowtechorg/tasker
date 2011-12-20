@@ -1,5 +1,5 @@
 <?php
-class Task extends CI_Model {
+class TaskModel extends CI_Model {
 	var $pkTaskId = '';
 	var $fldAssignedTo = '';
 	var $fldName = '';

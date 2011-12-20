@@ -1,5 +1,5 @@
 <?php 
-class Team extends CI_Model {
+class TeamModel extends CI_Model {
     var $name = '';
 
     function __construct()

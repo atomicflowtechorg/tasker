@@ -6,7 +6,7 @@ class Authentication extends CI_Controller {
     public function index()
     {
 		//User display test
-		$this->load->model('User');
+		$this->load->model('UserModel');
 		
         //Page content configuration
         $this->load->helper('date');
@@ -28,7 +28,7 @@ class Authentication extends CI_Controller {
 		else
 		{
 			if($_POST){
-				$exists = $this->User->check_user();
+				$exists = $this->UserModel->check_user();
 				$result = $exists->result();
 				$count = count($result);
 				$user = null;
@@ -39,7 +39,7 @@ class Authentication extends CI_Controller {
 				
 				if ($count == 1 && $user->fldLevel == 1)
 				{
-					$user = $this->User->user_login();
+					$user = $this->UserModel->user_login();
 					$data['username'] = $user->firstname;
 					$data['success'] = true;
 					$data['message'] = "you've successfully logged in";
@@ -60,7 +60,7 @@ class Authentication extends CI_Controller {
 					$this->load->helper('security');
 					$authKey = do_hash(time() , 'md5'); // MD5 resetKey
 					
-					$this->User->preResetPassword($user->pkUsername,$authKey);
+					$this->UserModel->preResetPassword($user->pkUsername,$authKey);
 						
 					$this->load->library('email');
 				
@@ -104,15 +104,15 @@ class Authentication extends CI_Controller {
 	{
 		$this->load->library('encrypt');
 		$this->load->helper('date');
-		$this->load->model('User');
+		$this->load->model('UserModel');
 		//DO encryption and stop tags and such in user model
 		if($_POST){
-			$exists = $this->User->check_user();
+			$exists = $this->UserModel->check_user();
 			$objArray = get_object_vars($exists);
 			$resultItem = $objArray['num_rows'];
 			if ($resultItem==1)
 			{
-				$user = $this->User->user_login();
+				$user = $this->UserModel->user_login();
 				$data['username'] = $user->firstname;
 				$data['success'] = true;
 				$data['message'] = "you've successfully logged in";
@@ -184,9 +184,9 @@ class Authentication extends CI_Controller {
 			{
 				$this->load->library('email');
 				$this->load->helper('security');
-				$this->load->model('User');
+				$this->load->model('UserModel');
 
-				$userExists = $this->User->UserExistsFromEmail(set_value('fldEmail'));
+				$userExists = $this->UserModel->UserExistsFromEmail(set_value('fldEmail'));
 				
 				if(!empty($userExists)){
 					$userExists = $userExists[0];
@@ -205,7 +205,7 @@ class Authentication extends CI_Controller {
 					
 					$resetKey = do_hash(time() , 'md5'); // MD5 resetKey
 					
-					$this->User->preResetPassword($userExists->pkUsername,$resetKey);
+					$this->UserModel->preResetPassword($userExists->pkUsername,$resetKey);
 					
 					$this->email->subject("Tasker - AtomicFlowTech: Forgot Password Confirmation");
 					
@@ -227,7 +227,7 @@ class Authentication extends CI_Controller {
 	}
 
 	public function resetPassword($username = null,$resetKey = null){
-		$this->load->model('User');
+		$this->load->model('UserModel');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('fldUsername', 'Username', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
@@ -238,7 +238,7 @@ class Authentication extends CI_Controller {
 		$validResetRequest = 0;
 		
 		if($username != null && $resetKey != null){
-			$validResetRequest = $this->User->confirmAuthKey($username,$resetKey);
+			$validResetRequest = $this->UserModel->confirmAuthKey($username,$resetKey);
 		}
 		
 		if($validResetRequest){
@@ -250,7 +250,7 @@ class Authentication extends CI_Controller {
 			}
 			else
 			{
-				$this->User->resetPassword();
+				$this->UserModel->resetPassword();
 				$data['message'] = "Your password has been reset. How about ".anchor(base_url(),"logging in?","");
 				$this->load->view('authentication/passwordChanged',$data);
 			}
@@ -264,7 +264,7 @@ class Authentication extends CI_Controller {
 	}
 	
 	public function signUp(){
-		$this->load->model('User');
+		$this->load->model('UserModel');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('fldFirstname', 'First Name', 'trim|required|alpha|xss_clean');
 		$this->form_validation->set_rules('fldLastname', 'Last Name', 'trim|required|alpha|xss_clean');
@@ -278,9 +278,9 @@ class Authentication extends CI_Controller {
 			$this->load->view('authentication/signUp');
 		}
 		else{
-			$exists = $this->User->check_user_registration();
+			$exists = $this->UserModel->check_user_registration();
 			if ($exists->num_rows() == 0){
-				$user = $this->User->insert_user();
+				$user = $this->UserModel->insert_user();
 				
 				$this->load->library('email');
 				
@@ -310,18 +310,18 @@ class Authentication extends CI_Controller {
 
 	public function activateUser($username=null,$authkey=null){
 		
-		$this->load->model('User');
+		$this->load->model('UserModel');
 			
 		$validActivateRequest = 0;
 		
 		if($username != null && $authkey != null){
-			$validActivateRequest = $this->User->confirmAuthKey($username,$authkey);
+			$validActivateRequest = $this->UserModel->confirmAuthKey($username,$authkey);
 		}
 		
 		$this->load->view('default/header');
 		
 		if($validActivateRequest){
-			$this->User->setAccountActive($username);
+			$this->UserModel->setAccountActive($username);
 			$data['message'] = "Congratulations, your account has been activated. ".anchor("authentication","Please Login.",'');
 		}
 		else{

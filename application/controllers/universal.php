@@ -5,7 +5,7 @@ class Universal extends CI_Controller {
 
     public function index()
     {
-		$this->load->model('Task');
+		$this->load->model('TaskModel');
 		$this->load->helper('form');
 	
 		$this->load->view('default/header');
@@ -13,7 +13,7 @@ class Universal extends CI_Controller {
 		
 		$session = $this->session->all_userdata();
 		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-			$data['results'] = $this->Task->showAll();
+			$data['results'] = $this->TaskModel->showAll();
 			$this->load->view('default/nav',$data);
 			$this->load->view('universal',$data);
 		}

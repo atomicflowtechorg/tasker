@@ -1,5 +1,5 @@
 <?php 
-class User extends CI_Model {
+class UserModel extends CI_Model {
     var $id = '';
     var $username   = '';
     var $password = '';

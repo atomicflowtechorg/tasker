@@ -5,7 +5,7 @@ class Lists extends CI_Controller {
     public function index()
     {
 		$this->load->model('ListModel');
-		$this->load->model('User');
+		$this->load->model('UserModel');
 		$data['lists'] = $this->ListModel->getAllLists();
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
@@ -29,8 +29,8 @@ class Lists extends CI_Controller {
 	public function create()
 	{
 		$this->load->model('ListModel');
-		$this->load->model('User');
-		$this->load->model('Team');
+		$this->load->model('UserModel');
+		$this->load->model('TeamModel');
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		
@@ -44,7 +44,7 @@ class Lists extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				$data['teams'] = $this->Team->getTeamsForUser($session['username']);
+				$data['teams'] = $this->TeamModel->getTeamsForUser($session['username']);
 				$this->load->view('lists/create',$data);
 			}
 			else
@@ -59,8 +59,8 @@ class Lists extends CI_Controller {
 	public function delete($listId)
 	{
 		$this->load->model('ListModel');
-		$this->load->model('User');
-		$this->load->model('Team');
+		$this->load->model('UserModel');
+		$this->load->model('TeamModel');
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		
@@ -71,7 +71,7 @@ class Lists extends CI_Controller {
 			$this->load->view('default/nav');
 			
 			$owner = $this->ListModel->getOwner($listId);
-			$userTeams = $this->Team->getTeamsForUser($session['username']);
+			$userTeams = $this->TeamModel->getTeamsForUser($session['username']);
 			if ($session['username']==$owner || in_array($owner,$userTeams))
 			{
 				$this->ListModel->delete($listId);
@@ -87,7 +87,7 @@ class Lists extends CI_Controller {
 	
 	function show($listId,$username = null)
 	{
-		$this->load->model('Task');
+		$this->load->model('TaskModel');
 		$this->load->model('ListModel');
 		$this->load->helper('form');
 		
@@ -107,7 +107,7 @@ class Lists extends CI_Controller {
 				$list = $listData[0];
 				$data['listData'] = $listData;
 				$data['listName'] = $list->fldListName;
-				$data['tasks'] = $this->Task->getTasksForList($listId);
+				$data['tasks'] = $this->TaskModel->getTasksForList($listId);
 				$data['nav'] = TRUE;
 				$this->load->view('default/nav');
 				$this->load->view('lists/showList',$data);
@@ -119,8 +119,8 @@ class Lists extends CI_Controller {
 	function showUserLists($username)
 	{
 		$this->load->model('ListModel');
-		$this->load->model('User');
-		$data['lists'] = $this->User->getLists($username);
+		$this->load->model('UserModel');
+		$data['lists'] = $this->UserModel->getLists($username);
 		$data['user'] = $username;
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{

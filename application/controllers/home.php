@@ -10,12 +10,12 @@ class Home extends CI_Controller {
         $this->load->helper('date');
 		
 		//User display test
-		$this->load->model('User');
+		$this->load->model('UserModel');
 		
 		$this->load->view('default/header');
 		$this->load->view('authentication/loginForm');
 		
-		$data['users'] = $this->User->get_all_users();
+		$data['users'] = $this->UserModel->get_all_users();
 		$this->load->view('default/nav');
 
         $this->load->view('default/footer');
