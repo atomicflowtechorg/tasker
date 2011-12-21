@@ -6,6 +6,8 @@ class Lists extends CI_Controller {
     {
 		$this->load->model('ListModel');
 		$this->load->model('UserModel');
+		$this->lang->load('list');
+		
 		$data['lists'] = $this->ListModel->getAllLists();
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
@@ -33,6 +35,7 @@ class Lists extends CI_Controller {
 		$this->load->model('TeamModel');
 		$this->load->library('form_validation');
 		$this->load->helper('form');
+		$this->lang->load('list');
 		
 		$this->form_validation->set_rules('name', 'name', 'required');
 		
@@ -78,7 +81,7 @@ class Lists extends CI_Controller {
 			}
 			else
 			{
-				echo "Can't delete unowned task";
+				echo "Can't delete unowned list";
 			}
 		}//end if loggid in
 		
@@ -90,6 +93,7 @@ class Lists extends CI_Controller {
 		$this->load->model('TaskModel');
 		$this->load->model('ListModel');
 		$this->load->helper('form');
+		$this->lang->load('list');
 		
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
 		{
@@ -104,11 +108,20 @@ class Lists extends CI_Controller {
 				$data['user'] = $username;
 				$data['listId'] = $listId;
 				$listData = $this->ListModel->getListData($listId);
-				$list = $listData[0];
+				
+				//TODO: Do not force object creation here.
+				$list = new ListModel();
+				$list->fldListName = $this->uri->segment(4);
+				
+				if(!empty($listData)){
+					$list = $listData[0];
+				}
+
 				$data['listData'] = $listData;
 				$data['listName'] = $list->fldListName;
 				$data['tasks'] = $this->TaskModel->getTasksForList($listId);
 				$data['nav'] = TRUE;
+				$data['empty_list'] = lang('error_list_noTasks',array($data['listName'],$data['listName']));
 				$this->load->view('default/nav');
 				$this->load->view('lists/showList',$data);
 			}
@@ -120,6 +133,8 @@ class Lists extends CI_Controller {
 	{
 		$this->load->model('ListModel');
 		$this->load->model('UserModel');
+		$this->lang->load('list');
+		
 		$data['lists'] = $this->UserModel->getLists($username);
 		$data['user'] = $username;
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")

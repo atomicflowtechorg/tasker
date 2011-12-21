@@ -13,7 +13,7 @@ foreach($task as $row)
 	
 	if( isset($row->pkListId))
 	{
-		$currentList = "List: ".$row->fldListName;
+		$currentList = lang('task_list_label')." ".$row->fldListName;
 	}
 	
 	echo validation_errors(); 
@@ -36,7 +36,7 @@ foreach($task as $row)
 			);
 	echo form_input($taskName);
 	
-	echo form_label('Assigned to:', 'username');
+	echo form_label(lang('task_assignTo_label'), 'username');
 	
 	$options['']='';
 	
@@ -49,7 +49,7 @@ foreach($task as $row)
 	
 	
 	
-	echo form_label('Status:', 'status');
+	echo form_label(lang('task_status_label'), 'status');
 	foreach($statusOptions as $option)
 	{
 		$statusOption[$option->pkStatus] = $option->pkStatus;
@@ -59,7 +59,7 @@ foreach($task as $row)
 	
 	echo $currentList;
 	
-	echo form_label('Date Due:', 'dateDue');
+	echo form_label(lang('task_dueDate_label'), 'dateDue');
 	$dueDate = array(
 			  'name'        => 'dateDue',
 			  'id'          => 'dateDue',
@@ -71,7 +71,7 @@ foreach($task as $row)
 	
 	echo "<br/>";
 	
-	echo form_label('Notes:', 'notes');
+	echo form_label(lang('task_notes_label'), 'notes');
 	$notes = array(
 			  'name'        => 'notes',
 			  'id'          => 'notes',
@@ -81,7 +81,7 @@ foreach($task as $row)
 			);
 	echo form_textarea($notes);
 	
-	echo form_submit('update', 'Update');
+	echo form_submit('update', lang('task_update_button'));
 	echo form_fieldset_close();
 }
 ?>

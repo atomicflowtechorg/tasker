@@ -23,12 +23,14 @@ echo "<div class='userInfo' style='float:left;'>";
 echo "<a href='".site_url("individual/$row->pkUsername")."' title='$row->pkUsername'>
 <img src='".base_url().$row->fldProfileImage."' alt='".$row->fldFirstname." ".$row->fldLastname." class='userProfileImage' style='max-height:80px;'/>
 </a>";
+echo "<p>".lang('team_user_status_title')."</p>";
+echo "<p>".$row->fldStatus."</p>";
 echo $row->fldFirstname." ".$row->fldLastname;
-echo "<br/>Last Logged in: ".$row->fldLastLoggedIn;
+echo "<br/>".lang('team_user_lastLoggedIn_text').": ".$row->fldLastLoggedIn;
 ?>
 <div class='userOptions'>
-	<a href='<?php echo site_url("teams/delete/$teamUrl/$row->pkUsername"); ?>' title='Remove User'>Remove</a>
-	<a href='#' title='Update Role'>Update Role</a>
+	<a href='<?php echo site_url("teams/delete/$teamUrl/$row->pkUsername"); ?>' title='<?php echo lang('team_user_remove_title'); ?>'><?php echo lang('team_user_remove_text'); ?></a>
+	<a href='#' title='<?php echo lang('team_user_update_title'); ?>'><?php echo lang('team_user_update_text'); ?></a>
 </div>
 <?php
 echo "</div>";		

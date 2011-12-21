@@ -26,6 +26,7 @@ class Tasks extends CI_Controller {
 			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+			$this->lang->load('task');
 			
 			//TODO: Requires javascript validation to prevent new page load on invalid update
 			
@@ -43,6 +44,7 @@ class Tasks extends CI_Controller {
 			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+			$this->lang->load('task');
 			
 			$this->form_validation->set_rules('name', 'name', 'required');
 			
@@ -69,16 +71,6 @@ class Tasks extends CI_Controller {
 	        } 
 	}
 	
-	public function assignTask($pkTaskId,$Tasker)
-	{
-		
-		$this->load->model('TaskModel');
-		$this->load->helper('form');
-			
-		$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
-		$this->load->view('tasks/task',$data);
-	}
-	
 	public function assignTo($pkTaskId,$teamMember = null)
 	{
 		$this->load->model('Listmodel');
@@ -90,6 +82,7 @@ class Tasks extends CI_Controller {
 			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+			$this->lang->load('task');
 				
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
@@ -106,6 +99,7 @@ class Tasks extends CI_Controller {
 			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+			$this->lang->load('task');
 			
 			$this->form_validation->set_rules('username', 'username', 'alpha');
 			
@@ -140,6 +134,7 @@ class Tasks extends CI_Controller {
 			$this->load->model('UserModel');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+			$this->lang->load('task');
 			
 			$this->form_validation->set_rules('name', 'name', 'required');
 			$session = $this->session->all_userdata();
@@ -162,7 +157,7 @@ class Tasks extends CI_Controller {
 			$this->load->model('UserModel');
 			$this->load->helper('form');
 			$this->load->library('form_validation');
-			
+			$this->lang->load('task');
 			
 			$this->form_validation->set_rules('taskName', 'task name', 'required');
 			

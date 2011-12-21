@@ -11,6 +11,7 @@ class Authentication extends CI_Controller {
         //Page content configuration
         $this->load->helper('date');
 		$this->load->library('form_validation');
+		$this->lang->load('authentication');
 		
 		$this->load->view('default/header');
 		
@@ -105,6 +106,7 @@ class Authentication extends CI_Controller {
 		$this->load->library('encrypt');
 		$this->load->helper('date');
 		$this->load->model('UserModel');
+		$this->lang->load('authentication');
 		//DO encryption and stop tags and such in user model
 		if($_POST){
 			$exists = $this->UserModel->check_user();
@@ -171,6 +173,7 @@ class Authentication extends CI_Controller {
 	public function forgot(){
 			$this->load->helper('date');
 			$this->load->library('form_validation');
+			$this->lang->load('authentication');
 			
 			$this->form_validation->set_rules('fldEmail', 'Email', 'trim|required|valid_email');
 			
@@ -229,6 +232,8 @@ class Authentication extends CI_Controller {
 	public function resetPassword($username = null,$resetKey = null){
 		$this->load->model('UserModel');
 		$this->load->library('form_validation');
+		$this->lang->load('authentication');
+		
 		$this->form_validation->set_rules('fldUsername', 'Username', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
 		$this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
@@ -266,6 +271,8 @@ class Authentication extends CI_Controller {
 	public function signUp(){
 		$this->load->model('UserModel');
 		$this->load->library('form_validation');
+		$this->lang->load('authentication');
+		
 		$this->form_validation->set_rules('fldFirstname', 'First Name', 'trim|required|alpha|xss_clean');
 		$this->form_validation->set_rules('fldLastname', 'Last Name', 'trim|required|alpha|xss_clean');
 		$this->form_validation->set_rules('fldEmail', 'Email', 'trim|required|valid_email|xss_clean');
@@ -311,7 +318,8 @@ class Authentication extends CI_Controller {
 	public function activateUser($username=null,$authkey=null){
 		
 		$this->load->model('UserModel');
-			
+		$this->lang->load('authentication');
+		
 		$validActivateRequest = 0;
 		
 		if($username != null && $authkey != null){

@@ -6,7 +6,7 @@ echo validation_errors();
 $attributes = array('class' => 'teamCreate');
 echo form_open('teams/create', $attributes);
 
-echo form_label('Team Name:', 'teamName');
+echo form_label(lang('team_create_nameLabel'), 'teamName');
 $teamName = array(
 	  'name'        => 'teamName',
 	  'id'          => 'teamName',

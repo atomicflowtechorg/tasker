@@ -32,7 +32,7 @@ class TeamModel extends CI_Model {
 		}
 	}
 	
-	function getUsersForTeam($team = null, $inTeam){
+	function getUsersForTeam($inTeam , $team = null){
 		
 		if($inTeam){ $condition = 'IN';}
 		else{$condition = 'NOT IN';}
@@ -41,7 +41,7 @@ class TeamModel extends CI_Model {
 			throw new Exception("Team can't be null", 1);
 		}
 		
-		$queryString = "SELECT pkUsername, fldFirstname,fldLastname,fldProfileImage,fldLastLoggedIn,fldEmail
+		$queryString = "SELECT pkUsername, fldFirstname,fldLastname,fldProfileImage,fldLastLoggedIn,fldEmail,fldStatus
 						FROM tblTasker
 						WHERE pkUsername $condition
 						(SELECT DISTINCT fkUsername FROM tblTeamTasker WHERE fkTeamName = '$team')";

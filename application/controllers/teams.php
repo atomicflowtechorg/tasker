@@ -9,7 +9,7 @@ class Teams extends CI_Controller {
         $this->load->library('image_lib');
         $this->load->library('form_validation');
         $this->load->helper('date');
-		
+		$this->lang->load('team');
 		//User display test
 		$this->load->model('UserModel');
 		$this->load->model('TeamModel');
@@ -21,7 +21,7 @@ class Teams extends CI_Controller {
 			$data['teams'] = $this->TeamModel->getTeams();
 			foreach($data['teams'] as $team)
 			{
-				$data['users'][] = $this->TeamModel->getUsersForTeam($team->pkTeamName,true);
+				$data['users'][] = $this->TeamModel->getUsersForTeam(true, $team->pkTeamName);
 			}
 			$this->load->view('default/nav');
 			$this->load->view('teams/viewAllTeams',$data);
@@ -35,6 +35,7 @@ class Teams extends CI_Controller {
         $this->load->library('image_lib');
         $this->load->library('form_validation');
         $this->load->helper('date');
+		$this->lang->load('team');
 		
 		//User display test
 		$this->load->model('UserModel');
@@ -57,6 +58,7 @@ class Teams extends CI_Controller {
         $this->load->library('image_lib');
         $this->load->library('form_validation');
         $this->load->helper('date');
+		$this->lang->load('team');
 		
 		//User display test
 		$this->load->model('UserModel');
@@ -90,6 +92,7 @@ class Teams extends CI_Controller {
         $this->load->library('image_lib');
         $this->load->library('form_validation');
         $this->load->helper('date');
+		$this->lang->load('team');
 		
 		//User display test
 		$this->load->model('UserModel');
@@ -107,7 +110,7 @@ class Teams extends CI_Controller {
 		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 			$this->load->view('default/nav');
 			try{
-				$data['users'] = $this->TeamModel->getUsersForTeam($team,true);
+				$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
 				$this->load->view('teams/viewTeam',$data);
 			}
 			catch(exception $e){
@@ -123,6 +126,7 @@ class Teams extends CI_Controller {
         $this->load->library('image_lib');
         $this->load->library('form_validation');
         $this->load->helper('date');
+		$this->lang->load('team');
 		
 		$this->form_validation->set_rules('username', 'Username', 'required');
 		
@@ -155,8 +159,8 @@ class Teams extends CI_Controller {
 			try{
 				$data['team'] = $team;
 				$data['teamUrl'] = $teamUrl;
-				$data['users'] = $this->TeamModel->getUsersForTeam($team,true);
-				$data['nonUsers'] = $this->TeamModel->getUsersForTeam($team,false);
+				$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
+				$data['nonUsers'] = $this->TeamModel->getUsersForTeam(false , $team);
 				$this->load->view('teams/modify',$data);
 			}
 			catch(exception $e){

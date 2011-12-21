@@ -1,23 +1,16 @@
-<?php
-$session = $this->session->all_userdata();
-$title = "My Task List";
-if(isset($user)){
-	$title = "$user Task List";
-}
-?>
 <article class='listView'>
 	<h2><?php echo $title; ?></h2>
 	
 	<div class="tasksNav">
-		<a href="<?php echo site_url("tasks/create/".uri_string()); ?>" rel="#overlay" title="Create a task"> + </a>
-		<a href="<?php echo site_url("lists/showUserLists/$user");?>" rel="#overlay" title="Load List"> --- </a>
+		<a href="<?php echo site_url("tasks/create/".uri_string()); ?>" rel="#overlay" title="<?php echo lang('anchor_task_create'); ?>"> + </a>
+		<a href="<?php echo site_url("lists/showUserLists/$user");?>" rel="#overlay" title="<?php echo lang('anchor_list_load'); ?>"> --- </a>
 	</div>
 	
 	<ol class="taskList">
 	<?php
 	if(count($results)==0)
 	{
-		echo '<li class="taskItem">No tasks exist for user <span class="showUsername">'.$user.'</span> OR user <span class="showUsername">'.$user.'</span> doesn'."'".'t exist</li>';
+		echo '<li class="taskItem">'.$empty_list.'</li>';
 	}
 	else{
 		foreach ($results as $row) {
@@ -26,9 +19,9 @@ if(isset($user)){
 				<?php echo $row->fldName; ?>
 				
 			<div class="taskOptions">
-				<a href='<?php echo site_url("tasks/view/".$row->pkTaskId); ?>' rel="#overlay" title="Information" >i</a>
-				<a href='<?php echo site_url("tasks/assignTo/".$row->pkTaskId); ?>' rel="#overlay" title="Assign Task">+</a>
-				<a href='<?php echo site_url("tasks/delete/".$row->pkTaskId); ?>' title="Delete" class="deleteTask">X</a>
+				<a href='<?php echo site_url("tasks/view/".$row->pkTaskId); ?>' rel="#overlay" title="<?php echo lang('anchor_task_view'); ?>">i</a>
+				<a href='<?php echo site_url("tasks/assignTo/".$row->pkTaskId); ?>' rel="#overlay" title="<?php echo lang('anchor_task_assign'); ?>">+</a>
+				<a href='<?php echo site_url("tasks/delete/".$row->pkTaskId); ?>' title="Delete" class="<?php echo lang('anchor_task_delete'); ?>">X</a>
 			</div>
 			</li>
 			<?php

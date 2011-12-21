@@ -6,9 +6,8 @@ class GrabBag extends CI_Controller {
 		$this->load->model('TaskModel');
 		$this->load->helper('form');
 		
-		
-		$data['title'] = $this->lang->line('grabbag_title')." ".$this->lang->line('task_list');
-		
+		$data['title'] = $this->lang->line('grabbag_title');
+		$data['empty_list'] = lang('error_grabbag_noTasks',array(lang('grabbag_text')));
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('taskName', 'Task Name', 'required');
 		

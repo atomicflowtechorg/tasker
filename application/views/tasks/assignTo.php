@@ -24,7 +24,7 @@ foreach($task as $row)
 	
 	echo "<h2>".$row->fldName."</h2>";
 
-	echo form_label('Assigned to User:', 'username');
+	echo form_label(lang('task_assignTo_label'), 'username');
 	$options['']='';
 	foreach($users as $user)
 	{
@@ -33,7 +33,7 @@ foreach($task as $row)
 	
 	echo form_dropdown('username',$options,$currentUser);
 	
-	echo form_label('List:', 'list');
+	echo form_label(lang('task_list_label'), 'list');
 	
 	$lists['']='';
 	foreach($availableList as $option)
@@ -43,7 +43,7 @@ foreach($task as $row)
 	
 	echo form_dropdown('list', $lists, $currentList);
 	
-	echo form_submit('assign', 'Assign');
+	echo form_submit('assign', lang('task_assign_button'));
 }
 ?>
 </br>
