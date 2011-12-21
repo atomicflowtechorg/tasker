@@ -71,5 +71,28 @@ if ( ! function_exists('ruby'))
 	}
 }
 
+/**
+ * lang
+ *
+ * Generates language variable that can handle multiple input variables
+ *
+ * @access	public
+ * @param	string
+ * @param	array
+ * @return	string
+ */
+function lang($line, $vars = array())
+{
+    $CI =& get_instance();
+    $line = $CI->lang->line($line);
+
+    if ($vars)
+    {
+        $line = vsprintf($line, (array) $vars);
+    }
+
+    return $line;
+}
+
 /* End of file MY_Language_helper.php */
 /* Location: ./application/helpers/MY_Language_helper.php */
