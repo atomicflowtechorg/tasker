@@ -20,7 +20,7 @@ foreach($users as $row)
 {
 
 echo "<div class='userInfo' style='float:left;'>";
-echo "<a href='".site_url("individual/$row->pkUsername")."' title='$row->pkUsername'>
+echo "<a href='".site_url("individual/$row->pkUsername")."' title='$row->pkUsername' class='ajax_anchor_load'>
 <img src='".base_url().$row->fldProfileImage."' alt='".$row->fldFirstname." ".$row->fldLastname." class='userProfileImage' style='max-height:80px;'/>
 </a>";
 echo "<p>".lang('team_user_status_title')."</p>";
@@ -29,7 +29,7 @@ echo $row->fldFirstname." ".$row->fldLastname;
 echo "<br/>".lang('team_user_lastLoggedIn_text').": ".$row->fldLastLoggedIn;
 ?>
 <div class='userOptions'>
-	<a href='<?php echo site_url("teams/delete/$teamUrl/$row->pkUsername"); ?>' title='<?php echo lang('team_user_remove_title'); ?>'><?php echo lang('team_user_remove_text'); ?></a>
+	<a href='<?php echo site_url("teams/delete/$teamUrl/$row->pkUsername"); ?>' title='<?php echo lang('team_user_remove_title'); ?>' class='ajax_anchor_load'><?php echo lang('team_user_remove_text'); ?></a>
 	<a href='#' title='<?php echo lang('team_user_update_title'); ?>'><?php echo lang('team_user_update_text'); ?></a>
 </div>
 <?php

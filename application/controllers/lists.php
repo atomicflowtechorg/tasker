@@ -9,23 +9,11 @@ class Lists extends CI_Controller {
 		$this->lang->load('list');
 		
 		$data['lists'] = $this->ListModel->getAllLists();
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
-		{
-			$session = $this->session->all_userdata();
-			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$this->load->view('lists/viewAll',$data);
-			}
-        }
-        else
-        {
-        	$this->load->view('default/header');
-			$session = $this->session->all_userdata();
-			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$this->load->view('default/nav');
-				$this->load->view('lists/viewAll',$data);
-			}
-		$this->load->view('default/footer');
-        }
+
+		$session = $this->session->all_userdata();
+		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
+			$this->load->view('lists/viewAll',$data);
+		}
     }
 	
 	public function create()
@@ -40,23 +28,17 @@ class Lists extends CI_Controller {
 		$this->form_validation->set_rules('name', 'name', 'required');
 		
 		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 
-			$this->load->view('default/header');
-			$this->load->view('default/nav');
 
-			if ($this->form_validation->run() == FALSE)
-			{
-				$data['teams'] = $this->TeamModel->getTeamsForUser($session['username']);
-				$this->load->view('lists/create',$data);
-			}
-			else
-			{
-				$this->ListModel->createList();
-			}
-		}//end if loggid in
-		
-		$this->load->view('default/footer');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$data['teams'] = $this->TeamModel->getTeamsForUser($session['username']);
+			$this->load->view('lists/create',$data);
+		}
+		else
+		{
+			$this->ListModel->createList();
+		}
 	}
 	
 	public function delete($listId)
@@ -68,24 +50,19 @@ class Lists extends CI_Controller {
 		$this->load->helper('form');
 		
 		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
 
-			$this->load->view('default/header');
-			$this->load->view('default/nav');
 			
-			$owner = $this->ListModel->getOwner($listId);
-			$userTeams = $this->TeamModel->getTeamsForUser($session['username']);
-			if ($session['username']==$owner || in_array($owner,$userTeams))
-			{
-				$this->ListModel->delete($listId);
-			}
-			else
-			{
-				echo "Can't delete unowned list";
-			}
-		}//end if loggid in
-		
-		$this->load->view('default/footer');
+		$owner = $this->ListModel->getOwner($listId);
+		$userTeams = $this->TeamModel->getTeamsForUser($session['username']);
+		if ($session['username']==$owner || in_array($owner,$userTeams))
+		{
+			$this->ListModel->delete($listId);
+		}
+		else
+		{
+			echo "Can't delete unowned list";
+		}
+
 	}
 	
 	function show($listId,$username = null)
@@ -95,39 +72,28 @@ class Lists extends CI_Controller {
 		$this->load->helper('form');
 		$this->lang->load('list');
 		
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
-		{
-			
-		}
-		else
-		{
-			$this->load->view('default/header');
-			$this->load->view('authentication/loginForm');	
-			$session = $this->session->all_userdata();
-			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['user'] = $username;
-				$data['listId'] = $listId;
-				$listData = $this->ListModel->getListData($listId);
-				
-				//TODO: Do not force object creation here.
-				$list = new ListModel();
-				$list->fldListName = $this->uri->segment(4);
-				
-				if(!empty($listData)){
-					$list = $listData[0];
-				}
+		$session = $this->session->all_userdata();
 
-				$data['listData'] = $listData;
-				$data['listName'] = $list->fldListName;
-				$data['taskList'] = $this->TaskModel->getTasksForList($listId);
-				$data['title'] = lang('list_view_tasks_label')." ".$listId." - ".$list->fldListName;
-				$data['listUrl'] = site_url("lists");
-				$data['empty_list'] = lang('error_list_noTasks',array($data['listName'],$data['listName']));
-				$this->load->view('default/nav');
-				$this->load->view('taskListMasterView',$data);
-			}
-	        $this->load->view('default/footer');
+		$data['user'] = $username;
+		$data['listId'] = $listId;
+		$listData = $this->ListModel->getListData($listId);
+		
+		//TODO: Do not force object creation here.
+		$list = new ListModel();
+		$list->fldListName = $this->uri->segment(4);
+		
+		if(!empty($listData)){
+			$list = $listData[0];
 		}
+
+		$data['listData'] = $listData;
+		$data['listName'] = $list->fldListName;
+		$data['taskList'] = $this->TaskModel->getTasksForList($listId);
+		$data['title'] = lang('list_view_tasks_label')." ".$listId." - ".$list->fldListName;
+		$data['listUrl'] = site_url("lists");
+		$data['empty_list'] = lang('error_list_noTasks',array($data['listName'],$data['listName']));
+
+		$this->load->view('taskListMasterView',$data);
 	}
 	
 	function showUserLists($username)

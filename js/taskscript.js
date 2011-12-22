@@ -1,10 +1,49 @@
+
+function loadLink(link, area){
+	$("#" + area).fadeOut(500, function(){
+		$.ajax({
+		  url: $(link).attr("href"),
+		  cache: false,
+		  success: function(html){
+		  	$("#" + area).fadeIn(500).html(html);
+		  }
+		});
+	});
+}
+
 $(document).ready(function(){
 	$("#appnav li").blend();
 	$('#appnav').hide();
 	$('#appnav').fadeIn("fast");
 	
 	
+	
+	//******* ajax load link data *******************************************************
+	$(".ajax_anchor_load").live("click", function(){
+		loadLink(this, "content");
+		return false;
+	});
+
+	$("a[rel]").live('click', function (e) {
+   		e.preventDefault(); //prevent default link action
+
+	    $(this).overlay({
+	        mask: '#3B5872',
+	        api: true,
+	        onBeforeLoad: function () {
+	            var wrap = this.getOverlay().find(".contentWrap");
+	            wrap.load(this.getTrigger().attr("href"));
+	        },
+	        load: true
+	    });
+	});
+
+
+
+
+
 	//SPECIAL TAYNE CODE!!
+	/*
 	if(window.addEventListener){
 		console.log("Ready to do this thang.");
 		//makin dem variables heeeeyah
@@ -24,7 +63,7 @@ $(document).ready(function(){
 				keypresses = [];
 			};
 		}, true);
-		
-		
-	};
+	}; 
+	END SPECIAL TAYNE CODE */
+	
 })//end ready function

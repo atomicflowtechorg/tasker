@@ -75,55 +75,29 @@ class Tasks extends CI_Controller {
 	{
 		$this->load->model('Listmodel');
 		$this->load->helper('MY_Form_helper');
-		
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']=="XMLHttpRequest")
-		{
-			$this->load->model('TaskModel');
-			$this->load->model('UserModel');
-			$this->load->library('form_validation');
-			$this->load->helper('form');
-			$this->lang->load('task');
-				
-			$session = $this->session->all_userdata();
-			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
-				$data['users'] = $this->UserModel->get_all_usernames();
-				$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
-				$data['availableList'] = $this->Listmodel->getAllLists();
-				$this->load->view('tasks/assignTo',$data);
-			}
-        }
-        else
-        {
-			$this->load->model('TaskModel');
-			$this->load->model('UserModel');
-			$this->load->library('form_validation');
-			$this->load->helper('form');
-			$this->lang->load('task');
-			
-			$this->form_validation->set_rules('username', 'username', 'alpha');
-			
-			$session = $this->session->all_userdata();
-			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
-				$data['users'] = $this->UserModel->get_all_usernames();
-				$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
-				$data['availableList'] = $this->Listmodel->getAllLists();
-				$this->load->view('default/header');
-				$this->load->view('default/nav',$data);
 
-				if ($this->form_validation->run() == FALSE)
-				{
-					$this->load->view('tasks/assignTo',$data);
-				}
-				else
-				{
-					$data['update'] = $this->TaskModel->updateUser();
-				}
-			}//end if loggid in
-			
-			$this->load->view('default/footer');
-	        } 
+		$this->load->model('TaskModel');
+		$this->load->model('UserModel');
+		$this->load->library('form_validation');
+		$this->load->helper('form');
+		$this->lang->load('task');
+		
+		$this->form_validation->set_rules('username', 'username', 'alpha');
+		
+	
+		$data['task'] = $this->TaskModel->getTaskData($pkTaskId);
+		$data['users'] = $this->UserModel->get_all_usernames();
+		$data['statusOptions'] = $this->TaskModel->getAllStatusOptions();
+		$data['availableList'] = $this->Listmodel->getAllLists();
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('tasks/assignTo',$data);
+		}
+		else
+		{
+			$data['update'] = $this->TaskModel->updateUser();
+		}
 	}
 
 	function create($username = null)

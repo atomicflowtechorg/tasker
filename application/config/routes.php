@@ -39,7 +39,7 @@
 */
 
 $route['default_controller'] = "authentication";
-$route['individual/(:any)'] = "individual/show/$1";
+$route['individual/(:any)'] = "individual/index/$1";
 $route['owner/(:any)/list/(:num)'] = "lists/show/$2/$1";
 $route['list/(:num)'] = "lists/show/$1";
 

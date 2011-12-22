@@ -13,20 +13,14 @@ class Teams extends CI_Controller {
 		//User display test
 		$this->load->model('UserModel');
 		$this->load->model('TeamModel');
-		$this->load->view('default/header');
-		$this->load->view('authentication/loginForm');
 		
-		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-			$data['teams'] = $this->TeamModel->getTeams();
-			foreach($data['teams'] as $team)
-			{
-				$data['users'][] = $this->TeamModel->getUsersForTeam(true, $team->pkTeamName);
-			}
-			$this->load->view('default/nav');
-			$this->load->view('teams/viewAllTeams',$data);
+		$data['teams'] = $this->TeamModel->getTeams();
+		foreach($data['teams'] as $team)
+		{
+			$data['users'][] = $this->TeamModel->getUsersForTeam(true, $team->pkTeamName);
 		}
-        $this->load->view('default/footer');
+		$this->load->view('teams/viewAllTeams',$data);
+		
 	}
 	
 	public function allUsers(){
@@ -40,16 +34,12 @@ class Teams extends CI_Controller {
 		//User display test
 		$this->load->model('UserModel');
 		$this->load->model('TeamModel');
-		$this->load->view('default/header');
-		$this->load->view('authentication/loginForm');
 		
 		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-			$data['users'] = $this->UserModel->get_all_users();
-			$this->load->view('default/nav');
-			$this->load->view('teams/viewAll',$data);
-		}
-        $this->load->view('default/footer');
+
+		$data['users'] = $this->UserModel->get_all_users();
+		$this->load->view('teams/viewAll',$data);
+
 	}
 	
 	public function create(){
@@ -63,25 +53,25 @@ class Teams extends CI_Controller {
 		//User display test
 		$this->load->model('UserModel');
 		$this->load->model('TeamModel');
-		$this->load->view('default/header');
-		$this->load->view('authentication/loginForm');
+
 		$this->form_validation->set_rules('teamName', 'teamName', 'required');
 		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-		
-			$this->load->view('default/nav');
-			
-			if ($this->form_validation->run() == FALSE)
-			{
-				$this->load->view('teams/create');
-			}
-			else
-			{	
-				$this->TeamModel->createTeam();
-				redirect('/teams', 'location');
-			}
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('teams/create');
 		}
-        $this->load->view('default/footer');
+		else
+		{	
+			$this->TeamModel->createTeam();
+			
+			$data['teams'] = $this->TeamModel->getTeams();
+			foreach($data['teams'] as $team)
+			{
+				$data['users'][] = $this->TeamModel->getUsersForTeam(true, $team->pkTeamName);
+			}
+			$this->load->view('teams/viewAllTeams',$data);
+		}
 	}
 	
 	public function show($team = null)
@@ -97,27 +87,21 @@ class Teams extends CI_Controller {
 		//User display test
 		$this->load->model('UserModel');
 		$this->load->model('TeamModel');
-		$this->load->view('default/header');
-		$this->load->view('authentication/loginForm');
 		
 		$teamName = $this->TeamModel->getTeamNameFromUrl($team);
 		foreach($teamName as $row){
 			$team = $row->pkTeamName;
 			$teamUrl = $row->fldUrl;
 		}
-		
-		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-			$this->load->view('default/nav');
-			try{
-				$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
-				$this->load->view('teams/viewTeam',$data);
-			}
-			catch(exception $e){
-				echo 'Caught exception: ',  $e->getMessage(), "\n";
-			}
-			
+	
+		try{
+			$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
+			$this->load->view('teams/viewTeam',$data);
 		}
+		catch(exception $e){
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+		}
+		
         $this->load->view('default/footer');
 	}
 	
@@ -140,35 +124,26 @@ class Teams extends CI_Controller {
 			$team = $row->pkTeamName;
 			$teamUrl = $row->fldUrl;
 		}
-		$this->load->view('default/header');
-		$this->load->view('authentication/loginForm');
 		
-		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-			$this->load->view('default/nav');
-			
-			if ($this->form_validation->run() == FALSE)
-			{
-				
-			}
-			else
-			{
-				$this->TeamModel->addUserToTeam();
-			}
-			
-			try{
-				$data['team'] = $team;
-				$data['teamUrl'] = $teamUrl;
-				$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
-				$data['nonUsers'] = $this->TeamModel->getUsersForTeam(false , $team);
-				$this->load->view('teams/modify',$data);
-			}
-			catch(exception $e){
-				echo 'Caught exception: ',  $e->getMessage(), "\n";
-			}
+		if ($this->form_validation->run() == FALSE)
+		{
 			
 		}
-        $this->load->view('default/footer');
+		else
+		{
+			$this->TeamModel->addUserToTeam();
+		}
+		
+		try{
+			$data['team'] = $team;
+			$data['teamUrl'] = $teamUrl;
+			$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
+			$data['nonUsers'] = $this->TeamModel->getUsersForTeam(false , $team);
+			$this->load->view('teams/modify',$data);
+		}
+		catch(exception $e){
+			echo 'Caught exception: ',  $e->getMessage(), "\n";
+		}
 	}
 
 	function delete($team,$user)
@@ -176,6 +151,7 @@ class Teams extends CI_Controller {
 		$this->load->library('image_lib');
         $this->load->library('form_validation');
         $this->load->helper('date');
+		$this->lang->load('team');
 		//User display test
 		$this->load->model('UserModel');
 		$this->load->model('TeamModel');
@@ -186,15 +162,21 @@ class Teams extends CI_Controller {
 			$team = $row->pkTeamName;
 			$teamUrl = $row->fldUrl;
 		}
-		
 		$session = $this->session->all_userdata();
-		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-
-			if($this->TeamModel->isMember($team,$session['username'])){
-				$this->TeamModel->deleteMember($team,$user);
+		
+		if($this->TeamModel->isMember($team,$session['username'])){
+			$this->TeamModel->deleteMember($team,$user);
+			
+			$data['teams'] = $this->TeamModel->getTeams();
+			foreach($data['teams'] as $team)
+			{
+				$data['users'][] = $this->TeamModel->getUsersForTeam(true, $team->pkTeamName);
 			}
+			$this->load->view('teams/viewAllTeams',$data);
 		}
-		echo "test"; 
-		redirect('/teams/modify/'.$teamUrl, 'location');
+		else{
+			echo "failed to delete team";
+		}
+		
 	}
 }

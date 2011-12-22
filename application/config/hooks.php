@@ -10,6 +10,13 @@
 |
 */
 
+$hook['post_controller_constructor'][] = array(
+                                'class'    => 'Template',
+                                'function' => 'authenticationCheck',
+                                'filename' => 'template.php',
+                                'filepath' => 'hooks'
+                                );
+
 
 
 /* End of file hooks.php */

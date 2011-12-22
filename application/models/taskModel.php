@@ -227,6 +227,9 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
 					if($hasList==0 && $this -> pkListId != null){
 						$this -> db -> query("INSERT INTO tblListTask (fkListId, fkTaskId ) VALUES ('$this->pkListId', '$this->pkTaskId')");
 					}
+					else if($hasList==0 && $this -> pkListId == null){
+						
+					}
 					else if($hasList==1 && $this -> pkListId == null){
 						$this -> db -> query("DELETE FROM tblListTask WHERE fkTaskId = '$this->pkTaskId'");
 					}

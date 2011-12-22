@@ -27,8 +27,8 @@
 <!-- Minified JS -->
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/blend/jquery.blend.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/taskscript.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tools.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/taskscript.js"></script> 
 
 <!-- <script type="text/javascript" src="/js/loginForm.js"></script> -->
 <?php
@@ -44,27 +44,5 @@ if(!isset($session['logged_in']) || $session['logged_in']==FALSE){
 <?php
 }
 ?>
-<script>
-	$(function() {
-
-	// if the function argument is given to overlay,
-	// it is assumed to be the onBeforeLoad event listener
-	$("a[rel]").overlay({
-
-		mask: 'darkred',
-
-		onBeforeLoad: function() {
-
-			// grab wrapper element inside content
-			var wrap = this.getOverlay().find(".contentWrap");
-
-			// load the page specified in the trigger
-			wrap.load(this.getTrigger().attr("href"));
-		}
-
-	});
-});
-</script>
-
 </body>
 </html>

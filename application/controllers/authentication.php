@@ -23,7 +23,7 @@ class Authentication extends CI_Controller {
 			$this->load->view('authentication/loginForm');
 			$session = $this->session->all_userdata();
 			if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-				$this->load->view('default/nav');
+				redirect('dashboard','location');
 			}
 		}
 		else
@@ -54,7 +54,7 @@ class Authentication extends CI_Controller {
 	               );
 	
 				$this->session->set_userdata($newdata);
-				redirect('/', 'location');
+				redirect('dashboard', 'location');
 				}
 				else if($count == 1 && $user->fldLevel == 0){
 					
@@ -93,7 +93,7 @@ class Authentication extends CI_Controller {
 				$this->load->view('authentication/loginForm');
 				$session = $this->session->all_userdata();
 				if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-					$this->load->view('default/nav');
+					redirect('dashboard','location');
 				}
 			}
 		}
