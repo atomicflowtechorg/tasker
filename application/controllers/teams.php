@@ -101,8 +101,6 @@ class Teams extends CI_Controller {
 		catch(exception $e){
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
 		}
-		
-        $this->load->view('default/footer');
 	}
 	
 	public function modify($team = null){
