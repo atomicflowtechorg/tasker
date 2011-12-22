@@ -27,6 +27,7 @@ $lang['grabbag_text'] = "grabBag";
 $lang['error_user_noTasks'] = "No tasks exist for user <span class='showUsername'>%s</span> OR user <span class='showUsername'>%s</span> doesn't exist";
 $lang['error_grabbag_noTasks'] = "No tasks exist for <span class='showUsername'>%s</span>";
 $lang['error_list_noTasks'] = "No tasks exist for list <span class='showUsername'>%s</span> OR list <span class='showUsername'>%s</span> doesn't exist";
+$lang['error_universal_noTasks'] = "No tasks exist in the <span class='showUsername'>System</span>";
 
 /* End of file general_lang.php */
 /* Location: ./application/language/english/general_lang.php */

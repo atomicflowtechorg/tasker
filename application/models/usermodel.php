@@ -107,9 +107,7 @@ class UserModel extends CI_Model {
 
 	function getLists($username)
 	{
-		$query = $this->db->query("SELECT * FROM `tblList` 
-		WHERE fldOwner = '$username' OR fldOwner=(SELECT fkTeamName 
-		FROM  `tblTeamTasker` where fkUsername='$username')");
+		$query = $this->db->query("SELECT pkListId,fldListName,fldType,fldOwner,fldAccessLevel,fldActive FROM tblList WHERE fldOwner ='$username'");
 		return $query->result();
 	}
 

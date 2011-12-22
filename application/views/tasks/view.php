@@ -45,7 +45,7 @@ foreach($task as $row)
 		$options[$user->pkusername] = $user->pkusername;
 	}
 	echo form_dropdown('username',$options,$currentUser);
-	echo "<a href='".site_url("individual/$currentUser")."' title='$currentUser'><img src='../".$currentProfile."' title='".$currentUser."' class='taskProfileImage'/></a>";
+	echo "<a href='".site_url("individual/$currentUser")."' title='$currentUser'><img src='".base_url().$currentProfile."' title='".$currentUser."' class='taskProfileImage'/></a>";
 	
 	
 	

@@ -13,9 +13,12 @@ class Universal extends CI_Controller {
 		
 		$session = $this->session->all_userdata();
 		if(isset($session['logged_in']) && $session['logged_in']==TRUE){
-			$data['results'] = $this->TaskModel->showAll();
+			$data['title'] = lang('universal_title');
+			$data['taskList'] = $this->TaskModel->showAll();
+			$data['listUrl'] = site_url("lists");
+			$data['empty_list'] = lang('error_universal_noTasks');
 			$this->load->view('default/nav',$data);
-			$this->load->view('universal',$data);
+			$this->load->view('taskListMasterView',$data);
 		}
 		
         $this->load->view('default/footer');

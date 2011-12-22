@@ -119,11 +119,12 @@ class Lists extends CI_Controller {
 
 				$data['listData'] = $listData;
 				$data['listName'] = $list->fldListName;
-				$data['tasks'] = $this->TaskModel->getTasksForList($listId);
-				$data['nav'] = TRUE;
+				$data['taskList'] = $this->TaskModel->getTasksForList($listId);
+				$data['title'] = lang('list_view_tasks_label')." ".$listId." - ".$list->fldListName;
+				$data['listUrl'] = site_url("lists");
 				$data['empty_list'] = lang('error_list_noTasks',array($data['listName'],$data['listName']));
 				$this->load->view('default/nav');
-				$this->load->view('lists/showList',$data);
+				$this->load->view('taskListMasterView',$data);
 			}
 	        $this->load->view('default/footer');
 		}
