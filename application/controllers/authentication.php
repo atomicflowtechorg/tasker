@@ -13,6 +13,7 @@ class Authentication extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->lang->load('authentication');
 		
+		$this->load->view('default/head');
 		$this->load->view('default/header');
 		
 		$this->form_validation->set_rules('fldUsername', 'Username', 'required');
@@ -177,6 +178,7 @@ class Authentication extends CI_Controller {
 			
 			$this->form_validation->set_rules('fldEmail', 'Email', 'trim|required|valid_email');
 			
+			$this->load->view('default/head');
 			$this->load->view('default/header');
 			
 			if ($this->form_validation->run() == FALSE)
@@ -238,6 +240,7 @@ class Authentication extends CI_Controller {
 		$this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
 		$this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
 		
+		$this->load->view('default/head');
 		$this->load->view('default/header');
 		
 		$validResetRequest = 0;
@@ -280,6 +283,7 @@ class Authentication extends CI_Controller {
 		$this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
 		$this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
 		
+		$this->load->view('default/head');
 		$this->load->view('default/header');
 		if ($this->form_validation->run() == FALSE){
 			$this->load->view('authentication/signUp');
@@ -326,6 +330,7 @@ class Authentication extends CI_Controller {
 			$validActivateRequest = $this->UserModel->confirmAuthKey($username,$authkey);
 		}
 		
+		$this->load->view('default/head');
 		$this->load->view('default/header');
 		
 		if($validActivateRequest){
