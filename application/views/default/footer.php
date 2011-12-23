@@ -29,8 +29,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/blend/jquery.blend.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/taskscript.js"></script> 
-
-<!-- <script type="text/javascript" src="/js/loginForm.js"></script> -->
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jqueryslidemenu.js"></script>
 <?php
 $session = $this->session->all_userdata();
 if(!isset($session['logged_in']) || $session['logged_in']==FALSE){

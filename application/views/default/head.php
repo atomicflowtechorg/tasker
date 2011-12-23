@@ -22,6 +22,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/recentChanges.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/styles.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/overlay.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryslidemenu.css" />
+
+        <!--[if lte IE 7]>
+            <style type="text/css">
+                html .jqueryslidemenu{height: 1%;} /*Holly Hack for IE7 and below*/
+            </style>
+        <![endif]-->
 </head>
 
 <body>
