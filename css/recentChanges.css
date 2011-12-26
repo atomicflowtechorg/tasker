@@ -168,6 +168,7 @@ input[type=submit]
 	height:40px;
         padding:6px;
         z-index: 10;
+        position: fixed;
 }
 
 #toolBarContent{
@@ -213,10 +214,6 @@ input[type=submit]
     width: 307px;
     height: 38px;
     text-indent: -9999px;
-}
-
-#appnav{
-    padding-top: 50px;
 }
 
 .userInfo{

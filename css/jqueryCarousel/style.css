@@ -1,7 +1,8 @@
 /* Circular Content Carousel Style */
 .ca-container{
 	position:relative;
-	margin:25px auto 20px auto;
+	margin:auto auto auto auto;
+        padding-top: 55px;
 	width:990px;
 	height:450px;
 }
