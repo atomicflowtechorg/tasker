@@ -70,7 +70,7 @@ class Teams extends CI_Controller {
 			{
 				$data['users'][] = $this->TeamModel->getUsersForTeam(true, $team->pkTeamName);
 			}
-			$this->load->view('teams/viewAllTeams',$data);
+			redirect('dashboard','location');
 		}
 	}
 	

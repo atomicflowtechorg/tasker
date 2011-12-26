@@ -23,6 +23,9 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/styles.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/overlay.css" media="all" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryslidemenu.css" />
+        
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryCarousel/jquery.jscrollpane.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryCarousel/style.css" />
 
         <!--[if lte IE 7]>
             <style type="text/css">
