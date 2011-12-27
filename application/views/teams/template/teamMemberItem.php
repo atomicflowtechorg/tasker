@@ -6,23 +6,20 @@
                                     </a>
                                 </div>
 				<h3><?php echo $fldFirstname." ".$fldLastname; ?></h3>
-				<h4>
-					<span class="ca-quote">“</span>
-					<span>
-                                            <p><?php echo lang('team_user_status_title'); ?></p>
-                                            <p><?php echo $fldStatus; ?></p>
-                                            <?php echo $fldFirstname." ".$fldLastname; ?>
-                                            <br/><?php echo lang('team_user_lastLoggedIn_text').": ".$fldLastLoggedIn; ?>
-                                        </span>
-				</h4>
-					<a href="#" class="ca-more">more...</a>
+				<a href="#" class="ca-more">more...</a>
 			</div>
 			<div class="ca-content-wrapper">
 				<div class="ca-content">
-					<h6>Animals are not commodities</h6>
+					<h6><?php echo $fldFirstname." ".$fldLastname; ?></h6>
 					<a href="#" class="ca-close">close</a>
 					<div class="ca-content-text">
-						<p>Some more text...</p>
+                                            <h4>
+                                                <span>
+                                                    <p><?php echo lang('team_user_status_title');?>:  <?php echo $fldStatus; ?>
+                                                        <span><?php echo lang('team_user_lastLoggedIn_text').": ".$fldLastLoggedIn; ?></span>
+                                                    </p>
+                                                </span>
+                                            </h4>
 					</div>
 					<ul>
 						<li><a href="#">Read more</a></li>

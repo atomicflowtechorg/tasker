@@ -3,8 +3,8 @@
 	position:relative;
 	margin:auto auto auto auto;
         padding-top: 55px;
-	width:990px;
-	height:450px;
+	width:900px;
+	height:125px;
 }
 .ca-wrapper{
 	width:100%;
@@ -14,7 +14,7 @@
 .ca-item{
 	position:relative;
 	float:left;
-	width:330px;
+	width:300px;
 	height:100%;
 	text-align:center;
 }
@@ -62,50 +62,16 @@
 	box-shadow:1px 1px 2px rgba(0,0,0,0.2);
 }
 .ca-icon{
-	width:233px;
-	height:189px;
 	position:relative;
 	margin:0 auto;
+        float:left;
 }
 
-.ca-item h3{
-	font-family: 'Coustard', sans-serif;
-	text-transform:uppercase;
-	font-size:30px;
-	color:#000;
-	margin-bottom:20px;
-	height:85px;
-	text-align:center;
-	text-shadow: 0px 1px 1px #e4ebe9;
-}
-.ca-item h4{
-	font-family: "Georgia","Times New Roman",serif;
-	font-style:italic;
-	font-size:12px;
-	text-align:left;
-	border-left:10px solid #b0ccc6;
-	padding-left:10px;
-	line-height:24px;
-	margin:10px;
-	position:relative;
-}
-.ca-item h4 span{
-	text-indent:40px;
-	display:block;
-}
-.ca-item h4  span.ca-quote{
-	color:#f4eee3;
-	font-size:100px;
-	position:absolute;
-	top:20px;
-	left:0px;
-	text-indent:0px;
-}
 .ca-content-wrapper{
 	background:#b0ccc6;
 	position:absolute;
 	width:0px; /* expands to width of the wrapper minus 1 element */
-	height:440px;
+	height:115px;
 	top:5px;
 	text-align:left;
 	z-index:10000;
@@ -163,7 +129,6 @@
 	background:transparent url(../../images/carousel/arrows.png) no-repeat top left;
 	position:absolute;
 	top:50%;
-	margin-top:-19px;
 	left:-40px;
 	text-indent:-9000px;
 	opacity:0.7;
