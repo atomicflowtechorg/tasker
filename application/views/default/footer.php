@@ -1,4 +1,4 @@
-    </div><!-- end of content -->
+            </div><!-- end of content -->
 	</div> <!-- end container --> 
     <footer>
      <p>&copy; Copyright  by AtomicFlow Creative</p>

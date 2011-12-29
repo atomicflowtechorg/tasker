@@ -74,7 +74,7 @@
 	height:115px;
 	top:5px;
 	text-align:left;
-	z-index:10000;
+	z-index:1;
 	overflow:hidden;
 }
 .ca-content{

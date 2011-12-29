@@ -6,6 +6,7 @@ $lang['team_view_all_title'] = "View All Taskers";
 $lang['team_view_text'] = "View";
 $lang['team_modify_text'] = "Modify";
 $lang['team_modify_title'] = "Modify %s";
+$lang['team_more_link'] = "more...";
 
 //View User
 $lang['team_user_lastLoggedIn_text'] = "Last logged in";
