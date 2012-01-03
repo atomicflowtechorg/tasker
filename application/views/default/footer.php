@@ -34,6 +34,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.contentcarousel.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/searchBox/searchBox.js"></script> 
 <?php
 $session = $this->session->all_userdata();
 if(!isset($session['logged_in']) || $session['logged_in']==FALSE){

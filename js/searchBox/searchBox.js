@@ -1,0 +1,11 @@
+$(document).ready(function(){
+    $("#searchBoxContainer").mouseenter(function(){
+        $("#searchHelpContainer").fadeIn();
+    });
+    $("#searchBoxContainer").mouseleave(function(){
+        $("#searchHelpContainer").fadeOut();
+    });
+    $("#searchBoxInput").click(function(){
+        $("#searchHelpContainer").fadeOut();
+    });
+});

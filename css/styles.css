@@ -298,7 +298,8 @@ hr#header_stripe{
       
     }  
     
-#appnav{ width: 100%;
+#appnav{
+   width: 100%;
    margin: 0 auto;
    width: 540px;
 }

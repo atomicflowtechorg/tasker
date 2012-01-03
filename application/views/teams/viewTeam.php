@@ -1,15 +1,14 @@
-<div id="ca-container" class="ca-container">
-    <div class="ca-nav">
-        <span class="ca-nav-prev">Previous</span>
-        <span class="ca-nav-next">Next</span>
+<div id="teamViewContainer">
+    <div id="loadTeamSlider">
+        <?php $this->load->view('teams/template/teamSlider',$users); ?>
     </div>
-	<div class="ca-wrapper">
-            <?php
-            foreach($users as $teamMember)
-            {
-                    $this->load->view('teams/template/teamMemberItem', $teamMember);
-            }
-            ?>	
-	</div><!-- ca-wrapper -->
-</div><!-- ca-container -->
+    
+    <select id="selectTeamOption">
+        <?php
+        foreach($teams as $team){
+            echo "<option value='", $team->fkTeamName ,"'>",$team->fkTeamName,"</option>";
+        }
+        ?>
+    </select>  
+</div><!-- teamViewContainer END -->
 

@@ -26,6 +26,7 @@
         
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryCarousel/jquery.jscrollpane.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryCarousel/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/searchBox/searchBox.css" />
 
         <!--[if lte IE 7]>
             <style type="text/css">

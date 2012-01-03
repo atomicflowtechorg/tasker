@@ -1,0 +1,97 @@
+#searchBoxContainer{
+    margin: 0 auto 0 auto;
+    width: 400px;
+    height: 50px;
+}
+
+#searchBoxContainer input[type=submit] {
+    float:left;
+    margin-left: 5px;
+    width: 50px;
+    height:35px;
+    -moz-box-shadow:0px 0px 5px #999; -webkit-box-shadow:0px 0px 5px #999;
+    border:1px solid #556f8c;
+    background: -moz-linear-gradient(top, #718DA9 0%, #415D79 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #718DA9), color-stop(100%, #415D79));
+    cursor:pointer;
+    font-family: Cambria, Cochin, Georgia, serif;
+    font-size: 16px;
+}
+
+#searchBoxContainer input[type=text] {
+    float:left;
+    width: 260px;
+    padding: 5px;
+    padding-right: 40px;
+    outline: none;
+    border: 2px solid #999999;
+    border-radius: 5px;
+    background-color: #FBFBFB;
+    font-family: Cambria, Cochin, Georgia, serif;
+    font-size: 16px;
+    background-position: 270px -10px;
+    background-image: url('../../images/search.png');
+    background-repeat: no-repeat;
+
+    -webkit-transition: background-color .2s ease-in,
+        background-position .2s ease-in,
+        box-shadow .3s ease-in;
+
+    -moz-transition: background-color .2s ease-in,
+        background-position .2s ease-in,
+        box-shadow .3s ease-in;
+
+    -o-transition: background-color .2s ease-in,
+        background-position .2s ease-in,
+        box-shadow .3s ease-in;
+
+    -ms-transition: background-color .2s ease-in,
+        background-position .2s ease-in,
+        box-shadow .3s ease-in;
+
+    transition: background-color .2s ease-in,
+        background-position .2s ease-in,
+        box-shadow .3s ease-in;
+}
+
+#searchBoxContainer  input[type=text]:focus {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 25px -2px #333;
+    background-position: 270px -80px;
+}
+
+#searchHelpContainer{
+    margin-top:30px;
+    display: none;
+    position: fixed;
+    clear:left;
+    z-index: 2;
+    width: 260px;
+    padding: 5px;
+    padding-right: 40px;
+    border: 2px solid #999999;
+    border-top: 0px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: #FBFBFB;
+    font-family: Cambria, Cochin, Georgia, serif;
+    font-size: 16px;
+}
+
+#searchHelpContainer ul{
+    list-style: none;
+}
+
+#searchHelpContainer li{
+    float: left;
+    text-transform: uppercase;
+    text-shadow: 0px 5px 3px #000;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+#searchHelpContainer a{
+    font-family: 'SansationBold'; font-size: 15px;
+    text-decoration: none;
+    vertical-align: middle;
+}

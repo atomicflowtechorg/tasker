@@ -96,7 +96,7 @@ class Teams extends CI_Controller {
 	
 		try{
 			$data['users'] = $this->TeamModel->getUsersForTeam(true , $team);
-			$this->load->view('teams/viewTeam',$data);
+			$this->load->view('teams/template/teamSlider',$data);
 		}
 		catch(exception $e){
 			echo 'Caught exception: ',  $e->getMessage(), "\n";
