@@ -1,72 +1,68 @@
 <!-- Login Form -->
 <div id="login">
-	<div id="errorConsole">
-	</div>
-	
-	<?php
-	$session = $this->session->all_userdata();
-	if(!isset($session['logged_in']) || $session['logged_in']==FALSE)
-	{
-		if(isset($message)){
-			echo $message;
-		}
-		echo validation_errors();
-		$attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' =>'loginForm', 'class'=>'unAuthenticatedForm');
-		echo form_open('authentication',$attributes);
-		echo form_fieldset("<h1>Client Login</h1>");
-		echo form_label('Username:','fldUsername');
-		$username = array(
-					  'name'        => 'fldUsername',
-					  'type'		=> 'text',
-					  'id'          => 'fldUsername',
-					  'class'		=> 'field',
-					  'value'       => set_value('fldUsername'),
-					  'maxlength'   => '60',
-					  'size'        => '23',
-					  'required'	=> '',
-					);			
-		echo form_input($username);
+    <div id="errorConsole">
+    </div>
 
-		echo form_label('Password:','fldPassword');
-		$password = array(
-					  'name'        => 'fldPassword',
-					  'type'		=> 'password',
-					  'id'          => 'fldPassword',
-					  'class'		=> 'field',
-					  'value'       => set_value('fldPassword'),
-					  'maxlength'   => '60',
-					  'size'        => '25',
-					  'required'	=> '',
-					);
-		echo form_password($password);
+    <?php
+    $session = $this->session->all_userdata();
+    if (!isset($session['logged_in']) || $session['logged_in'] == FALSE) {
+        if (isset($message)) {
+            echo $message;
+        }
+        echo validation_errors();
+        $attributes = array('class' => 'clearfix', 'id' => 'loginForm', 'name' => 'loginForm', 'class' => 'unAuthenticatedForm');
+        echo form_open('authentication', $attributes);
+        echo form_fieldset(lang('login_form_title'));
+        echo form_label(lang('login_username_label_text'), 'fldUsername');
+        $username = array(
+            'name' => 'fldUsername',
+            'type' => 'text',
+            'id' => 'fldUsername',
+            'class' => 'field',
+            'value' => set_value('fldUsername'),
+            'maxlength' => '60',
+            'size' => '23',
+            'required' => '',
+        );
+        echo form_input($username);
 
-		echo "<label>";
-		echo "&nbsp;Remember me</label>";
-		$rememberMe = array(
-			'name'        => 'rememberme',
-			'id'          => 'rememberme',
-			'value'       => 'forever',
-			'checked'     => TRUE,
-			);
-		echo form_checkbox($rememberMe);
-		
+        echo form_label(lang('login_password_label_text'), 'fldPassword');
+        $password = array(
+            'name' => 'fldPassword',
+            'type' => 'password',
+            'id' => 'fldPassword',
+            'class' => 'field',
+            'value' => set_value('fldPassword'),
+            'maxlength' => '60',
+            'size' => '25',
+            'required' => '',
+        );
+        echo form_password($password);
+        
+        echo form_label(lang('login_remember_label_text'), 'fldPassword');
+        $rememberMe = array(
+            'name' => 'rememberme',
+            'id' => 'rememberme',
+            'value' => 'forever',
+            'checked' => TRUE,
+        );
+        echo form_checkbox($rememberMe);
 
-		$submit = array(
-					  'name'        => 'submit',
-					  'id'          => 'submitBtn',
-					  'class'       => 'bt_login',
-					  'value'       => 'Login',
-					);
-		echo	"<div class='clear'></div>";
-		echo form_submit($submit);
-		
-		echo form_fieldset_close();
-		echo anchor('authentication/signUp','Not a member? why the hell not?!','');
-		echo "</br>";
-		echo anchor('authentication/forgot','Lost password? Ask Celery Man.','class="lost-pwd"');
-		echo form_close();
-		
-		}
-		?>
-	<a href="<?php echo site_url('authentication/checkLogout');?>" id="logout" title="Log Out">Log Out</a>
+
+        $submit = array(
+            'name' => 'submit',
+            'id' => 'submitBtn',
+            'class' => 'bt_login',
+            'value' => lang('login_submit_text'),
+        );
+        echo "<div class='clear'></div>";
+        echo form_submit($submit);
+
+        echo form_fieldset_close();
+        echo anchor('authentication/signUp', lang('login_new_member_link'), '');
+        echo "</br>";
+        echo anchor('authentication/forgot', lang('login_forgot_password_link'), 'class="lost-pwd"');
+        echo form_close();
+    }
+    ?>
 </div><!-- LoginForm End -->

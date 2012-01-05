@@ -97,7 +97,7 @@ ol.teamList li:last-child { border-bottom: none; }
 	-webkit-box-shadow: 0px 0px 8px #444;
 }
 
-.simple_overlay label, .unAuthenticatedForm label
+.simple_overlay label
 {
 	float: left; clear: left; margin: 11px 20px 0 0; width: 95px;
 	text-align:right; 

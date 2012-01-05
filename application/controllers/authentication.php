@@ -10,15 +10,15 @@ class Authentication extends CI_Controller {
         $this->load->helper('date');
         $this->load->library('form_validation');
         $this->lang->load('authentication');
-        
+
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             
         } else {
             $this->load->view('default/head');
             $this->load->view('default/header');
         }
-        
-        
+
+
 
         $this->form_validation->set_rules('fldUsername', 'Username', 'required');
         $this->form_validation->set_rules('fldPassword', 'Password', 'trim|required|md5');
@@ -72,17 +72,17 @@ class Authentication extends CI_Controller {
                     $this->email->from('Admin@Tasker.AtomicFlowTech.com', 'Tasker - AtomicFlowTech');
                     $this->email->to($user->fldEmail);
 
-                    $this->email->subject("Tasker - AtomicFlowTech: Confirm New User");
-
-                    $message = "Your account has been created! All you have to do is click on the link below to activate your account!</br>" . anchor("authentication/activateUser/$user->pkUsername/$authKey", "Click here to activate your account", "");
+                    $this->email->subject(lang('email_new_user_subject'));
+                    
+                    $message = lang('user_inactive_email_link', array($user->pkUsername/$authKey));
 
                     $this->email->message($message);
 
                     $this->email->send();
-                    $data['message'] = "Your Account hasn't been activated yet. Check your email for a link to activate your account.";
+                    $data['message'] = lang('user_inactive_message');
                     $this->load->view('authentication/loginForm', $data);
                 } else {
-                    $data['message'] = "Username or password not correct.";
+                    $data['message'] = lang('invalid_user_login');
                     $this->load->view('authentication/loginForm', $data);
                 }
             } else {
@@ -93,8 +93,8 @@ class Authentication extends CI_Controller {
                 }
             }
         }
-        
-         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             
         } else {
             $this->load->view('default/footer');
@@ -116,18 +116,7 @@ class Authentication extends CI_Controller {
                 $data['username'] = $user->firstname;
                 $data['success'] = true;
                 $data['message'] = "you've successfully logged in";
-                $data['navigation'] = '<a href="' . site_url('authentication/checkLogout') . '" id="logout" title="Log Out">Log Out</a><nav id="appnav"> 
-    <ul>
-        <a href="' . site_url('individual') . '"><li class="blueRing">Individual</li></a>
 
-        <a href="' . site_url('team') . '"><li class="greenRing">Team</li></a>
-
-        <a href="' . site_url('unversal') . '"><li class="yellowRing">Universal</li></a>
-
-        <a href="' . site_url('grabBag') . '"><li class="orangeRing">Grab Bag</li></a>
-
-    </ul>
-</nav>';
                 $newdata = array(
                     'username' => $user->username,
                     'firstname' => $user->firstname,
