@@ -56,14 +56,17 @@ $(document).ready(function(){
         teamName = teamName.replace(/\s/g,"-");
         var $ca = $(".ca-container");
         var link = "teams/show/" + teamName;
-        $.ajax({
-            url: link,
-            cache: false,
-            success: function(html){
-                $ca.html(html);
-                $ca.contentcarousel();
-            }
-        });
+        $ca.fadeOut(function(){
+            $.ajax({
+                url: link,
+                cache: false,
+                success: function(html){
+                    $ca.html(html);
+                    $ca.contentcarousel();
+                    $ca.fadeIn();
+                }
+            }); 
+        });   
         return false;
     });
     

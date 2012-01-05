@@ -1,4 +1,11 @@
 /* Circular Content Carousel Style */
+#loadTeamSlider{
+    	position:relative;
+        padding-bottom: 55px;
+	width:900px;
+	height:125px;
+}
+
 .ca-container{
 	position:relative;
 	margin:auto auto auto auto;
