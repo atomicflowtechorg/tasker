@@ -54,13 +54,14 @@ $(document).ready(function(){
     $("#selectTeamOption").live("change", function(){
         var teamName = $(this).val();
         teamName = teamName.replace(/\s/g,"-");
-                
+        var $ca = $(".ca-container");
         var link = "teams/show/" + teamName;
         $.ajax({
             url: link,
             cache: false,
             success: function(html){
-                $("#loadTeamSlider").html(html);
+                $ca.html(html);
+                $ca.contentcarousel();
             }
         });
         return false;
