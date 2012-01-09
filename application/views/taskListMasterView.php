@@ -5,4 +5,3 @@
 		$this->load->view('lists/template/taskList',$taskList);
 	?>
 </article>
-
