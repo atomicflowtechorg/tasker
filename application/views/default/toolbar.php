@@ -1,7 +1,7 @@
-<section id="toolBar">
-    <div id="toolBarContent">
-        <div id="toolbarLogo">
-            <a href="<?php echo base_url(); ?>"><h1>TeamTasker V1</h1></a>
+<section id="toolBar" class="container_full">
+    <div id="toolBarContent" class="container_20">
+        <div id="toolbarLogo" class="grid_4">
+            <a href="<?php echo base_url(); ?>"><h1>TeamTasker V1 by AFTech</h1></a>
         </div>
         <div id="updateMessage">
 

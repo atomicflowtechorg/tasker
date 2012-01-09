@@ -19,4 +19,4 @@
     
 </div>
 <div class="clearfix"></div>
-<div id="content">
+<div id="content" class="container_20">

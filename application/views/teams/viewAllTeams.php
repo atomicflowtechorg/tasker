@@ -1,4 +1,4 @@
-<article class='listView'>
+<article class='grid_4'>
 	<h2>Teams</h2>
 	
 	<ol class="teamList">

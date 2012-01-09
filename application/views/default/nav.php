@@ -20,4 +20,4 @@ else{
 	
 }
 ?>
-<div id="content">
+<div id="content" class="container_20">

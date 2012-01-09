@@ -19,6 +19,9 @@
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>favicon.ico" />
 	<link rel="apple-touch-icon" href="<?php echo base_url(); ?>apple-touch-icon.png" />
 	
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/grid/reset.css" media="all" />
+	        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/grid/960.css" />
+
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/recentChanges.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/styles.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/overlay.css" media="all" />
@@ -27,6 +30,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryCarousel/jquery.jscrollpane.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/jqueryCarousel/style.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/searchBox/searchBox.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/grid/960.css" />
 
         <!--[if lte IE 7]>
             <style type="text/css">
