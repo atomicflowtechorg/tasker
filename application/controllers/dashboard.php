@@ -28,6 +28,13 @@ class Dashboard extends CI_Controller {
                 $team = $teams[0]->fkTeamName;
                 $data['teams'] = $teams;
                 $data['users'] = $this->teamModel->getUsersForTeam(true , $team);
+                foreach($data['users'] as $user){
+                    $email = "someone@somewhere.com";
+                    $default = base_url()."images/profiles/default.jpg";
+                    $size = 100;
+                    $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->fldEmail ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+                    $user->fldProfileImage = $grav_url;
+                }
                 $this->lang->load('authentication');
                 $this->lang->load('team');
 
