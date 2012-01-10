@@ -6,6 +6,7 @@
             </a>
         </div>
         <h3><?php echo $fldFirstname . " " . $fldLastname; ?></h3>
+        <p><?php echo $fldRole; ?></p>
         <a href="#" class="ca-more"><?php echo lang('team_more_link'); ?></a>
     </div>
     <div class="ca-content-wrapper">

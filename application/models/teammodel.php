@@ -47,21 +47,25 @@ class TeamModel extends CI_Model {
         }
     }
 
-    function getUsersForTeam($inTeam, $team = null) {
+    function getUsersForTeam($inTeam, $team) {
 
         if ($inTeam) {
             $condition = 'IN';
         } else {
             $condition = 'NOT IN';
         }
-        if ($team == null) {
-            throw new Exception("Team can't be null", 1);
-        }
-
+        $queryString = "SELECT pkUsername, fldFirstname, fldLastname, fldProfileImage, fldLastLoggedIn, fldEmail, fldStatus, fldRole, fkTeamName
+        FROM tblTasker
+        LEFT JOIN tblTeamTasker
+        ON tblTasker.pkUsername = tblTeamTasker.fkUsername
+        WHERE fkTeamName = '$team'";
+        /*
         $queryString = "SELECT pkUsername, fldFirstname,fldLastname,fldProfileImage,fldLastLoggedIn,fldEmail,fldStatus
 						FROM tblTasker
 						WHERE pkUsername $condition
 						(SELECT DISTINCT fkUsername FROM tblTeamTasker WHERE fkTeamName = '$team')";
+         
+         */
         $query = $this->db->query($queryString);
 
         return $query->result();
