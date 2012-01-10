@@ -8,9 +8,9 @@
 
 .ca-container{
 	position:relative;
-	margin:auto auto auto auto;
+	/*margin:auto auto auto auto;*/
         padding-top: 55px;
-	width:900px;
+	/*width:900px;*/
 	height:125px;
 }
 .ca-wrapper{
