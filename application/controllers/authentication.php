@@ -11,15 +11,6 @@ class Authentication extends CI_Controller {
         $this->load->library('form_validation');
         $this->lang->load('authentication');
 
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            
-        } else {
-            $this->load->view('default/head');
-            $this->load->view('default/header');
-        }
-
-
-
         $this->form_validation->set_rules('fldUsername', 'Username', 'required');
         $this->form_validation->set_rules('fldPassword', 'Password', 'trim|required|md5');
 
@@ -73,8 +64,8 @@ class Authentication extends CI_Controller {
                     $this->email->to($user->fldEmail);
 
                     $this->email->subject(lang('email_new_user_subject'));
-                    
-                    $message = lang('user_inactive_email_link', array($user->pkUsername/$authKey));
+
+                    $message = lang('user_inactive_email_link', array($user->pkUsername / $authKey));
 
                     $this->email->message($message);
 
@@ -93,65 +84,49 @@ class Authentication extends CI_Controller {
                 }
             }
         }
-
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            
-        } else {
-            $this->load->view('default/footer');
-        }
     }
 
-    public function checkLogin() {
-        $this->load->library('encrypt');
-        $this->load->helper('date');
-        $this->load->model('UserModel');
-        $this->lang->load('authentication');
-        //DO encryption and stop tags and such in user model
-        if ($_POST) {
-            $exists = $this->UserModel->check_user();
-            $objArray = get_object_vars($exists);
-            $resultItem = $objArray['num_rows'];
-            if ($resultItem == 1) {
-                $user = $this->UserModel->user_login();
-                $data['username'] = $user->firstname;
-                $data['success'] = true;
-                $data['message'] = "you've successfully logged in";
-
-                $newdata = array(
-                    'username' => $user->username,
-                    'firstname' => $user->firstname,
-                    'email' => $user->email,
-                    'logged_in' => TRUE
-                );
-
-                $this->session->set_userdata($newdata);
-            } else {
-                $data['success'] = false;
-                $data['error'] = "Invalid attempt, please try again";
-            }
-
-            $json = json_encode($data);
-            $result['json'] = $json;
-            $this->load->view('authentication/checkLogin', $result);
-        }
-    }
+//    public function checkLogin() {
+//        $this->load->library('encrypt');
+//        $this->load->helper('date');
+//        $this->load->model('UserModel');
+//        $this->lang->load('authentication');
+//        //DO encryption and stop tags and such in user model
+//        if ($_POST) {
+//            $exists = $this->UserModel->check_user();
+//            $objArray = get_object_vars($exists);
+//            $resultItem = $objArray['num_rows'];
+//            if ($resultItem == 1) {
+//                $user = $this->UserModel->user_login();
+//                $data['username'] = $user->firstname;
+//                $data['success'] = true;
+//                $data['message'] = "you've successfully logged in";
+//
+//                $newdata = array(
+//                    'username' => $user->username,
+//                    'firstname' => $user->firstname,
+//                    'email' => $user->email,
+//                    'logged_in' => TRUE
+//                );
+//
+//                $this->session->set_userdata($newdata);
+//            } else {
+//                $data['success'] = false;
+//                $data['error'] = "Invalid attempt, please try again";
+//            }
+//
+//            $json = json_encode($data);
+//            $result['json'] = $json;
+//            $this->load->view('authentication/checkLogin', $result);
+//        }
+//    }
 
     public function checkLogout() {
         $newdata = array(
             'logged_in' => FALSE
         );
-
         $this->session->set_userdata($newdata);
-
-        $data['message'] = "you've successfully logged out";
-        $json = json_encode($data);
-        $result['json'] = $json;
-
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            $this->load->view('authentication/checkLogout', $result);
-        } else {
-            redirect('/', 'location');
-        }
+        redirect('/', 'location');
     }
 
     public function forgot() {
@@ -160,9 +135,6 @@ class Authentication extends CI_Controller {
         $this->lang->load('authentication');
 
         $this->form_validation->set_rules('fldEmail', 'Email', 'trim|required|valid_email');
-
-        $this->load->view('default/head');
-        $this->load->view('default/header');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('authentication/forgot');
@@ -206,8 +178,6 @@ class Authentication extends CI_Controller {
 
             $this->load->view('authentication/emailSent', $data);
         }
-
-        $this->load->view('default/footer');
     }
 
     public function resetPassword($username = null, $resetKey = null) {
@@ -218,9 +188,6 @@ class Authentication extends CI_Controller {
         $this->form_validation->set_rules('fldUsername', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
         $this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
-
-        $this->load->view('default/head');
-        $this->load->view('default/header');
 
         $validResetRequest = 0;
 
@@ -242,8 +209,6 @@ class Authentication extends CI_Controller {
             $data['message'] = "Sorry - User and request key don't match up. Try again";
             $this->load->view('authentication/forgot', $data);
         }
-
-        $this->load->view('default/footer');
     }
 
     public function signUp() {
@@ -258,8 +223,6 @@ class Authentication extends CI_Controller {
         $this->form_validation->set_rules('fldPassword1', 'Password', 'trim|required|matches[fldPassword2]|md5');
         $this->form_validation->set_rules('fldPassword2', 'Password Confirmation', 'trim|required');
 
-        $this->load->view('default/head');
-        $this->load->view('default/header');
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('authentication/signUp');
         } else {
@@ -289,7 +252,6 @@ class Authentication extends CI_Controller {
             }
             $this->load->view('authentication/accountCreated', $data);
         }
-        $this->load->view('default/footer');
     }
 
     public function activateUser($username=null, $authkey=null) {
@@ -303,9 +265,6 @@ class Authentication extends CI_Controller {
             $validActivateRequest = $this->UserModel->confirmAuthKey($username, $authkey);
         }
 
-        $this->load->view('default/head');
-        $this->load->view('default/header');
-
         if ($validActivateRequest) {
             $this->UserModel->setAccountActive($username);
             $data['message'] = "Congratulations, your account has been activated. " . anchor("authentication", "Please Login.", '');
@@ -313,8 +272,6 @@ class Authentication extends CI_Controller {
             $data['message'] = "Sorry, The link you used doesnt seem to be right, " . anchor('authentication', 'please try again', '');
         }
         $this->load->view('authentication/accountCreated', $data);
-
-        $this->load->view('default/footer');
     }
 
 }

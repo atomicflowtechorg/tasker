@@ -26,11 +26,11 @@ class Dashboard extends CI_Controller {
         
         $teams = $this->teamModel->getTeamsForUser($session['username']);
         
-        $hasTeam = false;
+        $data['hasTeam'] = false;
         if (count($teams) == 0) {
             
         } else {
-            $hasTeam = true;
+            $data['hasTeam'] = true;
             $team = $teams[0]->fkTeamName;
             $data['users'] = $this->teamModel->getUsersForTeam(true, $team);
 
@@ -61,20 +61,9 @@ class Dashboard extends CI_Controller {
 
         $this->lang->load('authentication');
         $this->lang->load('team');
-
+        $data['data'] = $data;
         $this->load->library('form_validation');
-        $this->load->view('default/head');
-        $this->load->view('default/toolbar', $data);
-        
-        if($hasTeam){
-            $this->load->view('teams/viewTeam', $data);
-            $this->load->view('default/searchBox');
-            $this->load->view('taskListMasterView', $data);
-        }else{
-            $this->load->view('teams/none',$data);
-        }
-        
-        $this->load->view('default/footer');
+        $this->load->view('dashboardLayout',$data);
     }
 
 }
