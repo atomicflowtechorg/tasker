@@ -1,5 +1,5 @@
-<div id="teamViewContainer">
-    <div id="loadTeamSlider">
+<div id="teamViewContainer" class="container_20">
+    <div id="loadTeamSlider" class="alpha grid_20">
         <div id="ca-container" class="ca-container">
             <?php $this->load->view('teams/template/teamSlider', $users); ?>
         </div><!-- ca-container -->

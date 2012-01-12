@@ -219,8 +219,6 @@ textarea::-moz-placeholder
 }
 
 #teamViewContainer {
-    margin:auto auto auto auto;
     padding-bottom: 55px;
-    width:900px;
     height:125px;
 }

@@ -1,4 +1,4 @@
-<div class="ca-item">
+<div class="grid_4 ca-item">
     <div class="ca-item-main">
         <div class="ca-icon">
             <a href='<?php echo site_url("individual/$pkUsername"); ?>' title='<?php echo $pkUsername; ?>' class='ajax_anchor_load'>
