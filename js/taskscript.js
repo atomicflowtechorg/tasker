@@ -26,20 +26,6 @@ $(document).ready(function(){
         return false;
     });
 
-    $("a[rel]").live('click', function (e) {
-        e.preventDefault(); //prevent default link action
-
-        $(this).overlay({
-            mask: '#3B5872',
-            api: true,
-            onBeforeLoad: function () {
-                var wrap = this.getOverlay().find(".contentWrap");
-                wrap.load(this.getTrigger().attr("href"));
-            },
-            load: true
-        });
-    });
-
     $('#ca-container').contentcarousel({
         // speed for the sliding animation
         sliderSpeed		: 500,
