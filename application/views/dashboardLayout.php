@@ -14,9 +14,15 @@
             ?>
             <div class="clearfix"></div>
             <div id="content" class="container_20">
+                <article class='grid_4 listView'>
+                    <?php
+                    $this->load->view('taskListMasterView', $data);
+                    ?>
+                </article>
                 <?php
-                $this->load->view('taskListMasterView', $data);
+                $this->load->view('widgits/chat');
                 ?>
+
             </div><!-- end of content -->
             <?php
         } else {

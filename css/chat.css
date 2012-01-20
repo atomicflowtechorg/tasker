@@ -1,0 +1,27 @@
+.conversation{
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.chatView{
+    background-color: black;
+}
+
+#chatInputContainer{
+    padding: 10px;
+    margin:auto;
+    width: 90%;
+}
+
+.message{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: solid white 1px;
+}
+
+.messageText{
+    max-width: 172px;
+    float: right;
+    padding:4px;
+}

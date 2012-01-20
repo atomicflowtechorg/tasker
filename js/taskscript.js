@@ -1,11 +1,16 @@
 
-function loadLink(link, area) {
-    $("#" + area).fadeOut(500, function(){
+var currentAjaxContent = individual_url;
+
+function loadLink(link, area, type) {
+     type = typeof(type) != 'undefined' ? type: '#';
+     
+    $(type + area).animate({opacity:0}, function(){
+        currentAjaxContent = $(link).attr("href");
         $.ajax({
             url: $(link).attr("href"),
             cache: false,
             success: function(html){
-                $("#" + area).fadeIn(500).html(html);
+                $(type + area).animate({opacity:1}).html(html);
             }
         });
     });
@@ -14,10 +19,10 @@ function loadLink(link, area) {
 $(document).ready(function(){
     $("#appnav li").blend();
     $('#appnav').hide();
-    $('#appnav').fadeIn("fast");
+    $('#appnav').animate({opacity:1});
     //******* ajax load link data *******************************************************
     $(".ajax_anchor_load").live("click", function(){
-        loadLink(this, "content");
+        loadLink(this, "listView", '.');
         return false;
     });
 
@@ -52,28 +57,30 @@ $(document).ready(function(){
         teamName = teamName.replace(/\s/g,"-");
         var $ca = $(".ca-container");
         var link = "teams/show/" + teamName;
-        $ca.fadeOut(function () {
+        $ca.animate({opacity:0},function () {
             $.ajax({
                 url: link,
                 cache: false,
                 success: function (html) {
                     $ca.html(html);
                     $ca.contentcarousel();
-                    $ca.fadeIn();
+                    $ca.animate({opacity:1});
                 }
             });
         });
         return false;
     });
     $('#searchForm').submit(function () {
-        $("#content").fadeOut(500, function () {
+        var socket = io.connect();
+        $(".listView").animate({opacity:0}, function () {
             var search = "searchBoxInput=" + $("#searchBoxInput").val();
+            currentAjaxContent = $('#searchForm').attr("action") + "/" + $("#searchBoxInput").val();
             $.ajax({
                 type: 'POST',
                 url: $('#searchForm').attr("action"),
                 data: search,
                 success: function (html) {
-                    $("#content").fadeIn(500).html(html);
+                    $(".listView").animate({opacity:1}).html(html);
                 }
             });
         });

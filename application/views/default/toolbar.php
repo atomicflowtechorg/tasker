@@ -1,9 +1,9 @@
 <section id="toolBar" class="container_full">
     <div id="toolBarContent" class="container_20">
-        <div id="toolbarLogo" class="grid_4">
+        <div id="toolbarLogo" class="grid_8">
             <a href="<?php echo base_url(); ?>"><h1>TeamTasker V1 by AFTech</h1></a>
         </div>
-        <div id="updateMessage">
+        <div id="updateMessage" class="grid_8">
 
         </div>
         <div id="myslidemenu">

@@ -7,9 +7,10 @@
 * @property CI_DB_active_record $db
 */
 class Search extends CI_Controller {
-    public function index()
+    public function index($searchTerm = null)
     {
-        $searchTerm = $this->input->post('searchBoxInput');
+        if($searchTerm === null){
+            $searchTerm = $this->input->post('searchBoxInput');
         
         $this->load->model('listModel');
         $this->load->model('taskModel');
