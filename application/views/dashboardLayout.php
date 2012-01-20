@@ -21,7 +21,7 @@
                 </article>
                 <article class='grid_4 listView hidden'></article>
                 <?php
-                $this->load->view('widgits/chat');
+                $this->load->view('widgets/chat');
                 ?>
 
             </div><!-- end of content -->
