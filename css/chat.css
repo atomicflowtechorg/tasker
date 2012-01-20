@@ -24,4 +24,5 @@
     max-width: 172px;
     float: right;
     padding:4px;
+    word-wrap: break-word;
 }
