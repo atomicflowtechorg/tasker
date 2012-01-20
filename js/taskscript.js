@@ -1,75 +1,122 @@
-
-var currentAjaxContent = individual_url;
-
 function loadLink(link, area, type) {
-     type = typeof(type) != 'undefined' ? type: '#';
+    type = typeof(type) != 'undefined' ? type: '#';
      
-    $(type + area).animate({opacity:0}, function(){
-        currentAjaxContent = $(link).attr("href");
+    $(type + area).animate({
+        opacity:0
+    }, function(){
         $.ajax({
             url: $(link).attr("href"),
             cache: false,
             success: function(html){
-                $(type + area).animate({opacity:1}).html(html);
+                $(type + area).animate({
+                    opacity:1
+                }).html(html);
             }
         });
     });
 }
 
+function taskListEvent(container, event, src){
+    //    $.ajax({
+    //        url: src,
+    //        cache: false,
+    //        success: function(html){
+    //            $(container).html(html);
+    //        }
+    //    });
+    switch(event){
+        case "show":
+            
+            break;
+        case "hide":
+            
+            break;
+        default:
+            throw exception("sorry, cant call without an event!");
+    }
+    return false;
+}
+
 $(document).ready(function(){
     $("#appnav li").blend();
     $('#appnav').hide();
-    $('#appnav').animate({opacity:1});
-    //******* ajax load link data *******************************************************
-    $(".ajax_anchor_load").live("click", function(){
-        loadLink(this, "listView", '.');
-        return false;
+    $('#appnav').animate({
+        opacity:1
     });
+    
+    $('.slide').live('click', function(){
+        var url = $(this).attr("href");
+        
+        $.ajax({
+            url: url,
+            cache: false,
+            success: function(html){
+                $('.listView.hidden').html(html);
+            }
+        });
+        $container = $(this).parent('.listView');
+        $container.show('slide', {direction: 'right'}, 1000);
+        
+    return false;        
+    });
+//******* ajax load link data *******************************************************
+$(".ajax_anchor_load").live("click", function(){
+    loadLink(this, "listView", '.');
+    return false;
+});
 
-    $('#ca-container').contentcarousel({
-        // speed for the sliding animation
-        sliderSpeed		: 500,
-        // easing for the sliding animation
-        sliderEasing	: 'easeOutExpo',
-        // speed for the item animation (open / close)
-        itemSpeed		: 500,
-        // easing for the item animation (open / close)
-        itemEasing		: 'easeOutExpo',
-        // number of items to scroll at a time
-        scroll			: 1
-    });   
-    $("#selectTeamOption").live("change", function(){
-        var teamName = $(this).val();
-        teamName = teamName.replace(/\s/g,"-");
-        var $ca = $(".ca-container");
-        var link = "teams/show/" + teamName;
-        $ca.animate({opacity:0},function () {
-            $.ajax({
-                url: link,
-                cache: false,
-                success: function (html) {
-                    $ca.html(html);
-                    $ca.contentcarousel();
-                    $ca.animate({opacity:1});
-                }
-            });
+$('#ca-container').contentcarousel({
+    // speed for the sliding animation
+    sliderSpeed		: 500,
+    // easing for the sliding animation
+    sliderEasing	: 'easeOutExpo',
+    // speed for the item animation (open / close)
+    itemSpeed		: 500,
+    // easing for the item animation (open / close)
+    itemEasing		: 'easeOutExpo',
+    // number of items to scroll at a time
+    scroll			: 1
+});   
+$("#selectTeamOption").live("change", function(){
+    var teamName = $(this).val();
+    teamName = teamName.replace(/\s/g,"-");
+    var $ca = $(".ca-container");
+    var link = "teams/show/" + teamName;
+    $ca.animate({
+        opacity:0
+    },function () {
+        $.ajax({
+            url: link,
+            cache: false,
+            success: function (html) {
+                $ca.html(html);
+                $ca.contentcarousel();
+                $ca.animate({
+                    opacity:1
+                });
+            }
         });
-        return false;
     });
-    $('#searchForm').submit(function () {
-        var socket = io.connect();
-        $(".listView").animate({opacity:0}, function () {
-            var search = "searchBoxInput=" + $("#searchBoxInput").val();
-            currentAjaxContent = $('#searchForm').attr("action") + "/" + $("#searchBoxInput").val();
-            $.ajax({
-                type: 'POST',
-                url: $('#searchForm').attr("action"),
-                data: search,
-                success: function (html) {
-                    $(".listView").animate({opacity:1}).html(html);
-                }
-            });
+    return false;
+});
+$('#searchForm').submit(function () {
+    var socket = io.connect();
+    $(".listView").animate({
+        opacity:0
+    }, function () {
+        var search = "searchBoxInput=" + $("#searchBoxInput").val();
+        currentAjaxContent = $('#searchForm').attr("action") + "/" + $("#searchBoxInput").val();
+        $.ajax({
+            type: 'POST',
+            url: $('#searchForm').attr("action"),
+            data: search,
+            success: function (html) {
+                $(".listView").animate({
+                    opacity:1
+                }).html(html);
+            }
         });
-        return false;
     });
+    return false;
+});
 }); // end ready function

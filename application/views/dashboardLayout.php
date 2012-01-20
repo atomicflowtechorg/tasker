@@ -19,6 +19,7 @@
                     $this->load->view('taskListMasterView', $data);
                     ?>
                 </article>
+                <article class='grid_4 listView hidden'></article>
                 <?php
                 $this->load->view('widgits/chat');
                 ?>
