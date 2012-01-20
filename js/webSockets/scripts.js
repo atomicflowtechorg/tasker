@@ -38,7 +38,8 @@ return now;
 	// (string | mandatory) the text inside the notification
 	text: data.messageText + data.timeStamp,
 	image:data.userImage,
-	sticky:true
+	sticky:false,
+	time:8000
 	});
    
   });
