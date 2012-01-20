@@ -1,3 +1,4 @@
+<!-- VIEW DEFAULT NAV.PHP -->
 <?php
 $session = $this->session->all_userdata();
 if(isset($session['logged_in']) && $session['logged_in']==TRUE){

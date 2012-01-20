@@ -1,3 +1,4 @@
+<!-- VIEW HEAD.PHP -->
 <head>
 	<link href='http://fonts.googleapis.com/css?family=Six+Caps|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/fontfaces.css" media="all" />

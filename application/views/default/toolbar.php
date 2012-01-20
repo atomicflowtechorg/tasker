@@ -1,3 +1,4 @@
+<!-- VIEW DEFAULT TOOLBAR.PHP -->
 <section id="toolBar" class="container_full">
     <div id="toolBarContent" class="container_20">
         <div id="toolbarLogo" class="grid_8">

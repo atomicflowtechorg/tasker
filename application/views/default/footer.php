@@ -1,3 +1,4 @@
+<!-- VIEW FOOTER.PHP -->
 <footer>
     <p>&copy; Copyright  by AtomicFlow Creative</p>
 </footer>

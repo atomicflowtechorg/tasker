@@ -1,3 +1,4 @@
+<!-- VIEW DEFAULT SEARCHBOX.PHP -->
 <div id="searchBoxContainer">
     <form id="searchForm" method="post" action="<?php echo site_url('search'); ?>">
         <div>

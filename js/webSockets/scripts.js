@@ -22,5 +22,7 @@ $(document).ready(function() {
    textArea.append(
    '<div class="message"><a href="'+individual_url +'/'+ data.username + '" class="ajax_anchor_load"><img src="'+data.userImage+'" title="'+ data.username + '"></a><p class="messageText">'+data.messageText+'</p><div class="clearfix"></div></div>');
    textArea.animate({ scrollTop: textArea.prop("scrollHeight") - textArea.height() }, 300);
+   
+   
   });
 });
