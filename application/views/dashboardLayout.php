@@ -10,7 +10,6 @@
         <?php
         if ($hasTeam) {
             $this->load->view('teams/viewTeam', $data);
-            $this->load->view('default/searchBox');
             ?>
             <div class="clearfix"></div>
             <div id="content" class="container_20">

@@ -1,5 +1,5 @@
 #searchBoxContainer{
-    margin: 0 auto 0 auto;
+    /* margin: 0 auto 0 auto; */
     width: 400px;
     height: 50px;
 }
@@ -20,16 +20,16 @@
 
 #searchBoxContainer input[type=text] {
     float:left;
-    width: 260px;
+    width: 100px;
     padding: 5px;
     padding-right: 40px;
     outline: none;
     border: 2px solid #999999;
     border-radius: 5px;
     background-color: #FBFBFB;
-    font-family: Cambria, Cochin, Georgia, serif;
+    font-family: RobotoRegular, Cambria, Cochin, Georgia, serif;
     font-size: 16px;
-    background-position: 270px -10px;
+    background-position: 140x -30px;
     background-image: url('../../images/search.png');
     background-repeat: no-repeat;
 
@@ -57,7 +57,7 @@
 #searchBoxContainer  input[type=text]:focus {
     background-color: #FFFFFF;
     box-shadow: 0px 0px 25px -2px #333;
-    background-position: 270px -80px;
+    background-position: 110px -80px;
 }
 
 #searchHelpContainer{
@@ -66,13 +66,13 @@
     position: absolute;
     clear:left;
     z-index: 2;
-    width: 260px;
+    width: 100px;
     padding: 5px;
     padding-right: 40px;
     border: 2px solid #999999;
     border-top: 0px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    /* border-bottom-right-radius: 5px; */
+    /* border-bottom-left-radius: 5px; */
     background-color: #FBFBFB;
     font-family: Cambria, Cochin, Georgia, serif;
     font-size: 16px;

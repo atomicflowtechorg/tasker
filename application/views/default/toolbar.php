@@ -4,7 +4,8 @@
         <div id="toolbarLogo" class="grid_8">
             <a href="<?php echo base_url(); ?>"><h1>TeamTasker V1 by AFTech</h1></a>
         </div>
-        <div id="updateMessage" class="grid_8">
+        <?php $this->load->view('default/searchBox'); ?>
+        <div id="updateMessage" class="grid_2">
 
         </div>
         <div id="myslidemenu">

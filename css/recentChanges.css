@@ -162,7 +162,9 @@ textarea::-moz-placeholder
 #toolBar{
 	/* position: fixed; */
 	background-color:#000000;
-	width: 100%;
+	border-bottom-color:#38C8FD;
+	border-bottom-width:3px;
+	border-bottom-style:solid;
 	height:40px;
         padding-top:6px;
         padding-bottom:6px;

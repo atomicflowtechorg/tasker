@@ -1,5 +1,5 @@
 <!-- VIEW DEFAULT SEARCHBOX.PHP -->
-<div id="searchBoxContainer">
+<div id="searchBoxContainer" class="grid_4">
     <form id="searchForm" method="post" action="<?php echo site_url('search'); ?>">
         <div>
             <input id="searchBoxInput" name="searchBoxInput" placeholder="Search here..." type="text"/>
