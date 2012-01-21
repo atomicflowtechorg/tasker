@@ -4,10 +4,37 @@
 $(document).ready(function() {  
 
 function timeStamp(){
-var time = new Date();
-var hours = time.getHours();
-var minutes = time.getMinutes();
-var now = " - " + String(hours.valueOf()) +":"+ minutes.valueOf();
+var a_p = "";
+var d = new Date();
+var curr_hour = d.getHours();
+if (curr_hour < 12)
+   {
+   a_p = "AM";
+   }
+else
+   {
+   a_p = "PM";
+   }
+if (curr_hour == 0)
+   {
+   curr_hour = 12;
+   }
+if (curr_hour > 12)
+   {
+   curr_hour = curr_hour - 12;
+   }
+
+var curr_min = d.getMinutes();
+
+curr_min = curr_min + "";
+
+if (curr_min.length == 1)
+   {
+   curr_min = "0" + curr_min;
+   }
+
+now = curr_hour + ":" + curr_min + " " + a_p
+
 return now;
 } 
 
@@ -34,12 +61,13 @@ return now;
    
    
    $.gritter.add({
-	title: data.username,
+	title: "New Message from " + data.username,
 	// (string | mandatory) the text inside the notification
-	text: data.messageText + data.timeStamp,
+	text: data.messageText ,
 	image:data.userImage,
-	sticky:false,
-	time:8000
+	sticky:true,
+	timeStamp: data.timeStamp,
+	/* time:8000 */
 	});
    
   });

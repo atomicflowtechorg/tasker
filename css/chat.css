@@ -26,3 +26,7 @@
     padding:4px;
     word-wrap: break-word;
 }
+.chatView .message img{
+	height: 48px;
+	width: 48px;
+}
