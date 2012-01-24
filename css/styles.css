@@ -476,8 +476,3 @@ ol.taskList li:last-child { border-bottom: none; }
 	font-family: "RobotoRegular"
 }
 
-/* ___________________________________________________All The Stuff I Want Turned Off__________________________________________________ */
-#teamViewContainer{
-	display:none;
-}
-

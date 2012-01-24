@@ -16,27 +16,6 @@ function loadLink(link, area, type) {
     });
 }
 
-function taskListEvent(container, event, src){
-    //    $.ajax({
-    //        url: src,
-    //        cache: false,
-    //        success: function(html){
-    //            $(container).html(html);
-    //        }
-    //    });
-    switch(event){
-        case "show":
-            
-            break;
-        case "hide":
-            
-            break;
-        default:
-            throw exception("sorry, cant call without an event!");
-    }
-    return false;
-}
-
 $(document).ready(function(){
     $("#appnav li").blend();
     $('#appnav').hide();
@@ -46,77 +25,80 @@ $(document).ready(function(){
     
     $('.slide').live('click', function(){
         var url = $(this).attr("href");
-        
         $.ajax({
             url: url,
             cache: false,
             success: function(html){
-                $('.listView.hidden').html(html);
+                $('.listView').hide("slide", { direction: "left" }, 1000, function(){
+                    $(this).html(html)
+                }).show("slide", { direction: "left" }, 1000);
             }
         });
         $container = $(this).parent('.listView');
-        $container.show('slide', {direction: 'right'}, 1000);
+        $container.show('slide', {
+            direction: 'right'
+        }, 1000);
         
-    return false;        
+        return false;        
     });
-//******* ajax load link data *******************************************************
-$(".ajax_anchor_load").live("click", function(){
-    loadLink(this, "listView", '.');
-    return false;
-});
+    //******* ajax load link data *******************************************************
+    $(".ajax_anchor_load").live("click", function(){
+        loadLink(this, "listView", '.');
+        return false;
+    });
 
-$('#ca-container').contentcarousel({
-    // speed for the sliding animation
-    sliderSpeed		: 500,
-    // easing for the sliding animation
-    sliderEasing	: 'easeOutExpo',
-    // speed for the item animation (open / close)
-    itemSpeed		: 500,
-    // easing for the item animation (open / close)
-    itemEasing		: 'easeOutExpo',
-    // number of items to scroll at a time
-    scroll			: 1
-});   
-$("#selectTeamOption").live("change", function(){
-    var teamName = $(this).val();
-    teamName = teamName.replace(/\s/g,"-");
-    var $ca = $(".ca-container");
-    var link = "teams/show/" + teamName;
-    $ca.animate({
-        opacity:0
-    },function () {
-        $.ajax({
-            url: link,
-            cache: false,
-            success: function (html) {
-                $ca.html(html);
-                $ca.contentcarousel();
-                $ca.animate({
-                    opacity:1
-                });
-            }
+    $('#ca-container').contentcarousel({
+        // speed for the sliding animation
+        sliderSpeed		: 500,
+        // easing for the sliding animation
+        sliderEasing	: 'easeOutExpo',
+        // speed for the item animation (open / close)
+        itemSpeed		: 500,
+        // easing for the item animation (open / close)
+        itemEasing		: 'easeOutExpo',
+        // number of items to scroll at a time
+        scroll			: 1
+    });   
+    $("#selectTeamOption").live("change", function(){
+        var teamName = $(this).val();
+        teamName = teamName.replace(/\s/g,"-");
+        var $ca = $(".ca-container");
+        var link = "teams/show/" + teamName;
+        $ca.animate({
+            opacity:0
+        },function () {
+            $.ajax({
+                url: link,
+                cache: false,
+                success: function (html) {
+                    $ca.html(html);
+                    $ca.contentcarousel();
+                    $ca.animate({
+                        opacity:1
+                    });
+                }
+            });
         });
+        return false;
     });
-    return false;
-});
-$('#searchForm').submit(function () {
-    var socket = io.connect();
-    $(".listView").animate({
-        opacity:0
-    }, function () {
-        var search = "searchBoxInput=" + $("#searchBoxInput").val();
-        currentAjaxContent = $('#searchForm').attr("action") + "/" + $("#searchBoxInput").val();
-        $.ajax({
-            type: 'POST',
-            url: $('#searchForm').attr("action"),
-            data: search,
-            success: function (html) {
-                $(".listView").animate({
-                    opacity:1
-                }).html(html);
-            }
+    $('#searchForm').submit(function () {
+        var socket = io.connect();
+        $(".listView").animate({
+            opacity:0
+        }, function () {
+            var search = "searchBoxInput=" + $("#searchBoxInput").val();
+            currentAjaxContent = $('#searchForm').attr("action") + "/" + $("#searchBoxInput").val();
+            $.ajax({
+                type: 'POST',
+                url: $('#searchForm').attr("action"),
+                data: search,
+                success: function (html) {
+                    $(".listView").animate({
+                        opacity:1
+                    }).html(html);
+                }
+            });
         });
+        return false;
     });
-    return false;
-});
 }); // end ready function
