@@ -21,6 +21,19 @@
                 <?php
                 $this->load->view('widgets/chat');
                 ?>
+                <article class="grid_4 gitHubIssues">
+                    <?php
+                    $repoIssuesURL = "https://api.github.com/repos/:atomicflowtech/:tasker/issues";
+                    $ch = curl_init($repoIssuesURL);
+                    curl_setopt($ch, CURLOPT_HEADER, 0);
+                    curl_setopt($ch, CURLOPT_HTTPGET, 1);
+                    curl_setopt($ch, CURLOPT_HTTPAUTH, 1);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    $output = curl_exec($ch);       
+                    curl_close($ch);
+                    echo $output;
+                    ?>
+                </article>
 
             </div><!-- end of content -->
             <?php

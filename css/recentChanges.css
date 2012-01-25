@@ -1,68 +1,6 @@
 /* LUCAS' CHANGES with Amendments By Brandon  */
 
 
-.taskProfileImage
-{
-	max-height:100px;
-	padding: 5px 20px 0px 20px; margin: 0 0 20px 0;
-	background: #5E768D;
-	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #546A7F), color-stop(20%, #5E768D));
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-	-moz-box-shadow:0px 1px 0px #f2f2f2; -webkit-box-shadow:0px 1px 0px #f2f2f2;
-}
-
-
-.listView
-{
-}
-
-.showUsername
-{
-	font-style: italic;
-}
-
-
-/*  Team List */
-
-ol.teamList {
-	/*margin: 20px 0;*/
-	/*background: url(../images/ul_bg.gif) repeat-y;*/ /*--Bg of the order numbers--*/
-	padding: 0;/*--Distance between the order numbers--*/
-	/*border: 1px solid #111;*/
-	text-decoration: none;
-	list-style:none;
-}
-ol.teamList li {
-	margin: 10px 0px 10px 0px;
-	padding: 5px 5px;
-	color: #cbff78; 
-	font-family: 'QuicksandBook';
-	font-weight: bold;
-	font-size: 12px;
-	background: url("../images/backgrounds/task_li_bg.png") repeat;
-       /*--The bevel look is styled with various colors in the border properties below--*/
-	/*border-top: 1px solid #000;
-	border-bottom: 1px solid #353535;
-	border-right: 1px solid #333;
-	border-left: 1px solid #151515;*/
-	text-decoration: none;
-	border-radius: 5px; 
--moz-border-radius: 5px; 
--webkit-border-radius: 5px; 
-
-
-}
-ol.teamList a{
-	text-transform:uppercase;
-	text-decoration: none;
-	color: #FFF;
-	/*font-family: Arial;*/
-	text-transform: lowercase; 
-	
-}
-ol.teamList li:first-child { font-family:'QuicksandBold';}
-ol.teamList li:last-child { border-bottom: none; }
 
 
 
@@ -83,20 +21,7 @@ ol.teamList li:last-child { border-bottom: none; }
 	text-transform: uppercase; text-shadow: 0px 1px 0px #f2f2f2;
 }
 
-.taskView
-{
-	width:430px;margin:60px auto; padding:60px 30px;
-	 border: 1px solid #e1e1e1;
-	-moz-box-shadow:0px 0px 8px #444;
-	-webkit-box-shadow: 0px 0px 8px #444;
-}
 
-.simple_overlay label
-{
-	float: left; clear: left; margin: 11px 20px 0 0; width: 95px;
-	text-align:right; 
-	text-transform: uppercase; text-shadow: 0px 1px 0px #f2f2f2;
-}
 
 .simple_overlay input, .unAuthenticatedForm input
 {

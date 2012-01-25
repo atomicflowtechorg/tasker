@@ -32,7 +32,7 @@
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/chat.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/grid/960.css" />
-
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/tasks.css" media="all" />
         <!--[if lte IE 7]>
             <style type="text/css">
                 html .jqueryslidemenu{height: 1%;} /*Holly Hack for IE7 and below*/

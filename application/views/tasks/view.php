@@ -26,13 +26,12 @@ foreach($task as $row)
 			);
 	echo form_hidden($taskId);
 	
-	echo form_label('Name:', 'name');
 	$taskName = array(
 			  'name'        => 'name',
 			  'id'          => 'name',
 			  'value'       => $row->fldName,
 			  'maxlength'   => '140',
-			  'size'        => '50',
+			  'size'        => '30',
 			);
 	echo form_input($taskName);
 	
@@ -45,7 +44,7 @@ foreach($task as $row)
 		$options[$user->pkusername] = $user->pkusername;
 	}
 	echo form_dropdown('username',$options,$currentUser);
-	echo "<a href='".site_url("individual/$currentUser")."' title='$currentUser'><img src='".base_url().$currentProfile."' title='".$currentUser."' class='taskProfileImage'/></a>";
+	echo "<a href='".site_url("individual/$currentUser")."' title='$currentUser'><img src='$currentProfile' title='".$currentUser."' class='taskProfileImage'/></a>";
 	
 	
 	
@@ -57,7 +56,7 @@ foreach($task as $row)
 	
 	echo form_dropdown('status', $statusOption, $row->fldStatus);
 	
-	echo $currentList;
+	echo "<p>".$currentList."</p>";
 	
 	echo form_label(lang('task_dueDate_label'), 'dateDue');
 	$dueDate = array(
@@ -65,7 +64,7 @@ foreach($task as $row)
 			  'id'          => 'dateDue',
 			  'value'       => $row->fldDateDue,
 			  'maxlength'   => '140',
-			  'size'        => '50',
+			  'size'        => '30',
 			);
 	echo form_input($dueDate);
 	
@@ -76,8 +75,8 @@ foreach($task as $row)
 			  'name'        => 'notes',
 			  'id'          => 'notes',
 			  'value'       => $row->fldNotes,
-			  'rows'  		=> 10,
-			  'cols'        => 50,
+			  'rows'  	=> 10,
+			  'cols'        => 30,
 			);
 	echo form_textarea($notes);
 	

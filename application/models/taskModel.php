@@ -133,7 +133,7 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
             $listQuery = "INNER JOIN tblListTask e ON a.pkTaskId = e.fkTaskId INNER JOIN tblList d ON e.fkListId = d.pkListId";
         }
         if ($taskerTask->num_rows == 1) {
-            $taskQueryParams = ",c.pkUsername, c.fldProfileImage";
+            $taskQueryParams = ",c.pkUsername, c.fldProfileImage, c.fldEmail";
             $taskQuery = "INNER JOIN tblTaskerTask b ON a.pkTaskId = b.fkTaskId INNER JOIN tblTasker c ON b.fkUsername = c.pkUsername";
         }
 
