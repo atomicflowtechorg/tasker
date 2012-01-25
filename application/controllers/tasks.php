@@ -32,7 +32,12 @@ class Tasks extends CI_Controller {
                 foreach ($data['task'] as $task) {
                     $default = base_url() . "images/profiles/default.jpg";
                     $size = 100;
-                    $grav_url = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($task->fldEmail))) . "?d=" . urlencode($default) . "&s=" . $size;
+                    if(isset($task->fldEmail)){
+                        $grav_url = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($task->fldEmail))) . "?d=" . urlencode($default) . "&s=" . $size;
+                    }
+                    else {
+                        $grav_url = $default;
+                    }
                     $task->fldProfileImage = $grav_url;
                 }
 
