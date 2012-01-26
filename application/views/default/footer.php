@@ -26,7 +26,8 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jqueryslidemenu.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.contentcarousel.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/taskscript.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>js/listView.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/dashboard.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/searchBox/searchBox.js"></script> 
