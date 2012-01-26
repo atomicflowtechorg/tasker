@@ -1,4 +1,4 @@
-/* Author: YOUR NAME HERE
+/* Author: YOUR NAME HERE */
 (function() {
 
 $(document).ready(function() {  
@@ -36,7 +36,7 @@ if (curr_min.length == 1)
 now = curr_hour + ":" + curr_min + " " + a_p
 
 return now;
-} 
+}
 
   var socket = io.connect();
 

@@ -21,8 +21,8 @@
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/blend/jquery.blend.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.tools.min.js"></script>
-<script src="http://ui.jquery.com/latest/ui/jquery.effects.core.js"></script>
-<script src="http://ui.jquery.com/latest/ui/jquery.effects.slide.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
+<script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jqueryslidemenu.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.contentcarousel.js"></script>
