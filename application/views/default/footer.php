@@ -11,8 +11,14 @@
 	/* var userImageBig = "<?php $default = base_url() . "images/profiles/default.jpg";
     echo "http://www.gravatar.com/avatar/" . md5(strtolower(trim($session['email']))) . "?d=" . urlencode($default) . "&s=100";?>"; */
 </script>
+
 <script type="text/javascript" src="<?php echo base_url(); ?>js/webSockets/socket.io.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/spine.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/Tasker.js"></script> 
+
+
+
 <script type="text/javascript" src="<?php echo base_url(); ?>js/blend/jquery.blend.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.tools.min.js"></script>
 <script src="http://ui.jquery.com/latest/ui/jquery.effects.core.js"></script>
