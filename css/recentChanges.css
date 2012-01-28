@@ -5,13 +5,17 @@
 
 
 /* TASKER FORM  */
+#login{
+	background-color:#0B0B0B;
+	width:350px;
+	height:377px;
+}
 .unAuthenticatedForm
 {
-	width:516px;
+	width:350px;
 	margin:60px auto; padding:60px 30px;
-	border: 1px solid #e1e1e1;
-	-moz-box-shadow:0px 0px 8px #444;
-	-webkit-box-shadow: 0px 0px 8px #444;
+	/*border: 1px solid #e1e1e1;*/
+	
 }
 
 .unAuthenticatedForm label
@@ -20,18 +24,37 @@
 	text-align:right; 
 	text-transform: uppercase; text-shadow: 0px 1px 0px #f2f2f2;
 }
+.unAuthenticatedForm input[type=text]{
+	text-transform:uppercase;
+}
+
+.unAuthenticatedForm input[type=password]{
+	
+}
+.unAuthenticatedForm input[type=password],.unAuthenticatedForm input[type=text] {
+	background-color: #131313;
+	border-color: none;
+	
+	border-radius:10px;
+	height:58px;
+	width:250px;
+	margin-bottom:10px;
+	text-align:center;
+	font-family: 'QuicksandBook' ;
+	color: #33B3E5;
+	font-size: 18px;
+	border-width: 0px;
+	border-bottom-width: 2px;
+	border-bottom-color:#33B3E5;
+}
+::-webkit-input-placeholder  { color:#33B3E5; }
+input:-moz-placeholder { color:#33B3E5; }
 
 
 
-.simple_overlay input, .unAuthenticatedForm input
+/*.simple_overlay input, .unAuthenticatedForm input
 {
 	width: 260px; height: 35px; padding: 5px 20px 0px 20px; margin: 0 0 10px 0;
-	background: #5E768D;
-	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #546A7F), color-stop(20%, #5E768D));
-	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
-	-moz-box-shadow:0px 1px 0px #f2f2f2; -webkit-box-shadow:0px 1px 0px #f2f2f2;
-	 text-shadow:0px -1px 0px #334f71;
 }
 input::-webkit-input-placeholder
 {
@@ -50,17 +73,10 @@ input::-moz-placeholder
 	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
 	-moz-box-shadow:0px 1px 0px #f2f2f2; -webkit-box-shadow:0px 1px 0px #f2f2f2;
 	 text-shadow:0px -1px 0px #334f71;
-}
-textarea::-webkit-input-placeholder
-{
-	color: #a1bc3; text-shadow:0px -1px 0px #38506b;
-}
-textarea::-moz-placeholder
-{
-	color: #a1bc3; text-shadow:0px -1px 0px #38506b;
-}
+}*/
 
-.simple_overlay input:focus,.simple_overlay  textarea:focus, .unAuthenticatedForm input:focus, .unAuthenticatedForm textarea:focus
+
+/*.simple_overlay input:focus,.simple_overlay  textarea:focus, .unAuthenticatedForm input:focus, .unAuthenticatedForm textarea:focus
 {
 	background:#728eaa;
 	background: -moz-linear-gradient(top, #668099 0%, #728eaa 20%);
@@ -75,7 +91,7 @@ textarea::-moz-placeholder
 	background: -moz-linear-gradient(top, #718DA9 0%, #415D79 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #718DA9), color-stop(100%, #415D79));
 	cursor:pointer;
-}
+}*/
 
 
 
