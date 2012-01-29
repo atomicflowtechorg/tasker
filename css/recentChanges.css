@@ -9,11 +9,44 @@
 	background-color:#0B0B0B;
 	width:350px;
 	height:377px;
+	margin: 0 auto;
+	margin-top: 40px;
 }
+
+
+
+#login .header{
+	width: 350px;
+	background-color: #000;
+	color: #33B3E5;
+	font-family: 'QuicksandBook' ;
+	font-size:22px;
+	text-align:center;
+	text-transform:uppercase;
+	border-bottom-width:2px;
+	border-bottom-color:#33B3E5;
+	border-bottom-style:solid;
+	padding: 15px 0px 15px 0px;
+	margin-bottom: 40px;
+
+
+}
+#login #iconSpan{
+	margin: 0 auto;
+	height: 24px;
+	width:20px;
+	display: block;
+	margin-bottom:20px;
+}
+
+#login form{
+	margin: 0 auto;
+}
+
 .unAuthenticatedForm
 {
-	width:350px;
-	margin:60px auto; padding:60px 30px;
+	width:250px;
+	margin: 0 auto;
 	/*border: 1px solid #e1e1e1;*/
 	
 }
@@ -38,7 +71,7 @@
 	border-radius:10px;
 	height:58px;
 	width:250px;
-	margin-bottom:10px;
+	margin-bottom:20px;
 	text-align:center;
 	font-family: 'QuicksandBook' ;
 	color: #33B3E5;
@@ -137,7 +170,7 @@ input::-moz-placeholder
 }
 
 #topHeader {
-	padding-top:50px;
+
 }
 
 #toolbarLogo{
