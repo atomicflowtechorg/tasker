@@ -10,6 +10,8 @@
         <div id="content" class="container_20">
             <!-- Login Form -->
             <div id="login">
+                <div class="header">Login</div>
+                <span id="iconSpan"><img src="../images/icons/lock.png" alt=""></span>
                 <div id="errorConsole">
                 </div>
 
@@ -77,7 +79,11 @@
                     echo form_close();
                 }
                 ?>
+                <!-- TODO: add these circles back in for form validation -->
+                 <!--  <div class="circle"></div>
+<div class="circle1"></div> -->
             </div><!-- LoginForm End -->
+          
         </div><!-- end of content -->
         <?php
         $this->load->view('default/footer');
