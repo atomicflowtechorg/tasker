@@ -147,15 +147,15 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
         return $query->result();
     }
 
-    function update() {
+    function update($taskId, $taskProperties) { //properties is an object
         $this->load->helper('date');
 
-        $this->pkTaskId = $this->input->post('taskId');
-        $this->fldName = $this->input->post('name');
-        $this->fldAssignedTo = $this->input->post('username');
-        $this->fldStatus = $this->input->post('status');
-        $this->fldNotes = $this->input->post('notes');
-        $this->fldDateDue = $this->input->post('dateDue');
+        $this->pkTaskId = $taskId;
+        $this->fldName = $taskProperties->fldName;
+        $this->fldAssignedTo = $taskProperties->fldAssignedTo;
+        $this->fldStatus = $taskProperties->fldStatus;
+        $this->fldNotes = $taskProperties->fldNotes;
+        $this->fldDateDue = $taskProperties->fldDateDue;
         $this->fldDateCompleted;
         //code that checks if updating for an unassigned task
         $query = $this->db->query("SELECT COUNT(*) AS total FROM tblTaskerTask WHERE fkTaskId = '$this->pkTaskId'");
@@ -197,9 +197,8 @@ WHERE fkUsername='$tasker' AND fkTaskId=pkTaskId) AND fldStatus != 'Deleted' AND
         $where = "pkTaskId = $this->pkTaskId";
         $update[] = $this->db->update_string('tblTask', $tblTask, $where);
         $this->db->query($update[0]);
-
         //doesnt actually use the returned value...
-        return 'Update Complete';
+        return $this;
     }
 
     function updateUser() {

@@ -18,8 +18,8 @@ foreach($task as $row)
 	
 	echo validation_errors(); 
 	
-	$attributes = array('class' => 'tasksView');
-	echo form_open('tasks/view/'.$row->pkTaskId, $attributes);
+	$attributes = array('class' => 'tasksView taskUpdate');
+	echo form_open('api/task/', $attributes);
 	echo form_fieldset();
 	$taskId = array(
 			  'taskId'  => $row->pkTaskId

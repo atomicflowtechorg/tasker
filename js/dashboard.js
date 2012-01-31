@@ -79,8 +79,46 @@ var dashboard = {
             });
         });
         return false;
+    },
+    
+    taskUpdate: function taskUpdate(url, form){
+        var task = JSON.stringify($(form).serializeObject());
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: task,
+            dataType: json,
+            success: function(data){
+               $('.listView').hide("slide", {
+                    direction: "left"
+                }, 1000, function(){
+                    $(this).html(data)
+                }).show("slide", {
+                    direction: "left"
+                }, 1000);
+            }
+        });
+        return false;
     }
 }
+
+
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 
 
 
@@ -120,5 +158,12 @@ $(document).ready(function(){
     
     $('#searchForm').submit(function () {
         return dashboard.submit();
+    });
+    
+    $('.taskUpdate').live("submit",function(){
+        var form = $(this);
+        var url = $(this).attr("action");
+        dashboard.taskUpdate(url, form); 
+        return false;
     });
 }); // end ready function

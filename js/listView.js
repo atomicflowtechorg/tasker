@@ -5,7 +5,8 @@ Task.extend(Spine.Model.Ajax);
 Task.extend({
     url: "/index.php/tasks/load/" + username
 });
-Task.fetch();
+//Task.fetch();
+//TODO: look at route that is called
 
 
 

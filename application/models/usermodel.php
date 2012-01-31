@@ -43,6 +43,13 @@ class UserModel extends CI_Model {
             return $results;
         }
     }
+    
+    function get_user($username){
+        $query = $this->db->query("SELECT pkUsername, fldFirstname, fldLastname, fldLastLoggedIn, fldEmail, fldStatus 
+                FROM  `tblTasker`
+                WHERE pkUsername = '$username' ");
+            return $query->result();
+    }
 
     function get_all_usernames() {
         $query = $this->db->query('SELECT pkusername 

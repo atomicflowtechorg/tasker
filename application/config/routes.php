@@ -43,6 +43,7 @@ $route['individual/(:any)'] = "individual/index/$1";
 $route['search/(:any)'] = "search/index/$1";
 $route['owner/(:any)/list/(:num)'] = "lists/show/$2/$1";
 $route['list/(:num)'] = "lists/show/$1";
+$route['api/(:any)'] = "api/api/$1";
 
 $route['404_override'] = '';
 
