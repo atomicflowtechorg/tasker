@@ -16,6 +16,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/spine.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/ajax.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/local.js"></script> 
 
 
 

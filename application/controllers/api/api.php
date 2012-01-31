@@ -71,7 +71,7 @@ class Api extends REST_Controller {
         $taskProperties->fldDateDue = $this->post('dateDue');
         
         if (!$this->post('taskId')) {
-            $this->response(NULL, 400);
+            $this->response(array('error' => 'Apparently you didnt put shit in the taskID, justsayin'), 400);
         }
         
         $updateTask = $this->TaskModel->update($taskId, $taskProperties);
@@ -90,10 +90,23 @@ class Api extends REST_Controller {
     function task_delete() {
         $this->load->model('TaskModel');
 
+        $this->TaskModel->deleteTask($this->get('id'));
+
+        $this->response(200);
+
     }
     
     function tasks_get() {
         $this->load->model('TaskModel');
+        if (!$this->get('username')) {
+            $this->response(NULL, 400);
+        }
+        $tasks = $this->TaskModel->getTasksForTasker($this->get('username'));
+        if ($tasks) {
+            $this->response($tasks, 200); // 200 being the HTTP response code
+        } else {
+            $this->response(array('error' => 'User could not be found or no tasks available for that user.'), 404);
+        }
     }
 
 }

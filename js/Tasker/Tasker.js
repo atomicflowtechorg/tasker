@@ -1,44 +1,43 @@
 (function() {
-  var Notification, note1, note2,
+  var $, Task, task, tasks, _i, _len,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
+  $ = jQuery;
+
   if (this.Tasker == null) this.Tasker = {};
 
-  Notification = (function(_super) {
-    var title;
+  Task = (function(_super) {
 
-    __extends(Notification, _super);
+    __extends(Task, _super);
 
-    function Notification() {
-      Notification.__super__.constructor.apply(this, arguments);
+    function Task() {
+      Task.__super__.constructor.apply(this, arguments);
     }
 
-    Notification.configure("Notification", "title", "active");
+    Task.configure("Task", "id", "name");
 
-    title = "Default Title";
+    Task.extend(Spine.Events);
 
-    Notification.prototype.display = function(title) {
-      return $.gritter.add({
-        title: this.title,
-        text: "This is some text"
-      });
-    };
+    Task.extend(Spine.Model.Local);
 
-    return Notification;
+    Task.extend(Spine.Model.Ajax);
+
+    Task.url = "/tasker/index.php/api/tasks/username/" + username;
+
+    return Task;
 
   })(Spine.Model);
 
-  Tasker.Notification = Notification;
+  Tasker.Task = Task;
 
-  note1 = new Notification({
-    title: "Notification1"
-  });
+  Task.fetch();
 
-  note2 = new Notification({
-    title: "Notification2"
-  });
+  tasks = Task.all();
 
-  note2.display();
+  for (_i = 0, _len = tasks.length; _i < _len; _i++) {
+    task = tasks[_i];
+    console.log(task);
+  }
 
 }).call(this);

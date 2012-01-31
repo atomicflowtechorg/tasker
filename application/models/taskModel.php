@@ -28,7 +28,11 @@ class TaskModel extends CI_Model {
         if ($searchTerm === null) {
             $query = $this->db->query('SELECT * FROM tblTask');
             return $query->result();
-        } else {
+        } 
+        elseif ($searchTerm == "NotLikeDeleted") {
+            $query = $this->db->query("SELECT * FROM tblTask WHERE fldStatus NOT LIKE 'Deleted'");
+        }
+        else {
             $this->load->library('SearchResult');
             $results = array();
             $query = $this->db->query("SELECT pkTaskId,fldName,fldStatus,fldNotes 
