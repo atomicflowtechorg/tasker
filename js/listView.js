@@ -3,9 +3,9 @@ var Task = Spine.Model.sub();
 Task.configure("Task","id", "title","status");
 Task.extend(Spine.Model.Ajax);
 Task.extend({
-    url: "/index.php/tasks/load/" + username
+    url: "/tasker/index.php/api/task/id/96"
 });
-//Task.fetch();
+Task.fetch();
 //TODO: look at route that is called
 
 
