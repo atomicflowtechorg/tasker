@@ -64,7 +64,7 @@ $config['rest_auth'] = false;
 |			$config['auth_override_class_method']['deals']['insert'] = 'digest';
 |			$config['auth_override_class_method']['accounts']['user'] = 'basic'; 
 |
-| Here 'deals' and 'accounts' are controller names, 'view', 'insert' and 'user' are methods within. (NOTE: leave off the '_get' or '_post' from the end of the method name)
+| Here 'deals' and 'accounts' are controller names, 'view', 'insert' and 'user' are methods within. (Notice: leave off the '_get' or '_post' from the end of the method name)
 | Acceptable values are; 'none', 'digest' and 'basic'.  
 |
 */

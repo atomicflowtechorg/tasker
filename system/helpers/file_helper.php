@@ -335,7 +335,7 @@ if ( ! function_exists('get_file_info'))
  * Translates a file extension into a mime type based on config/mimes.php.
  * Returns FALSE if it can't determine the type, or open the mime config file
  *
- * Note: this is NOT an accurate way of determining file mime types, and is here strictly as a convenience
+ * Notice: this is NOT an accurate way of determining file mime types, and is here strictly as a convenience
  * It should NOT be trusted, and should certainly NOT be used for security
  *
  * @access	public

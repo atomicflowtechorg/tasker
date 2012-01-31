@@ -21,7 +21,7 @@
  * This class enables you to display benchmark, query, and other data
  * in order to help with debugging and optimization.
  *
- * Note: At some point it would be good to move all the HTML in this class
+ * Notice: At some point it would be good to move all the HTML in this class
  * into a set of template files in order to allow customization.
  *
  * @package		CodeIgniter
@@ -124,7 +124,7 @@ class CI_Profiler {
 		}
 
 		// Build a table containing the profile data.
-		// Note: At some point we should turn this into a template that can
+		// Notice: At some point we should turn this into a template that can
 		// be modified.  We also might want to make this data available to be logged
 
 		$output  = "\n\n";

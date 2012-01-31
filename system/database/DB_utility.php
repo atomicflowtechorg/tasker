@@ -118,7 +118,7 @@ class CI_DB_utility extends CI_DB_forge {
 		$query = $this->db->query($sql);
 		$res = $query->result_array();
 
-		// Note: Due to a bug in current() that affects some versions
+		// Notice: Due to a bug in current() that affects some versions
 		// of PHP we can not pass function call directly into it
 		return current($res);
 	}
@@ -146,7 +146,7 @@ class CI_DB_utility extends CI_DB_forge {
 			$query = $this->db->query($sql);
 
 			// Build the result array...
-			// Note: Due to a bug in current() that affects some versions
+			// Notice: Due to a bug in current() that affects some versions
 			// of PHP we can not pass function call directly into it
 			$res = $query->result_array();
 			$res = current($res);
@@ -180,7 +180,7 @@ class CI_DB_utility extends CI_DB_forge {
 
 		$query = $this->db->query($sql);
 
-		// Note: Due to a bug in current() that affects some versions
+		// Notice: Due to a bug in current() that affects some versions
 		// of PHP we can not pass function call directly into it
 		$res = $query->result_array();
 		return current($res);

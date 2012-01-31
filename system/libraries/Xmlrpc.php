@@ -950,7 +950,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 		if ($this->xh[$the_parser]['isf'] > 1) return;
 
 		// Remove current element from stack and set variable
-		// NOTE: If the XML validates, then we do not have to worry about
+		// Notice: If the XML validates, then we do not have to worry about
 		// the opening and closing of elements.  Nesting is checked on the opening
 		// tag so we be safe there as well.
 
