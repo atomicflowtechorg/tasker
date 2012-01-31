@@ -263,7 +263,7 @@ class CI_Pagination {
 			$output .= $this->last_tag_open.'<a '.$this->anchor_class.'href="'.$this->base_url.$this->prefix.$i.$this->suffix.'">'.$this->last_link.'</a>'.$this->last_tag_close;
 		}
 
-		// Kill double slashes.  Note: Sometimes we can end up with a double slash
+		// Kill double slashes.  Notice: Sometimes we can end up with a double slash
 		// in the penultimate link so we'll kill all double slashes.
 		$output = preg_replace("#([^:])//+#", "\\1/", $output);
 

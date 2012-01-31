@@ -153,7 +153,7 @@ class CI_Image_lib {
 		 * Is getimagesize() Available?
 		 *
 		 * We use it to determine the image properties (width/height).
-		 * Note:  We need to figure out how to determine image
+		 * Notice:  We need to figure out how to determine image
 		 * properties using ImageMagick and NetPBM
 		 *
 		 */
@@ -1016,7 +1016,7 @@ class CI_Image_lib {
 		// When the image is positioned at the bottom
 		// we don't want the vertical offset to push it
 		// further down.  We want the reverse, so we'll
-		// invert the offset.  Note: The horizontal
+		// invert the offset.  Notice: The horizontal
 		// offset flips itself automatically
 
 		if ($this->wm_vrt_alignment == 'B')
