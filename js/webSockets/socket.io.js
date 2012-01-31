@@ -570,7 +570,7 @@
    */
 
   EventEmitter.prototype.removeAllListeners = function (name) {
-    // TODO: enable this when node 0.5 is stable
+    // TODOS: enable this when node 0.5 is stable
     //if (name === undefined) {
       //this.$events = {};
       //return this;
@@ -1279,7 +1279,7 @@
     }
 
     if (data !== '') {
-      // todo: we should only do decodePayload for xhr transports
+      // TODOS: we should only do decodePayload for xhr transports
       var msgs = io.parser.decodePayload(data);
 
       if (msgs && msgs.length) {
