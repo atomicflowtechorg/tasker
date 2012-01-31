@@ -18,7 +18,7 @@
 /**
  * oci8 Database Adapter Class
  *
- * Notice: _DB is an extender class that the app controller
+ * Note: _DB is an extender class that the app controller
  * creates dynamically based on whether the active record
  * class is being used or not.
  *
@@ -35,7 +35,7 @@
  * This is a modification of the DB_driver class to
  * permit access to oracle databases
  *
- * Notice: this uses the PHP 4 oci methods
+ * NOTE: this uses the PHP 4 oci methods
  *
  * @author	  Kelly McArdle
  *

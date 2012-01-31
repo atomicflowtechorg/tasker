@@ -365,7 +365,7 @@ if ( ! function_exists('safe_mailto'))
  * Auto-linker
  *
  * Automatically links URL and Email addresses.
- * Notice: There's a bit of extra code here to deal with
+ * Note: There's a bit of extra code here to deal with
  * URLs or emails that end in a period.  We'll strip these
  * off and add them after the link.
  *

@@ -204,7 +204,7 @@ class CI_Router {
 		}
 
 		// Update our "routed" segment array to contain the segments.
-		// Notice: If there is no custom routing, this array will be
+		// Note: If there is no custom routing, this array will be
 		// identical to $this->uri->segments
 		$this->uri->rsegments = $segments;
 	}

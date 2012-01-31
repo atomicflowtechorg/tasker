@@ -115,7 +115,7 @@ class CI_Form_validation {
 		// into its components so that we can fetch the corresponding POST data later
 		if (strpos($field, '[') !== FALSE AND preg_match_all('/\[(.*?)\]/', $field, $matches))
 		{
-			// Notice: Due to a bug in current() that affects some versions
+			// Note: Due to a bug in current() that affects some versions
 			// of PHP we can not pass function call directly into it
 			$x = explode('[', $field);
 			$indexes[] = current($x);
@@ -155,7 +155,7 @@ class CI_Form_validation {
 	/**
 	 * Set Error Message
 	 *
-	 * Lets users set their own error messages on the fly.  Notice:  The key
+	 * Lets users set their own error messages on the fly.  Note:  The key
 	 * name has to match the  function name that it corresponds to.
 	 *
 	 * @access	public

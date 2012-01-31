@@ -21,7 +21,7 @@
   even if there is horizontal scrolling.
   Increase this if your layout is wider.
 
-  Notice: IE6 works fine without this fix.
+  Note: IE6 works fine without this fix.
 */
 
 body {

@@ -76,7 +76,7 @@ class CI_URI {
 			}
 
 			// Is there a PATH_INFO variable?
-			// Notice: some servers seem to have trouble with getenv() so we'll test it two ways
+			// Note: some servers seem to have trouble with getenv() so we'll test it two ways
 			$path = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
 			if (trim($path, '/') != '' && $path != "/".SELF)
 			{

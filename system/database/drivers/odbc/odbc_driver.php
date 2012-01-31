@@ -18,7 +18,7 @@
 /**
  * ODBC Database Adapter Class
  *
- * Notice: _DB is an extender class that the app controller
+ * Note: _DB is an extender class that the app controller
  * creates dynamically based on whether the active record
  * class is being used or not.
  *

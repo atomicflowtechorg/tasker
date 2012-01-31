@@ -918,7 +918,7 @@ class CI_Loader {
 	 */
 	protected function _ci_init_class($class, $prefix = '', $config = FALSE, $object_name = NULL)
 	{
-		// Is there an associated config file for this class?  Notice: these should always be lowercase
+		// Is there an associated config file for this class?  Note: these should always be lowercase
 		if ($config === NULL)
 		{
 			// Fetch the config paths containing any package paths

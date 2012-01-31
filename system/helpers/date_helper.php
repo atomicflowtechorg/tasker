@@ -548,7 +548,7 @@ if ( ! function_exists('timezones'))
 {
 	function timezones($tz = '')
 	{
-		// Notice: Don't change the order of these even though
+		// Note: Don't change the order of these even though
 		// some items appear to be in the wrong order
 
 		$zones = array(

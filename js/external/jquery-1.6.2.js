@@ -3034,7 +3034,7 @@ jQuery.event = {
 		}
 
 		// Add which for click: 1 === left; 2 === middle; 3 === right
-		// Notice: button is not normalized, so don't use it
+		// Note: button is not normalized, so don't use it
 		if ( !event.which && event.button !== undefined ) {
 			event.which = (event.button & 1 ? 1 : ( event.button & 2 ? 3 : ( event.button & 4 ? 2 : 0 ) ));
 		}
@@ -5152,7 +5152,7 @@ jQuery.contains = Sizzle.contains;
 
 var runtil = /Until$/,
 	rparentsprev = /^(?:parents|prevUntil|prevAll)/,
-	// Notice: This RegExp should be improved, or likely pulled from Sizzle
+	// Note: This RegExp should be improved, or likely pulled from Sizzle
 	rmultiselector = /,/,
 	isSimple = /^.[^:#\[\.,]*$/,
 	slice = Array.prototype.slice,
@@ -8830,7 +8830,7 @@ jQuery.fn.extend({
 		parentOffset = rroot.test(offsetParent[0].nodeName) ? { top: 0, left: 0 } : offsetParent.offset();
 
 		// Subtract element margins
-		// Notice: when an element has margin: auto the offsetLeft and marginLeft
+		// note: when an element has margin: auto the offsetLeft and marginLeft
 		// are the same in Safari causing offset.left to incorrectly be 0
 		offset.top  -= parseFloat( jQuery.css(elem, "marginTop") ) || 0;
 		offset.left -= parseFloat( jQuery.css(elem, "marginLeft") ) || 0;

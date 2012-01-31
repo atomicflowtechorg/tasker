@@ -87,7 +87,7 @@
  * before proceeding we need to know if a subclass_prefix
  * override exists.  If so, we will set this value now,
  * before any classes are loaded
- * Notice: Since the config file data is cached it doesn't
+ * Note: Since the config file data is cached it doesn't
  * hurt to load it here.
  */
 	if (isset($assign_to_config['subclass_prefix']) AND $assign_to_config['subclass_prefix'] != '')
@@ -146,7 +146,7 @@
  *  Instantiate the UTF-8 class
  * ------------------------------------------------------
  *
- * Notice: Order here is rather important as the UTF-8
+ * Note: Order here is rather important as the UTF-8
  * class needs to be used very early on, but it cannot
  * properly determine if UTf-8 can be supported until
  * after the Config class is instantiated.
@@ -238,7 +238,7 @@
 	}
 
 	// Load the local application controller
-	// Notice: The Router class automatically validates the controller path using the router->_validate_request().
+	// Note: The Router class automatically validates the controller path using the router->_validate_request().
 	// If this include fails it means that the default controller in the Routes.php file is not resolving to something valid.
 	if ( ! file_exists(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php'))
 	{

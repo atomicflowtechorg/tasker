@@ -202,7 +202,7 @@ class CI_Security {
 	 * of course, but I haven't been able to get anything passed
 	 * the filter.
 	 *
-	 * Notice: This function should only be used to deal with data
+	 * Note: This function should only be used to deal with data
 	 * upon submission.  It's not something that should
 	 * be used for general runtime processing.
 	 *
@@ -248,7 +248,7 @@ class CI_Security {
 		 *
 		 * <a href="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">Google</a>
 		 *
-		 * Notice: Use rawurldecode() so it does not remove plus signs
+		 * Note: Use rawurldecode() so it does not remove plus signs
 		 *
 		 */
 		$str = rawurldecode($str);
@@ -275,8 +275,8 @@ class CI_Security {
 		 * Convert all tabs to spaces
 		 *
 		 * This prevents strings like this: ja	vascript
-		 * Notice: we deal with spaces between characters later.
-		 * Notice: preg_replace was found to be amazingly slow here on 
+		 * NOTE: we deal with spaces between characters later.
+		 * NOTE: preg_replace was found to be amazingly slow here on 
 		 * large blocks of data, so we use str_replace.
 		 */
 
@@ -296,7 +296,7 @@ class CI_Security {
 		/*
 		 * Makes PHP tags safe
 		 *
-		 * Notice: XML tags are inadvertently replaced too:
+		 * Note: XML tags are inadvertently replaced too:
 		 *
 		 * <?xml
 		 *
@@ -460,7 +460,7 @@ class CI_Security {
 	 * a work-around.  More info here:
 	 * http://bugs.php.net/bug.php?id=25670
 	 *
-	 * Notice: html_entity_decode() has a bug in some PHP versions when UTF-8 is the
+	 * NOTE: html_entity_decode() has a bug in some PHP versions when UTF-8 is the
 	 * character set, and the PHP developers said they were not back porting the
 	 * fix to versions other than PHP 5.x.
 	 *

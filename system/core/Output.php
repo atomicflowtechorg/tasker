@@ -122,7 +122,7 @@ class CI_Output {
 	 *
 	 * Lets you set a server header which will be outputted with the final display.
 	 *
-	 * Notice:  If a file is cached, headers will not be sent.  We need to figure out
+	 * Note:  If a file is cached, headers will not be sent.  We need to figure out
 	 * how to permit header data to be saved with the cache data...
 	 *
 	 * @access	public
@@ -269,7 +269,7 @@ class CI_Output {
 	 */
 	function _display($output = '')
 	{
-		// Notice:  We use globals because we can't use $CI =& get_instance()
+		// Note:  We use globals because we can't use $CI =& get_instance()
 		// since this function is sometimes called by the caching mechanism,
 		// which happens before the CI super object is available.
 		global $BM, $CFG;

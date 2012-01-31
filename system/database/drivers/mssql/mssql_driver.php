@@ -18,7 +18,7 @@
 /**
  * MS SQL Database Adapter Class
  *
- * Notice: _DB is an extender class that the app controller
+ * Note: _DB is an extender class that the app controller
  * creates dynamically based on whether the active record
  * class is being used or not.
  *
@@ -107,7 +107,7 @@ class CI_DB_mssql_driver extends CI_DB {
 	 */
 	function db_select()
 	{
-		// Notice: The brackets are required in the event that the DB name
+		// Note: The brackets are required in the event that the DB name
 		// contains reserved characters
 		return @mssql_select_db('['.$this->database.']', $this->conn_id);
 	}
