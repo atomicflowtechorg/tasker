@@ -106,7 +106,7 @@ function &DB($params = '', $active_record_override = NULL)
 		show_error('You have not selected a database type to connect to.');
 	}
 
-	// Load the DB classes.  Note: Since the active record class is optional
+	// Load the DB classes.  Notice: Since the active record class is optional
 	// we need to dynamically create a class that extends proper parent class
 	// based on whether we're using the active record class or not.
 	// Kudos to Paul for discovering this clever use of eval()

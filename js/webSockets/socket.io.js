@@ -570,7 +570,7 @@
    */
 
   EventEmitter.prototype.removeAllListeners = function (name) {
-    // TODO: enable this when node 0.5 is stable
+    // TODOS: enable this when node 0.5 is stable
     //if (name === undefined) {
       //this.$events = {};
       //return this;
@@ -754,7 +754,7 @@
       case 'boolean':
       case 'null':
 
-// If the value is a boolean or null, convert it to a string. Note:
+// If the value is a boolean or null, convert it to a string. Notice:
 // typeof null does not produce 'null'. The case is included here in
 // the remote chance that this gets fixed someday.
 
@@ -1279,7 +1279,7 @@
     }
 
     if (data !== '') {
-      // todo: we should only do decodePayload for xhr transports
+      // TODOS: we should only do decodePayload for xhr transports
       var msgs = io.parser.decodePayload(data);
 
       if (msgs && msgs.length) {
