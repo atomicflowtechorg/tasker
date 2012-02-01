@@ -2,7 +2,7 @@
 <footer>
     <p>&copy; Copyright  by AtomicFlow Creative</p>
 </footer>
-
+<a href="#" id="fetch">fetch</a>
 <script>
     var individual_url = "<?php echo site_url('individual'); ?>";
     var username = "<?php echo $session['username'] ?>";
@@ -14,11 +14,9 @@
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/webSockets/socket.io.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/spine.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/ajax.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/lib/local.js"></script> 
-
-
+<script type="text/javascript" src="<?php echo base_url(); ?>js/external/underscore.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/external/backbone.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>js/jsApplication/taskerApp.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/blend/jquery.blend.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.tools.min.js"></script>
@@ -33,8 +31,6 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/searchBox/searchBox.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/external/jquery.gritter.js"></script> 
-
-<script type="text/javascript" src="<?php echo base_url(); ?>js/Tasker/Tasker.js"></script> 
 
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/webSockets/scripts.js"></script> 

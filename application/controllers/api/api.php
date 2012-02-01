@@ -55,7 +55,7 @@ class Api extends REST_Controller {
         if ($task) {
             $this->response($task, 200); // 200 being the HTTP response code
         } else {
-            $this->response(array('error' => 'User could not be found'), 404);
+            $this->response(array('error' => 'Task could not be found'), 404);
         }
     }
 

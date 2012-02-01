@@ -89,7 +89,7 @@ var dashboard = {
             data: task,
             dataType: json,
             success: function(data){
-               $('.listView').hide("slide", {
+                $('.listView').hide("slide", {
                     direction: "left"
                 }, 1000, function(){
                     $(this).html(data)

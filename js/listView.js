@@ -1,4 +1,4 @@
-//  Author: Lucas Paulger
+// /* Author: Lucas Paulger */
 // var Task = Spine.Model.sub();
 // Task.configure("Task","id", "title","status");
 // Task.extend(Spine.Model.Ajax);
@@ -7,9 +7,9 @@
 // });
 // Task.fetch();
 // //TODO: look at route that is called
-
-
-
+//
+//
+//
 // function List(){
 //     this.tasks = [];
 //     this.add = function(taskItem){
@@ -37,9 +37,9 @@
 //             );
 //     }
 // }
-// //var taskList = new List();
-// //var test = "http://localhost/tasker/index.php/tasks/load/" + "brandonjf";
-// //taskList.load(test);
-// //
-// //var url = "http://localhost/tasker/index.php/tasks/load/" + username;
-// //taskList.load(url);
+//var taskList = new List();
+//var test = "http://localhost/tasker/index.php/tasks/load/" + "brandonjf";
+//taskList.load(test);
+//
+//var url = "http://localhost/tasker/index.php/tasks/load/" + username;
+//taskList.load(url);
